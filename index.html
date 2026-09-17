@@ -16,18 +16,11 @@
     --fieltro-2: #063d24;
     --madera-1: #4a2c14;
     --madera-2: #2a1608;
-    /* Rangos */
-    --bronce: #b87333;
-    --plata: #c0c0c0;
-    --oro-r: #ffd700;
-    --diamante: #00bfff;
-    --global: #ff2d55;
   }
 
   body {
     font-family: 'Rajdhani', 'Roboto', sans-serif;
-    background: 
-      radial-gradient(ellipse at top, #1a1a1a 0%, #000 100%),
+    background: radial-gradient(ellipse at top, #1a1a1a 0%, #000 100%),
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 5 L55 30 L30 55 L5 30 Z' fill='none' stroke='%23111' stroke-width='1'/%3E%3C/svg%3E");
     min-height: 100vh;
     color: #fff;
@@ -38,7 +31,7 @@
     overflow-x: hidden;
   }
 
-  /* ============ HEADER CON PERFIL ============ */
+  /* ============ HEADER CON PERFIL (estilo Free Fire) ============ */
   header {
     display: flex;
     justify-content: space-between;
@@ -46,7 +39,7 @@
     width: 100%;
     max-width: 1300px;
     padding: 6px 14px;
-    background: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(20,20,20,0.8));
+    background: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(20,20,20,0.85));
     border: 2px solid var(--oro);
     border-radius: 12px;
     margin-bottom: 6px;
@@ -54,197 +47,226 @@
     gap: 12px;
   }
 
-  /* ===== PERFIL IZQUIERDO (estilo Free Fire) ===== */
+  /* ===== PERFIL ESTILO FREE FIRE (como imagen 2) ===== */
   .perfil-usuario {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(90deg, rgba(30,30,30,0.95) 0%, rgba(10,10,10,0.6) 100%);
-    padding: 4px 18px 4px 4px;
-    border-radius: 8px;
-    border: 1px solid rgba(212,175,55,0.5);
+    align-items: stretch;
+    gap: 0;
+    background: linear-gradient(90deg, #1a1a1a 0%, #0a0a0a 100%);
+    border-radius: 10px;
+    border: 2px solid var(--oro);
     position: relative;
-    min-width: 280px;
-    height: 62px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+    min-width: 340px;
+    height: 78px;
+    overflow: visible;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
   }
 
-  /* Avatar con marco hexagonal estilo Free Fire */
-  .avatar-container {
+  /* Contenedor avatar grande a la izquierda */
+  .avatar-block {
     position: relative;
-    width: 58px;
-    height: 58px;
+    width: 88px;
+    height: 78px;
     flex-shrink: 0;
-  }
-
-  .avatar-marco {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #d4af37, #8b6914, #f5e6a8, #8b6914, #d4af37);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2px;
-    filter: drop-shadow(0 0 6px rgba(212,175,55,0.7));
   }
 
-  .avatar-marco.bronce { background: linear-gradient(135deg, #cd7f32, #8b4513, #e8a76a, #8b4513, #cd7f32); }
-  .avatar-marco.plata { background: linear-gradient(135deg, #e8e8e8, #808080, #ffffff, #808080, #e8e8e8); }
-  .avatar-marco.oro-r { background: linear-gradient(135deg, #ffd700, #b8860b, #fff8dc, #b8860b, #ffd700); }
-  .avatar-marco.diamante { background: linear-gradient(135deg, #00ffff, #0080ff, #a0e0ff, #0080ff, #00ffff); }
-  .avatar-marco.global { 
-    background: linear-gradient(135deg, #ff2d55, #8b0000, #ff6b6b, #8b0000, #ff2d55);
-    animation: pulsoGlobal 2s infinite;
-  }
-  @keyframes pulsoGlobal {
-    0%, 100% { filter: drop-shadow(0 0 6px rgba(255,45,85,0.9)); }
-    50% { filter: drop-shadow(0 0 15px rgba(255,45,85,1)) drop-shadow(0 0 25px rgba(255,100,100,0.8)); }
+  /* Marco hexagonal dorado alrededor del avatar */
+  .avatar-marco {
+    position: absolute;
+    width: 76px;
+    height: 76px;
+    left: 6px;
+    top: 1px;
+    background: linear-gradient(135deg, #f5e6a8, #d4af37, #8b6914, #d4af37, #f5e6a8);
+    clip-path: polygon(50% 0%, 95% 20%, 100% 55%, 85% 90%, 50% 100%, 15% 90%, 0% 55%, 5% 20%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    filter: drop-shadow(0 0 8px rgba(212,175,55,0.8));
+    z-index: 2;
   }
 
   .avatar-interior {
     width: 100%;
     height: 100%;
+    clip-path: polygon(50% 0%, 95% 20%, 100% 55%, 85% 90%, 50% 100%, 15% 90%, 0% 55%, 5% 20%);
     background: linear-gradient(180deg, #2a2a2a, #0a0a0a);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 2.4rem;
     position: relative;
     overflow: hidden;
   }
 
-  .avatar-interior::before {
-    content: '';
+  /* Fondo del avatar (fondo equipado) */
+  .avatar-interior .fondo-avatar {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15), transparent 60%);
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .avatar-interior .avatar-icono {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
   }
 
-  /* Nivel encima del avatar */
-  .nivel-badge {
+  /* Medalla de rango (a la derecha del avatar, como imagen 2) */
+  .medalla-rango {
     position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 8px;
+    bottom: 18px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.9));
+  }
+  .medalla-rango::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 24px;
+    clip-path: polygon(50% 100%, 0% 60%, 15% 0%, 85% 0%, 100% 60%);
+    background: linear-gradient(180deg, #cd7f32, #8b4513);
+    top: 3px;
+  }
+  .medalla-rango.plata::before { background: linear-gradient(180deg, #e8e8e8, #808080); }
+  .medalla-rango.oro-r::before { background: linear-gradient(180deg, #ffd700, #b8860b); }
+  .medalla-rango.diamante::before { background: linear-gradient(180deg, #00ffff, #0080ff); }
+  .medalla-rango.global::before { background: linear-gradient(180deg, #ff2d55, #8b0000); }
+  .medalla-rango .num {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    font-weight: 900;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    text-shadow: 0 1px 2px #000;
+  }
+
+  /* Badge de nivel arriba (estrella + número, como imagen 2) */
+  .nivel-badge-ff {
+    position: absolute;
+    top: -12px;
+    left: 0;
     background: linear-gradient(180deg, #fff5c2, #d4af37, #8b6914);
     color: #000;
     font-weight: 900;
-    font-size: 0.65rem;
-    padding: 1px 8px;
-    border-radius: 8px;
-    border: 1px solid #000;
+    font-size: 0.85rem;
+    padding: 3px 12px 3px 6px;
+    border-radius: 12px 6px 6px 12px;
+    border: 2px solid #000;
     font-family: 'Cinzel', serif;
-    z-index: 3;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
-    letter-spacing: 0.5px;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.8);
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 3px;
+  }
+  .nivel-badge-ff::before {
+    content: '★';
+    color: #fff;
+    text-shadow: 0 0 4px #ff8c00;
+    font-size: 0.8rem;
   }
 
-  /* Estrellas de rango debajo del avatar */
-  .estrellas-rango {
+  /* Estrellas de progreso (abajo del avatar, como imagen 2) */
+  .estrellas-ff {
     position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 4px;
+    left: 6px;
     display: flex;
     gap: 1px;
-    z-index: 3;
+    z-index: 5;
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.9));
   }
-
-  .estrella {
-    font-size: 0.7rem;
+  .estrellas-ff span {
+    font-size: 0.95rem;
     color: #ffd700;
-    text-shadow: 0 0 3px #ff8c00;
+    text-shadow: 0 0 3px #ff8c00, 0 1px 2px #000;
     line-height: 1;
   }
-  .estrella.vacia { color: #444; text-shadow: none; }
+  .estrellas-ff span.vacia { color: #555; text-shadow: 0 1px 2px #000; }
 
-  /* Icono de rango a la derecha (como el lobo de la imagen) */
-  .icono-rango {
+  /* Barra de progreso curva debajo (como imagen 2) */
+  .barra-ff-container {
     position: absolute;
-    right: -18px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    z-index: 5;
-    filter: drop-shadow(0 0 6px rgba(212,175,55,0.8));
+    bottom: 4px;
+    left: 82px;
+    right: 8px;
+    height: 6px;
+    background: rgba(0,0,0,0.85);
+    border-radius: 3px;
+    border: 1px solid rgba(212,175,55,0.5);
+    overflow: hidden;
+    z-index: 3;
   }
-  .icono-rango.global { filter: drop-shadow(0 0 10px rgba(255,45,85,1)); animation: flotar 3s ease-in-out infinite; }
-  @keyframes flotar {
-    0%, 100% { transform: translateY(-50%) scale(1); }
-    50% { transform: translateY(-50%) scale(1.1); }
+  .barra-ff-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #d4af37, #f5e6a8, #d4af37);
+    border-radius: 3px;
+    transition: width 0.5s;
+    box-shadow: 0 0 8px rgba(212,175,55,0.9);
   }
 
-  /* Info del usuario */
-  .info-usuario {
+  /* Info del usuario (nombre, rango, pts) */
+  .info-usuario-ff {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 12px;
-    flex: 1;
+    padding: 6px 12px 6px 4px;
     min-width: 0;
   }
 
-  .nombre-usuario {
+  .nombre-usuario-ff {
     font-family: 'Cinzel', serif;
     font-weight: 900;
     font-size: 1rem;
-    background: linear-gradient(180deg, #f5e6a8, #d4af37, #8b6914);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 10px rgba(212,175,55,0.3);
+    color: #d4af37;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(212,175,55,0.4);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .rango-nombre {
-    font-size: 0.7rem;
-    color: #ccc;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+  .rango-usuario-ff {
+    font-family: 'Rajdhani', sans-serif;
     font-weight: 700;
-    margin-top: 1px;
+    font-size: 0.85rem;
+    color: #fff;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: -1px;
+    text-shadow: 0 1px 2px #000;
   }
 
-  .puntos-usuario {
-    font-size: 0.75rem;
-    color: #4ade80;
+  .stats-usuario-ff {
+    display: flex;
+    gap: 8px;
+    font-size: 0.78rem;
     font-weight: 700;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  .stats-usuario-ff .stat-item {
     display: flex;
     align-items: center;
-    gap: 4px;
-    margin-top: 2px;
+    gap: 3px;
   }
-
-  /* Barra de progreso al siguiente rango */
-  .barra-progreso {
-    height: 3px;
-    background: rgba(0,0,0,0.6);
-    border-radius: 2px;
-    margin-top: 4px;
-    overflow: hidden;
-    position: relative;
-  }
-  .barra-progreso-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #d4af37, #f5e6a8);
-    border-radius: 2px;
-    transition: width 0.5s;
-    box-shadow: 0 0 6px rgba(212,175,55,0.8);
-  }
+  .stats-usuario-ff .pts-verde { color: #4ade80; }
+  .stats-usuario-ff .dinero-verde { color: #4ade80; }
+  .stats-usuario-ff .icon-stat { font-size: 0.9rem; }
 
   /* Header derecho */
   header h1 {
@@ -261,7 +283,7 @@
 
   .info-header {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     font-size: 0.75rem;
     align-items: center;
   }
@@ -276,12 +298,12 @@
   .info-header .stat .label { color: #888; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; }
   .info-header .stat .valor { color: var(--oro); font-weight: bold; font-family: 'Cinzel', serif; font-size: 0.8rem; }
 
-  /* Botón de ranking */
-  .btn-ranking {
+  /* Botones header */
+  .btn-header {
     background: linear-gradient(180deg, #8e24aa, #4a148c);
     color: #fff;
     border: 1px solid var(--oro);
-    padding: 6px 14px;
+    padding: 7px 14px;
     border-radius: 8px;
     font-family: 'Cinzel', serif;
     font-weight: 700;
@@ -289,12 +311,14 @@
     cursor: pointer;
     letter-spacing: 1px;
     transition: all 0.25s;
-    box-shadow: 0 3px 0 rgba(0,0,0,0.5), 0 0 10px rgba(142,36,170,0.4);
+    box-shadow: 0 3px 0 rgba(0,0,0,0.5);
     display: flex;
     align-items: center;
     gap: 4px;
   }
-  .btn-ranking:hover { transform: translateY(-2px); box-shadow: 0 5px 0 rgba(0,0,0,0.5), 0 0 20px rgba(142,36,170,0.8); }
+  .btn-header:hover { transform: translateY(-2px); box-shadow: 0 5px 0 rgba(0,0,0,0.5); }
+  .btn-header.tienda { background: linear-gradient(180deg, #1e88e5, #0d47a1); }
+  .btn-header.inventario { background: linear-gradient(180deg, #43a047, #1b5e20); }
 
   /* ============ MESA ============ */
   #mesa-wrapper { position: relative; width: 100%; max-width: 1300px; perspective: 1200px; }
@@ -302,18 +326,13 @@
   #mesa {
     position: relative;
     width: 100%;
-    height: 660px;
+    height: 650px;
     background: radial-gradient(ellipse at center, var(--fieltro-1) 0%, var(--fieltro-2) 65%, #021a0e 100%);
     border-radius: 50% / 32%;
     border: 20px solid var(--madera-2);
-    box-shadow: 
-      inset 0 0 120px rgba(0,0,0,0.85),
-      0 0 60px rgba(0,0,0,0.9),
-      0 10px 0 #0d0805,
-      0 15px 30px rgba(0,0,0,0.8);
+    box-shadow: inset 0 0 120px rgba(0,0,0,0.85), 0 0 60px rgba(0,0,0,0.9), 0 10px 0 #0d0805;
     overflow: hidden;
   }
-
   #mesa::before {
     content: '';
     position: absolute;
@@ -322,13 +341,12 @@
     border: 2px dashed rgba(212,175,55,0.25);
     pointer-events: none;
   }
-
   #logo-mesa {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Cinzel', serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: rgba(212,175,55,0.08);
     letter-spacing: 6px;
     pointer-events: none;
@@ -338,7 +356,7 @@
   }
   #logo-mesa small { font-size: 0.6rem; letter-spacing: 3px; display: block; }
 
-  /* ============ JUGADORES EN MESA ============ */
+  /* ============ JUGADORES ============ */
   .jugador {
     position: absolute;
     width: 165px;
@@ -348,24 +366,18 @@
     padding: 6px 8px;
     text-align: center;
     font-size: 0.72rem;
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.35s;
     box-shadow: 0 6px 20px rgba(0,0,0,0.8);
     z-index: 10;
   }
-
   .jugador.activo {
     border-color: #00ff88;
     box-shadow: 0 0 25px #00ff88, 0 0 50px rgba(0,255,136,0.4);
     transform: scale(1.08);
     z-index: 20;
   }
-
   .jugador.fold { opacity: 0.35; filter: grayscale(1); }
-
-  .jugador.ganador {
-    border-color: var(--oro);
-    animation: brilloOro 0.7s infinite alternate;
-  }
+  .jugador.ganador { border-color: var(--oro); animation: brilloOro 0.7s infinite alternate; }
   @keyframes brilloOro {
     from { box-shadow: 0 0 15px var(--oro); }
     to { box-shadow: 0 0 40px var(--oro), 0 0 80px rgba(255,180,0,0.8); }
@@ -381,10 +393,9 @@
     gap: 4px;
   }
 
-  /* Mini avatar hexagonal para jugadores IA */
+  /* Mini avatar hexagonal */
   .mini-avatar {
-    width: 26px;
-    height: 26px;
+    width: 26px; height: 26px;
     position: relative;
     flex-shrink: 0;
   }
@@ -403,7 +414,10 @@
   .mini-avatar .marco.oro-r { background: linear-gradient(135deg, #ffd700, #b8860b); }
   .mini-avatar .marco.diamante { background: linear-gradient(135deg, #00ffff, #0080ff); }
   .mini-avatar .marco.global { background: linear-gradient(135deg, #ff2d55, #8b0000); animation: pulsoGlobal 2s infinite; }
-
+  @keyframes pulsoGlobal {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(255,45,85,0.7)); }
+    50% { filter: drop-shadow(0 0 12px rgba(255,45,85,1)); }
+  }
   .mini-avatar .interior {
     width: 100%; height: 100%;
     background: linear-gradient(180deg, #2a2a2a, #0a0a0a);
@@ -436,7 +450,6 @@
     align-items: center;
     justify-content: center;
     border: 2px solid #000;
-    box-shadow: 0 0 8px rgba(255,255,255,0.6);
     flex-shrink: 0;
   }
   .jugador .dealer-btn.show { display: flex; }
@@ -459,9 +472,7 @@
     font-weight: bold;
     margin-top: 2px;
     min-height: 14px;
-    text-shadow: 0 0 6px rgba(255,82,82,0.5);
   }
-
   .jugador .estado {
     font-size: 0.62rem;
     color: #ffa726;
@@ -470,8 +481,6 @@
     font-weight: bold;
     letter-spacing: 0.8px;
   }
-
-  /* Rango del jugador IA (pequeño) */
   .jugador .rango-ia {
     font-size: 0.55rem;
     color: #aaa;
@@ -481,7 +490,6 @@
     text-transform: uppercase;
   }
 
-  /* Posiciones */
   #j0 { bottom: 12px; left: 50%; transform: translateX(-50%); }
   #j1 { left: 15px; top: 50%; transform: translateY(-50%); }
   #j2 { top: 12px; left: 50%; transform: translateX(-50%); }
@@ -489,18 +497,14 @@
 
   /* ============ CARTAS ============ */
   .carta {
-    width: 60px;
-    height: 84px;
+    width: 58px; height: 82px;
     background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
     border-radius: 7px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: flex; flex-direction: column; justify-content: space-between;
     padding: 4px;
     font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.7);
     color: #111;
-    position: relative;
     font-family: 'Cinzel', serif;
   }
   .carta.roja { color: #c62828; }
@@ -521,7 +525,6 @@
   .carta .abajo { align-self: flex-end; transform: rotate(180deg); font-size: 0.9rem; line-height: 1; display: flex; flex-direction: column; align-items: center; }
   .carta .abajo .palo { font-size: 0.7rem; }
   .carta .centro { font-size: 1.8rem; text-align: center; align-self: center; }
-
   @keyframes repartir {
     from { transform: translateY(-400px) rotate(-180deg) scale(0.3); opacity: 0; }
     to { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
@@ -538,15 +541,12 @@
     gap: 10px;
     z-index: 5;
   }
-
   #comunitarias {
-    display: flex;
-    gap: 8px;
+    display: flex; gap: 8px;
     padding: 10px 16px;
     background: rgba(0,0,0,0.35);
     border-radius: 12px;
     border: 1px solid rgba(212,175,55,0.3);
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
     min-height: 104px;
     align-items: center;
   }
@@ -572,11 +572,8 @@
     font-size: 1.05rem;
     font-family: 'Cinzel', serif;
     text-shadow: 0 0 10px rgba(212,175,55,0.7);
-    box-shadow: 0 0 20px rgba(212,175,55,0.4);
     z-index: 6;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    display: flex; align-items: center; gap: 6px;
   }
   #bote::before { content: '🏆'; font-size: 0.9rem; }
 
@@ -584,31 +581,19 @@
     position: absolute;
     bottom: 105px; left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
+    display: flex; gap: 10px;
     z-index: 15;
-    filter: drop-shadow(0 8px 15px rgba(0,0,0,0.8));
   }
 
-  .manoIA {
-    display: flex;
-    gap: 3px;
-    justify-content: center;
-    margin: 3px 0;
-    min-height: 34px;
-  }
+  .manoIA { display: flex; gap: 3px; justify-content: center; margin: 3px 0; min-height: 34px; }
   .carta-mini {
-    width: 22px;
-    height: 32px;
+    width: 22px; height: 32px;
     background: repeating-linear-gradient(45deg, #1a3d8f 0, #1a3d8f 4px, #0f2a63 4px, #0f2a63 8px);
     border-radius: 4px;
     border: 1px solid rgba(255,255,255,0.7);
     font-size: 0.55rem;
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
     font-weight: bold;
     font-family: 'Cinzel', serif;
   }
@@ -625,8 +610,7 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     z-index: 6;
-    display: flex;
-    gap: 6px;
+    display: flex; gap: 6px;
   }
   #fase-indicator span {
     padding: 2px 8px;
@@ -634,24 +618,15 @@
     border: 1px solid rgba(212,175,55,0.3);
     background: rgba(0,0,0,0.5);
   }
-  #fase-indicator span.activa {
-    background: var(--oro);
-    color: #000;
-    box-shadow: 0 0 15px var(--oro);
-  }
+  #fase-indicator span.activa { background: var(--oro); color: #000; }
 
   /* ============ CONTROLES ============ */
   #controles {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center;
     padding: 12px 18px;
     background: linear-gradient(180deg, rgba(30,30,30,0.95), rgba(0,0,0,0.98));
     border-radius: 14px;
     border: 2px solid var(--oro);
-    box-shadow: 0 -4px 25px rgba(212,175,55,0.35);
     max-width: 1300px;
     width: 100%;
     position: relative;
@@ -678,18 +653,16 @@
     border: none;
     border-radius: 9px;
     cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s;
     text-transform: uppercase;
     letter-spacing: 1.2px;
     font-family: 'Cinzel', serif;
     color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.5), 0 6px 15px rgba(0,0,0,0.4);
+    display: flex; align-items: center; gap: 6px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.5);
   }
   button:not(:disabled):hover { transform: translateY(-2px); }
-  button:not(:disabled):active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.5); }
+  button:not(:disabled):active { transform: translateY(2px); }
   button:disabled { opacity: 0.3; cursor: not-allowed; filter: grayscale(0.7); }
 
   #btnFold { background: linear-gradient(180deg, #e53935, #b71c1c); border-bottom: 3px solid #7f0a0a; }
@@ -714,7 +687,7 @@
     font-size: 0.95rem;
     font-family: 'Cinzel', serif;
   }
-  #inputRaise:focus { outline: none; border-color: var(--oro-claro); box-shadow: 0 0 20px rgba(212,175,55,0.6); }
+  #inputRaise:focus { outline: none; }
   #inputRaise:disabled { opacity: 0.3; }
 
   .quick-bets { display: flex; gap: 5px; }
@@ -729,7 +702,7 @@
     font-family: 'Cinzel', serif;
     font-weight: bold;
   }
-  .quick-bet:hover:not(:disabled) { background: var(--oro); color: #000; box-shadow: 0 0 15px var(--oro); }
+  .quick-bet:hover:not(:disabled) { background: var(--oro); color: #000; }
   .quick-bet:disabled { opacity: 0.3; cursor: not-allowed; }
 
   #mensajes {
@@ -739,7 +712,6 @@
     color: var(--oro);
     text-align: center;
     font-weight: bold;
-    text-shadow: 0 0 12px rgba(212,175,55,0.6);
     max-width: 1300px;
     font-family: 'Cinzel', serif;
     letter-spacing: 1px;
@@ -776,24 +748,24 @@
   #historial .item { padding: 2px 0; border-bottom: 1px dashed rgba(255,255,255,0.1); line-height: 1.3; }
   #historial .item.gana { color: #4ade80; font-weight: bold; }
 
+  /* ============ RESULTADO ============ */
   #resultado {
     position: fixed;
     top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0) rotate(-10deg);
+    transform: translate(-50%, -50%) scale(0);
     background: linear-gradient(135deg, rgba(20,15,5,0.98), rgba(0,0,0,0.98));
     border: 3px solid var(--oro);
     border-radius: 18px;
     padding: 30px 50px;
-    font-size: 1.2rem;
     text-align: center;
     z-index: 100;
     transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
-    box-shadow: 0 0 60px var(--oro), 0 0 120px rgba(212,175,55,0.4);
+    box-shadow: 0 0 60px var(--oro);
     opacity: 0;
     pointer-events: none;
     max-width: 90vw;
   }
-  #resultado.show { transform: translate(-50%, -50%) scale(1) rotate(0); opacity: 1; pointer-events: auto; }
+  #resultado.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
   #resultado .titulo {
     font-family: 'Cinzel', serif;
     font-size: 2rem;
@@ -811,16 +783,15 @@
     font-size: 1rem;
     font-weight: bold;
     font-family: 'Cinzel', serif;
-    letter-spacing: 1px;
   }
   #resultado .puntos-ganados.positivo { color: #4ade80; }
   #resultado .puntos-ganados.negativo { color: #ef4444; }
 
-  /* ============ MODAL RANKING ============ */
-  #modal-ranking {
+  /* ============ MODALES GENERALES ============ */
+  .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.88);
     backdrop-filter: blur(8px);
     z-index: 200;
     display: none;
@@ -828,22 +799,22 @@
     justify-content: center;
     padding: 20px;
   }
-  #modal-ranking.show { display: flex; }
+  .modal.show { display: flex; }
 
-  .ranking-panel {
+  .modal-panel {
     background: linear-gradient(180deg, #1a1a1a, #0a0a0a);
     border: 3px solid var(--oro);
     border-radius: 16px;
-    padding: 22px;
-    max-width: 700px;
+    padding: 20px;
+    max-width: 900px;
     width: 100%;
-    max-height: 85vh;
+    max-height: 88vh;
     overflow-y: auto;
     box-shadow: 0 0 50px rgba(212,175,55,0.5);
     position: relative;
   }
 
-  .ranking-titulo {
+  .modal-titulo {
     font-family: 'Cinzel', serif;
     font-size: 1.5rem;
     text-align: center;
@@ -854,145 +825,233 @@
     letter-spacing: 3px;
     margin-bottom: 6px;
   }
-
-  .ranking-sub {
+  .modal-sub {
     text-align: center;
     color: #888;
     font-size: 0.8rem;
     margin-bottom: 16px;
     letter-spacing: 1px;
   }
-
   .cerrar-modal {
     position: absolute;
-    top: 10px; right: 15px;
+    top: 12px; right: 15px;
     background: transparent;
     border: 1px solid var(--oro);
     color: var(--oro);
-    width: 30px; height: 30px;
+    width: 32px; height: 32px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     padding: 0;
+    box-shadow: none;
   }
   .cerrar-modal:hover { background: var(--oro); color: #000; }
 
-  /* Tabla de rangos */
-  .rangos-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-
-  .rango-card {
-    background: linear-gradient(180deg, #1a1a1a, #000);
-    border: 2px solid #333;
-    border-radius: 10px;
-    padding: 10px 6px;
-    text-align: center;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .rango-card.bronce { border-color: #cd7f32; }
-  .rango-card.plata { border-color: #c0c0c0; }
-  .rango-card.oro-r { border-color: #ffd700; }
-  .rango-card.diamante { border-color: #00bfff; }
-  .rango-card.global { border-color: #ff2d55; box-shadow: 0 0 20px rgba(255,45,85,0.4); }
-
-  .rango-card.desbloqueado { box-shadow: 0 0 15px currentColor; }
-
-  .rango-icono {
-    font-size: 1.8rem;
-    margin-bottom: 4px;
-    filter: drop-shadow(0 0 5px currentColor);
-  }
-  .rango-card .nombre-r {
-    font-family: 'Cinzel', serif;
-    font-size: 0.68rem;
-    font-weight: 900;
-    letter-spacing: 0.5px;
-    margin-bottom: 3px;
-  }
-  .rango-card.bronce .nombre-r { color: #cd7f32; }
-  .rango-card.plata .nombre-r { color: #c0c0c0; }
-  .rango-card.oro-r .nombre-r { color: #ffd700; }
-  .rango-card.diamante .nombre-r { color: #00bfff; }
-  .rango-card.global .nombre-r { color: #ff2d55; }
-
-  .rango-card .pts-r {
-    font-size: 0.6rem;
-    color: #888;
-    letter-spacing: 0.5px;
-  }
-
-  /* Tabla de jugadores */
-  .tabla-ranking {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.8rem;
-  }
-  .tabla-ranking th {
-    background: rgba(212,175,55,0.15);
-    color: var(--oro);
-    padding: 8px 6px;
-    text-align: left;
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    border-bottom: 2px solid var(--oro);
-  }
-  .tabla-ranking td {
-    padding: 8px 6px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .tabla-ranking tr.yo { background: rgba(212,175,55,0.15); }
-  .tabla-ranking tr.yo td { color: var(--oro-claro); font-weight: bold; }
-  .tabla-ranking .pos {
-    font-family: 'Cinzel', serif;
-    font-weight: 900;
-    font-size: 0.9rem;
-    width: 30px;
-  }
-  .tabla-ranking .pos.oro { color: #ffd700; }
-  .tabla-ranking .pos.plata { color: #c0c0c0; }
-  .tabla-ranking .pos.bronce { color: #cd7f32; }
-
-  .tabla-ranking .mini-perfil {
+  /* ============ TIENDA / INVENTARIO ============ */
+  .tabs-custom {
     display: flex;
-    align-items: center;
-    gap: 6px;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
   }
-  .tabla-ranking .mini-perfil .mini-av {
-    width: 26px; height: 26px;
+  .tab-btn {
+    padding: 8px 18px;
+    background: linear-gradient(180deg, #2a2a2a, #111);
+    border: 2px solid #444;
+    color: #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    transition: all 0.25s;
+  }
+  .tab-btn.activa {
+    background: linear-gradient(180deg, #d4af37, #8b6914);
+    color: #000;
+    border-color: #f5e6a8;
+    box-shadow: 0 0 15px rgba(212,175,55,0.6);
+  }
+  .tab-btn:hover:not(.activa) { border-color: var(--oro); color: var(--oro); }
+
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  /* Tarjeta de item (estilo Free Fire, como imagen 1) */
+  .item-card {
     position: relative;
-    flex-shrink: 0;
+    aspect-ratio: 1.55 / 1;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #333;
+    transition: all 0.25s;
+    background: #0a0a0a;
   }
-  .tabla-ranking .mini-perfil .mini-av .marco-t {
+  .item-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    border-color: var(--oro);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.4);
+  }
+  .item-card.equipado {
+    border-color: #4ade80;
+    box-shadow: 0 0 20px rgba(74,222,128,0.6);
+  }
+  .item-card.equipado::after {
+    content: '✓ EQUIPADO';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(180deg, transparent, rgba(74,222,128,0.9));
+    color: #000;
+    font-weight: 900;
+    font-size: 0.65rem;
+    text-align: center;
+    padding: 3px;
+    letter-spacing: 1px;
+    z-index: 5;
+  }
+
+  /* Preview del fondo/avatar */
+  .item-preview {
     position: absolute;
     inset: 0;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    display: flex; align-items: center; justify-content: center;
-    padding: 1.5px;
-  }
-  .tabla-ranking .mini-perfil .mini-av .interior-t {
-    width: 100%; height: 100%;
-    background: #0a0a0a;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.85rem;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .txt-rango { font-size: 0.7rem; font-weight: bold; letter-spacing: 0.5px; }
+  .item-preview .avatar-preview-icon {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.9));
+  }
+
+  /* Estrellas de rareza (arriba a la izquierda, como imagen 1) */
+  .item-estrellas {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    display: flex;
+    gap: 1px;
+    z-index: 4;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.9));
+  }
+  .item-estrellas span {
+    font-size: 0.7rem;
+    color: #ffd700;
+    text-shadow: 0 0 3px #ff8c00;
+    line-height: 1;
+  }
+
+  /* Nombre del item (abajo) */
+  .item-nombre {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.9) 60%);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-align: center;
+    padding: 14px 4px 4px;
+    letter-spacing: 0.5px;
+    z-index: 4;
+    text-shadow: 0 1px 2px #000;
+  }
+
+  /* Candado para items no desbloqueados */
+  .item-lock {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 6;
+    font-size: 1.8rem;
+    color: #fff;
+    backdrop-filter: grayscale(1);
+  }
+
+  /* Precio del item */
+  .item-precio {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: rgba(0,0,0,0.9);
+    color: #4ade80;
+    font-weight: 900;
+    font-size: 0.7rem;
+    padding: 2px 7px;
+    border-radius: 10px;
+    border: 1px solid #4ade80;
+    z-index: 4;
+    font-family: 'Cinzel', serif;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .item-precio::before { content: '💰'; font-size: 0.65rem; }
+
+  /* Info de monedas en modales */
+  .monedas-info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 14px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+  }
+  .monedas-info .moneda {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 14px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--oro);
+    border-radius: 20px;
+  }
+  .monedas-info .moneda.pts { color: #00bfff; border-color: #00bfff; }
+  .monedas-info .moneda.dinero { color: #4ade80; border-color: #4ade80; }
+
+  /* Botón de compra/equipar */
+  .item-accion-btn {
+    display: none;
+    position: absolute;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 14px;
+    font-size: 0.65rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    z-index: 7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .item-card:hover .item-accion-btn { display: block; }
+  .item-accion-btn.comprar { background: linear-gradient(180deg, #43a047, #1b5e20); color: #fff; }
+  .item-accion-btn.equipar { background: linear-gradient(180deg, #1e88e5, #0d47a1); color: #fff; }
+  .item-accion-btn.desequipar { background: linear-gradient(180deg, #e53935, #b71c1c); color: #fff; }
+  .item-accion-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
   /* ============ RESPONSIVE ============ */
   @media (max-width: 1000px) {
     header { flex-wrap: wrap; }
-    .perfil-usuario { min-width: 240px; }
+    .perfil-usuario { min-width: 280px; height: 70px; }
+    .avatar-block { width: 78px; height: 70px; }
+    .avatar-marco { width: 66px; height: 66px; }
+    .avatar-interior { font-size: 2rem; }
     header h1 { font-size: 0.9rem; order: -1; width: 100%; }
   }
   @media (max-width: 900px) {
@@ -1002,27 +1061,40 @@
     .carta .centro { font-size: 1.3rem; }
     .carta .arriba, .carta .abajo { font-size: 0.65rem; }
     #historial { display: none; }
-    .rangos-grid { grid-template-columns: repeat(3, 1fr); }
+    .items-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
   }
   @media (max-width: 600px) {
     #mesa { height: 460px; }
     .jugador { width: 105px; font-size: 0.58rem; padding: 4px; }
-    .mini-avatar { width: 20px; height: 20px; }
-    .mini-avatar .interior { font-size: 0.7rem; }
-    .jugador .nombre { font-size: 0.6rem; }
     .carta { width: 36px; height: 52px; }
     .carta .centro { font-size: 1rem; }
-    .carta .arriba, .carta .abajo { font-size: 0.55rem; }
-    .carta-mini { width: 17px; height: 24px; font-size: 0.45rem; }
-    button { padding: 8px 10px; font-size: 0.62rem; letter-spacing: 0.5px; }
-    #inputRaise { width: 70px; padding: 8px; font-size: 0.75rem; }
-    .quick-bet { padding: 5px 7px; font-size: 0.55rem; }
-    #controles { padding: 8px; gap: 5px; }
-    .perfil-usuario { min-width: auto; padding: 4px 10px 4px 4px; height: 54px; }
-    .avatar-container { width: 48px; height: 48px; }
-    .avatar-interior { font-size: 1.4rem; }
-    .nombre-usuario { font-size: 0.8rem; }
-    .rangos-grid { grid-template-columns: repeat(2, 1fr); }
+    button { padding: 8px 10px; font-size: 0.62rem; }
+    .items-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .perfil-usuario { min-width: auto; height: 62px; flex: 1; }
+    .avatar-block { width: 68px; }
+    .avatar-marco { width: 58px; height: 58px; }
+    .avatar-interior { font-size: 1.7rem; }
+    .nombre-usuario-ff { font-size: 0.85rem; }
+    .rango-usuario-ff { font-size: 0.72rem; }
+    .stats-usuario-ff { font-size: 0.68rem; gap: 5px; }
+    .medalla-rango { width: 24px; height: 24px; right: 4px; bottom: 14px; }
+    .medalla-rango::before { width: 18px; height: 20px; }
+    .medalla-rango .num { font-size: 0.7rem; }
+  }
+
+  @keyframes fichaVolar {
+    to { transform: translate(var(--tx), var(--ty)) scale(0.3) rotate(720deg); opacity: 0; }
+  }
+  .ficha-anim {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffd700 0%, #d4af37 40%, #8b6914 100%);
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px rgba(212,175,55,0.8);
+    z-index: 50;
+    pointer-events: none;
+    position: fixed;
+    transition: all 0.85s ease-out;
   }
 </style>
 </head>
@@ -1030,28 +1102,37 @@
 
 <!-- ============ HEADER CON PERFIL ============ -->
 <header>
-  <!-- PERFIL USUARIO (estilo Free Fire) -->
-  <div class="perfil-usuario">
-    <div class="avatar-container">
-      <div class="nivel-badge">
-        <span>⭐</span><span id="nivelUsuario">1</span>
+  <div class="perfil-usuario" onclick="abrirInventario()" style="cursor:pointer" title="Ver inventario">
+    <div class="avatar-block">
+      <!-- Badge de nivel arriba -->
+      <div class="nivel-badge-ff"><span id="nivelUsuario">1</span></div>
+      <!-- Marco hexagonal -->
+      <div class="avatar-marco">
+        <div class="avatar-interior">
+          <div class="fondo-avatar" id="fondoAvatarHeader"></div>
+          <span class="avatar-icono" id="avatarIconoHeader">👤</span>
+        </div>
       </div>
-      <div class="avatar-marco bronce" id="avatarMarco">
-        <div class="avatar-interior">👤</div>
+      <!-- Medalla de rango (a la derecha) -->
+      <div class="medalla-rango" id="medallaRango">
+        <span class="num" id="medallaNum">3</span>
       </div>
-      <div class="estrellas-rango" id="estrellasRango">
-        <span class="estrella">★</span>
-        <span class="estrella vacia">★</span>
-        <span class="estrella vacia">★</span>
+      <!-- Estrellas de progreso -->
+      <div class="estrellas-ff" id="estrellasFF">
+        <span>★</span><span class="vacia">★</span><span class="vacia">★</span><span class="vacia">★</span><span class="vacia">★</span>
       </div>
-      <div class="icono-rango" id="iconoRango" title="Rango actual">🥉</div>
     </div>
-    <div class="info-usuario">
-      <div class="nombre-usuario" id="nombreUsuario">CanelitaRica</div>
-      <div class="rango-nombre" id="rangoNombre">BRONCE I</div>
-      <div class="puntos-usuario">💎 <span id="puntosUsuario">0</span> pts · 💰 $<span id="dineroUsuario">1000</span></div>
-      <div class="barra-progreso">
-        <div class="barra-progreso-fill" id="barraProgreso" style="width: 0%"></div>
+    
+    <div class="info-usuario-ff">
+      <div class="nombre-usuario-ff" id="nombreUsuario">CanelitaRica</div>
+      <div class="rango-usuario-ff" id="rangoUsuarioFF">BRONCE</div>
+      <div class="stats-usuario-ff">
+        <div class="stat-item"><span class="icon-stat">💎</span><span class="pts-verde" id="ptsUsuario">0</span> pts</div>
+        <div class="stat-item"><span class="icon-stat">💰</span><span class="dinero-verde">$<span id="dineroUsuarioFF">1000</span></span></div>
+      </div>
+      <!-- Barra de progreso curva -->
+      <div class="barra-ff-container">
+        <div class="barra-ff-fill" id="barraProgreso" style="width: 0%"></div>
       </div>
     </div>
   </div>
@@ -1067,7 +1148,9 @@
       <span class="label">Ciegas</span>
       <span class="valor" id="infoCiegas">$10/$20</span>
     </div>
-    <button class="btn-ranking" onclick="abrirRanking()">🏆 RANKING</button>
+    <button class="btn-header tienda" onclick="abrirTienda()">🛒 TIENDA</button>
+    <button class="btn-header inventario" onclick="abrirInventario()">🎒 INV</button>
+    <button class="btn-header" onclick="abrirRanking()">🏆 TOP</button>
   </div>
 </header>
 
@@ -1084,12 +1167,9 @@
 
     <div id="bote">Bote: $0</div>
 
-    <!-- IA 1 -->
     <div class="jugador" id="j1">
       <div class="cabecera">
-        <div class="mini-avatar">
-          <div class="marco plata" id="marco1"><div class="interior">🤵</div></div>
-        </div>
+        <div class="mini-avatar"><div class="marco plata" id="marco1"><div class="interior">🤵</div></div></div>
         <div class="nombre">CARLOS</div>
         <div class="dealer-btn" id="dealer1">D</div>
       </div>
@@ -1100,12 +1180,9 @@
       <div class="rango-ia" id="rangoIA1">🥈 PLATA</div>
     </div>
 
-    <!-- IA 2 -->
     <div class="jugador" id="j2">
       <div class="cabecera">
-        <div class="mini-avatar">
-          <div class="marco bronce" id="marco2"><div class="interior">👩‍💼</div></div>
-        </div>
+        <div class="mini-avatar"><div class="marco bronce" id="marco2"><div class="interior">👩‍💼</div></div></div>
         <div class="nombre">ANA</div>
         <div class="dealer-btn" id="dealer2">D</div>
       </div>
@@ -1116,12 +1193,9 @@
       <div class="rango-ia" id="rangoIA2">🥉 BRONCE</div>
     </div>
 
-    <!-- IA 3 -->
     <div class="jugador" id="j3">
       <div class="cabecera">
-        <div class="mini-avatar">
-          <div class="marco oro-r" id="marco3"><div class="interior">🧔</div></div>
-        </div>
+        <div class="mini-avatar"><div class="marco oro-r" id="marco3"><div class="interior">🧔</div></div></div>
         <div class="nombre">LUIS</div>
         <div class="dealer-btn" id="dealer3">D</div>
       </div>
@@ -1132,20 +1206,15 @@
       <div class="rango-ia" id="rangoIA3">🥇 ORO</div>
     </div>
 
-    <!-- Comunitarias -->
     <div id="comunitarias-wrap">
       <div id="comunitarias"></div>
     </div>
 
-    <!-- Mano jugador -->
     <div id="manoJugador"></div>
 
-    <!-- Jugador humano -->
     <div class="jugador" id="j0">
       <div class="cabecera">
-        <div class="mini-avatar">
-          <div class="marco bronce" id="marco0"><div class="interior">👤</div></div>
-        </div>
+        <div class="mini-avatar"><div class="marco bronce" id="marco0"><div class="interior" id="avatarMesa0">👤</div></div></div>
         <div class="nombre">TÚ</div>
         <div class="dealer-btn" id="dealer0">D</div>
       </div>
@@ -1154,7 +1223,6 @@
       <div class="estado" id="estado0"></div>
     </div>
 
-    <!-- Historial -->
     <div id="historial">
       <div class="titulo-hist">◆ HISTORIAL ◆</div>
       <div id="historial-lista"></div>
@@ -1185,25 +1253,60 @@
   <div class="puntos-ganados" id="resPuntos"></div>
 </div>
 
+<!-- ============ MODAL TIENDA ============ -->
+<div class="modal" id="modal-tienda">
+  <div class="modal-panel">
+    <button class="cerrar-modal" onclick="cerrarModal('modal-tienda')">✕</button>
+    <div class="modal-titulo">🛒 TIENDA</div>
+    <div class="modal-sub">Compra fondos y avatares con tus puntos y dinero</div>
+    
+    <div class="monedas-info">
+      <div class="moneda pts">💎 <span id="tiendaPts">0</span> pts</div>
+      <div class="moneda dinero">💰 $<span id="tiendaDinero">1000</span></div>
+    </div>
+
+    <div class="tabs-custom">
+      <button class="tab-btn activa" onclick="cambiarTabTienda('fondos', this)">🎨 FONDOS</button>
+      <button class="tab-btn" onclick="cambiarTabTienda('avatares', this)">👤 AVATARES</button>
+    </div>
+
+    <div class="items-grid" id="gridTienda"></div>
+  </div>
+</div>
+
+<!-- ============ MODAL INVENTARIO ============ -->
+<div class="modal" id="modal-inventario">
+  <div class="modal-panel">
+    <button class="cerrar-modal" onclick="cerrarModal('modal-inventario')">✕</button>
+    <div class="modal-titulo">🎒 MI INVENTARIO</div>
+    <div class="modal-sub">Equipa tus fondos y avatares desbloqueados</div>
+
+    <div class="tabs-custom">
+      <button class="tab-btn activa" onclick="cambiarTabInv('fondos', this)">🎨 FONDOS</button>
+      <button class="tab-btn" onclick="cambiarTabInv('avatares', this)">👤 AVATARES</button>
+    </div>
+
+    <div class="items-grid" id="gridInventario"></div>
+  </div>
+</div>
+
 <!-- ============ MODAL RANKING ============ -->
-<div id="modal-ranking">
-  <div class="ranking-panel">
-    <button class="cerrar-modal" onclick="cerrarRanking()">✕</button>
-    <div class="ranking-titulo">🏆 CLASIFICACIÓN GLOBAL</div>
-    <div class="ranking-sub">Temporada 1 · Actualizado en tiempo real</div>
+<div class="modal" id="modal-ranking">
+  <div class="modal-panel">
+    <button class="cerrar-modal" onclick="cerrarModal('modal-ranking')">✕</button>
+    <div class="modal-titulo">🏆 CLASIFICACIÓN GLOBAL</div>
+    <div class="modal-sub">Temporada 1 · Actualizado en tiempo real</div>
 
-    <!-- Grid de rangos -->
-    <div class="rangos-grid" id="rangosGrid"></div>
+    <div class="rangos-grid" id="rangosGrid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;"></div>
 
-    <!-- Tabla -->
-    <table class="tabla-ranking">
+    <table class="tabla-ranking" style="width:100%;border-collapse:collapse;font-size:0.8rem;">
       <thead>
-        <tr>
-          <th>#</th>
-          <th>JUGADOR</th>
-          <th>RANGO</th>
-          <th>PTS</th>
-          <th>$</th>
+        <tr style="background:rgba(212,175,55,0.15);color:#d4af37;">
+          <th style="padding:8px;text-align:left;font-family:Cinzel,serif;font-size:0.7rem;letter-spacing:1px;border-bottom:2px solid #d4af37;">#</th>
+          <th style="padding:8px;text-align:left;font-family:Cinzel,serif;font-size:0.7rem;letter-spacing:1px;border-bottom:2px solid #d4af37;">JUGADOR</th>
+          <th style="padding:8px;text-align:left;font-family:Cinzel,serif;font-size:0.7rem;letter-spacing:1px;border-bottom:2px solid #d4af37;">RANGO</th>
+          <th style="padding:8px;text-align:left;font-family:Cinzel,serif;font-size:0.7rem;letter-spacing:1px;border-bottom:2px solid #d4af37;">PTS</th>
+          <th style="padding:8px;text-align:left;font-family:Cinzel,serif;font-size:0.7rem;letter-spacing:1px;border-bottom:2px solid #d4af37;">$</th>
         </tr>
       </thead>
       <tbody id="tablaRanking"></tbody>
@@ -1214,11 +1317,57 @@
 <script>
 // ==================== SISTEMA DE RANGOS ====================
 const RANGOS = [
-  { id: 'bronce',   nombre: 'BRONCE',   icono: '🥉', minPts: 0,    maxPts: 500,   estrellas: 1, clase: 'bronce',   color: '#cd7f32' },
-  { id: 'plata',    nombre: 'PLATA',    icono: '🥈', minPts: 500,  maxPts: 1500,  estrellas: 2, clase: 'plata',    color: '#c0c0c0' },
-  { id: 'oro',      nombre: 'ORO',      icono: '🥇', minPts: 1500, maxPts: 3500,  estrellas: 3, clase: 'oro-r',    color: '#ffd700' },
-  { id: 'diamante', nombre: 'DIAMANTE', icono: '💎', minPts: 3500, maxPts: 7000,  estrellas: 4, clase: 'diamante', color: '#00bfff' },
-  { id: 'global',   nombre: 'GLOBAL TOP', icono: '👑', minPts: 7000, maxPts: Infinity, estrellas: 5, clase: 'global',  color: '#ff2d55' }
+  { id: 'bronce',   nombre: 'BRONCE',   icono: '🥉', minPts: 0,    maxPts: 500,   estrellas: 1, clase: 'bronce',   color: '#cd7f32', numMedalla: 3 },
+  { id: 'plata',    nombre: 'PLATA',    icono: '🥈', minPts: 500,  maxPts: 1500,  estrellas: 2, clase: 'plata',    color: '#c0c0c0', numMedalla: 2 },
+  { id: 'oro',      nombre: 'ORO',      icono: '🥇', minPts: 1500, maxPts: 3500,  estrellas: 3, clase: 'oro-r',    color: '#ffd700', numMedalla: 1 },
+  { id: 'diamante', nombre: 'DIAMANTE', icono: '💎', minPts: 3500, maxPts: 7000,  estrellas: 4, clase: 'diamante', color: '#00bfff', numMedalla: 4 },
+  { id: 'global',   nombre: 'GLOBAL TOP', icono: '👑', minPts: 7000, maxPts: Infinity, estrellas: 5, clase: 'global', color: '#ff2d55', numMedalla: 5 }
+];
+
+// ==================== CATÁLOGO DE FONDOS ====================
+// Cada fondo: id, nombre, rareza (1-5 estrellas), precio, colores (gradiente CSS)
+const CATALOGO_FONDOS = [
+  // 1 estrella
+  { id: 'boceto',       nombre: 'Boceto',           rareza: 1, precio: 100,  css: 'linear-gradient(135deg, #6b4423 0%, #8b6f47 50%, #4a2c14 100%)' },
+  { id: 'olvidados',    nombre: 'Olvidados',        rareza: 1, precio: 120,  css: 'linear-gradient(135deg, #3a3a3a 0%, #555 50%, #2a2a2a 100%)' },
+  { id: 'arte-urbano',  nombre: 'Arte Urbano',      rareza: 1, precio: 140,  css: 'linear-gradient(135deg, #1a1a1a 0%, #444 40%, #2a2a2a 100%)' },
+  { id: 'marino',       nombre: 'Marino',           rareza: 1, precio: 150,  css: 'linear-gradient(135deg, #0a2a5a 0%, #1e4a8a 50%, #061a3a 100%)' },
+  
+  // 2 estrellas
+  { id: 'ataque-caribe', nombre: 'Ataque del Caribe', rareza: 2, precio: 300, css: 'linear-gradient(135deg, #8b6914 0%, #d4af37 30%, #6b4423 70%, #3a2a14 100%)' },
+  { id: 'habitacion-real', nombre: 'Habitación Real', rareza: 2, precio: 320, css: 'linear-gradient(135deg, #1a1a1a 0%, #4a3a1a 50%, #0a0a0a 100%)' },
+  { id: 'concepcion',   nombre: 'Concepción',       rareza: 2, precio: 340,  css: 'linear-gradient(135deg, #2a2a2a 0%, #555 50%, #1a1a1a 100%)' },
+  
+  // 3 estrellas
+  { id: 'rockero',      nombre: 'Rockero Agudo',    rareza: 3, precio: 600,  css: 'linear-gradient(135deg, #4a0e5c 0%, #8b1a9a 30%, #2a0840 70%, #1a0428 100%)' },
+  { id: 'caen-petalos', nombre: 'Caen Pétalos',     rareza: 3, precio: 650,  css: 'linear-gradient(135deg, #8b1a3a 0%, #d4708a 50%, #4a0e1a 100%)' },
+  { id: 'alto-dorado',  nombre: 'Alto Dorado',      rareza: 3, precio: 700,  css: 'linear-gradient(135deg, #d4af37 0%, #f5e6a8 30%, #8b6914 70%, #4a3a14 100%)' },
+  
+  // 4 estrellas
+  { id: 'heroico-t8',   nombre: 'Fondo Heroico T8', rareza: 4, precio: 1200, css: 'linear-gradient(135deg, #c62828 0%, #ff6b1a 30%, #8b1a3a 70%, #2a0a1a 100%)' },
+  { id: 'heroico-t21',  nombre: 'Fondo Heroico T21',rareza: 4, precio: 1400, css: 'linear-gradient(135deg, #1a0033 0%, #4a0e5c 30%, #8b1a9a 50%, #2a0840 100%)' },
+  { id: 'plata-t8',     nombre: 'Fondo Plata T8',   rareza: 4, precio: 1300, css: 'linear-gradient(135deg, #2a2a2a 0%, #c0c0c0 50%, #4a4a4a 100%)' },
+  
+  // 5 estrellas
+  { id: 'diamante-t3',  nombre: 'T3 Diamante',      rareza: 5, precio: 2500, css: 'linear-gradient(135deg, #0a1a3a 0%, #00bfff 30%, #4a0e5c 60%, #1a0033 100%)' },
+  { id: 'global-elite', nombre: 'Global Elite',     rareza: 5, precio: 3000, css: 'linear-gradient(135deg, #8b0000 0%, #ff2d55 30%, #4a0e5c 60%, #1a0033 100%)' },
+  { id: 'legendario',   nombre: 'Legendario',       rareza: 5, precio: 3500, css: 'linear-gradient(135deg, #d4af37 0%, #ff2d55 25%, #8b1a9a 50%, #1a0033 75%, #0a0a0a 100%)' }
+];
+
+// ==================== CATÁLOGO DE AVATARES ====================
+const CATALOGO_AVATARES = [
+  { id: 'default',   nombre: 'Base',         rareza: 1, precio: 0,    icono: '👤' },
+  { id: 'caballero', nombre: 'Caballero',    rareza: 1, precio: 100,  icono: '🤵' },
+  { id: 'dama',      nombre: 'Dama',         rareza: 1, precio: 100,  icono: '👩‍💼' },
+  { id: 'jugador',   nombre: 'Jugador',      rareza: 2, precio: 250,  icono: '🧔' },
+  { id: 'calavera',  nombre: 'Calavera',     rareza: 2, precio: 350,  icono: '💀' },
+  { id: 'ninja',     nombre: 'Ninja',        rareza: 3, precio: 600,  icono: '🥷' },
+  { id: 'rey',       nombre: 'Rey',          rareza: 3, precio: 700,  icono: '🤴' },
+  { id: 'reina',     nombre: 'Reina',        rareza: 3, precio: 700,  icono: '👸' },
+  { id: 'mago',      nombre: 'Mago',         rareza: 4, precio: 1200, icono: '🧙' },
+  { id: 'vampiro',   nombre: 'Vampiro',      rareza: 4, precio: 1400, icono: '🧛' },
+  { id: 'dragon',    nombre: 'Dragón',       rareza: 5, precio: 2500, icono: '🐉' },
+  { id: 'leon',      nombre: 'León',         rareza: 5, precio: 3000, icono: '🦁' }
 ];
 
 // ==================== ESTADO USUARIO ====================
@@ -1228,12 +1377,15 @@ let usuario = {
   dinero: 1000,
   nivel: 1,
   victorias: 0,
-  manosJugadas: 0
+  manosJugadas: 0,
+  fondoEquipado: 'boceto',
+  avatarEquipado: 'default',
+  fondosDesbloqueados: ['boceto'],
+  avataresDesbloqueados: ['default']
 };
 
-// Ranking global (con IAs + jugador)
 let ranking = [
-  { nombre: 'CanelitaRica', puntos: 0, dinero: 1000, avatar: '👤', esYo: true },
+  { nombre: 'CanelitaRica', puntos: 0,    dinero: 1000, avatar: '👤', esYo: true },
   { nombre: 'Carlos',       puntos: 1250, dinero: 850,  avatar: '🤵', esYo: false },
   { nombre: 'Ana',          puntos: 320,  dinero: 620,  avatar: '👩‍💼', esYo: false },
   { nombre: 'Luis',         puntos: 2100, dinero: 1400, avatar: '🧔', esYo: false }
@@ -1242,152 +1394,292 @@ let ranking = [
 // ==================== PERSISTENCIA ====================
 function guardarProgreso() {
   try {
-    const datos = {
-      usuario,
-      ranking: ranking.map(r => ({...r, esYo: r.nombre === usuario.nombre}))
-    };
-    localStorage.setItem('poker_ranked_save', JSON.stringify(datos));
+    localStorage.setItem('poker_ranked_v2', JSON.stringify({ usuario, ranking }));
   } catch(e) {}
 }
-
 function cargarProgreso() {
   try {
-    const raw = localStorage.getItem('poker_ranked_save');
+    const raw = localStorage.getItem('poker_ranked_v2');
     if (!raw) return;
-    const datos = JSON.parse(raw);
-    if (datos.usuario) usuario = { ...usuario, ...datos.usuario };
-    if (datos.ranking) ranking = datos.ranking;
-    // Asegurar que el jugador existe en ranking
+    const d = JSON.parse(raw);
+    if (d.usuario) usuario = { ...usuario, ...d.usuario };
+    if (d.ranking) ranking = d.ranking;
     const yo = ranking.find(r => r.esYo);
-    if (yo) {
-      yo.nombre = usuario.nombre;
-      yo.puntos = usuario.puntos;
-      yo.dinero = usuario.dinero;
-    }
+    if (yo) { yo.nombre = usuario.nombre; yo.puntos = usuario.puntos; yo.dinero = usuario.dinero; }
   } catch(e) {}
 }
 
-function actualizarRangoUsuario() {
-  const r = obtenerRango(usuario.puntos);
-  const idx = RANGOS.indexOf(r);
-  const siguiente = RANGOS[idx + 1];
-  
-  // Actualizar header
-  document.getElementById('puntosUsuario').textContent = usuario.puntos;
-  document.getElementById('dineroUsuario').textContent = usuario.dinero;
-  document.getElementById('nivelUsuario').textContent = usuario.nivel;
-  document.getElementById('nombreUsuario').textContent = usuario.nombre;
-  document.getElementById('rangoNombre').textContent = r.nombre;
-  document.getElementById('iconoRango').textContent = r.icono;
-  
-  // Actualizar marco del avatar
-  const marco = document.getElementById('avatarMarco');
-  marco.className = 'avatar-marco ' + r.clase;
-  
-  // Estrellas
-  const estrellasCont = document.getElementById('estrellasRango');
-  estrellasCont.innerHTML = '';
-  for (let i = 0; i < 5; i++) {
-    const s = document.createElement('span');
-    s.className = 'estrella' + (i < r.estrellas ? '' : ' vacia');
-    s.textContent = '★';
-    estrellasCont.appendChild(s);
-  }
-  
-  // Icono rango
-  const icono = document.getElementById('iconoRango');
-  icono.textContent = r.icono;
-  icono.className = 'icono-rango ' + r.clase;
-  
-  // Barra de progreso
-  let progreso = 0;
-  if (siguiente) {
-    progreso = ((usuario.puntos - r.minPts) / (siguiente.minPts - r.minPts)) * 100;
-  } else {
-    progreso = 100;
-  }
-  document.getElementById('barraProgreso').style.width = Math.min(100, progreso) + '%';
-  
-  // Marco del jugador en mesa
-  const marco0 = document.getElementById('marco0');
-  if (marco0) marco0.className = 'marco ' + r.clase;
-  
-  // Nivel basado en puntos
-  usuario.nivel = Math.floor(usuario.puntos / 200) + 1;
-  document.getElementById('nivelUsuario').textContent = usuario.nivel;
-}
-
+// ==================== HELPERS ====================
 function obtenerRango(puntos) {
   for (let i = RANGOS.length - 1; i >= 0; i--) {
     if (puntos >= RANGOS[i].minPts) return RANGOS[i];
   }
   return RANGOS[0];
 }
-
 function obtenerRangoIdx(puntos) {
   for (let i = RANGOS.length - 1; i >= 0; i--) {
     if (puntos >= RANGOS[i].minPts) return i;
   }
   return 0;
 }
+function obtenerFondo(id) { return CATALOGO_FONDOS.find(f => f.id === id) || CATALOGO_FONDOS[0]; }
+function obtenerAvatar(id) { return CATALOGO_AVATARES.find(a => a.id === id) || CATALOGO_AVATARES[0]; }
 
-// ==================== RANKING UI ====================
+// ==================== ACTUALIZAR UI USUARIO ====================
+function actualizarRangoUsuario() {
+  const r = obtenerRango(usuario.puntos);
+  const idx = RANGOS.indexOf(r);
+  const siguiente = RANGOS[idx + 1];
+
+  document.getElementById('puntosUsuario').textContent = usuario.puntos;
+  document.getElementById('dineroUsuarioFF').textContent = usuario.dinero;
+  document.getElementById('nivelUsuario').textContent = usuario.nivel;
+  document.getElementById('nombreUsuario').textContent = usuario.nombre;
+  document.getElementById('rangoUsuarioFF').textContent = r.nombre;
+  document.getElementById('medallaNum').textContent = r.numMedalla;
+
+  // Medalla de rango (clase)
+  document.getElementById('medallaRango').className = 'medalla-rango ' + r.clase;
+
+  // Marco del avatar (color según rango)
+  document.querySelector('.avatar-marco').style.background = `linear-gradient(135deg, ${r.color}, #8b6914, ${r.color})`;
+
+  // Estrellas de progreso (según rango, como Free Fire)
+  const estrellasCont = document.getElementById('estrellasFF');
+  estrellasCont.innerHTML = '';
+  for (let i = 0; i < 5; i++) {
+    const s = document.createElement('span');
+    if (i < r.estrellas) s.textContent = '★';
+    else { s.textContent = '★'; s.className = 'vacia'; }
+    estrellasCont.appendChild(s);
+  }
+
+  // Barra de progreso
+  let progreso = 0;
+  if (siguiente) progreso = ((usuario.puntos - r.minPts) / (siguiente.minPts - r.minPts)) * 100;
+  else progreso = 100;
+  document.getElementById('barraProgreso').style.width = Math.min(100, progreso) + '%';
+
+  // Nivel basado en puntos
+  usuario.nivel = Math.floor(usuario.puntos / 200) + 1;
+  document.getElementById('nivelUsuario').textContent = usuario.nivel;
+
+  // Actualizar avatar y fondo equipados
+  aplicarEquipamiento();
+}
+
+function aplicarEquipamiento() {
+  const fondo = obtenerFondo(usuario.fondoEquipado);
+  const avatar = obtenerAvatar(usuario.avatarEquipado);
+
+  // Fondo del avatar en header
+  const fondoDiv = document.getElementById('fondoAvatarHeader');
+  if (fondoDiv) fondoDiv.style.background = fondo.css;
+  
+  // Icono del avatar en header
+  const avatarIcono = document.getElementById('avatarIconoHeader');
+  if (avatarIcono) avatarIcono.textContent = avatar.icono;
+
+  // Avatar en mesa
+  const avatarMesa = document.getElementById('avatarMesa0');
+  if (avatarMesa) avatarMesa.textContent = avatar.icono;
+
+  // Marco del avatar en mesa según rango
+  const r = obtenerRango(usuario.puntos);
+  const marco0 = document.getElementById('marco0');
+  if (marco0) marco0.className = 'marco ' + r.clase;
+}
+
+// ==================== TIENDA ====================
+let tabTiendaActual = 'fondos';
+let tabInvActual = 'fondos';
+
+function abrirTienda() {
+  document.getElementById('tiendaPts').textContent = usuario.puntos;
+  document.getElementById('tiendaDinero').textContent = usuario.dinero;
+  renderTienda();
+  document.getElementById('modal-tienda').classList.add('show');
+}
+
+function cambiarTabTienda(tab, btn) {
+  tabTiendaActual = tab;
+  document.querySelectorAll('#modal-tienda .tab-btn').forEach(b => b.classList.remove('activa'));
+  btn.classList.add('activa');
+  renderTienda();
+}
+
+function renderTienda() {
+  const grid = document.getElementById('gridTienda');
+  const lista = tabTiendaActual === 'fondos' ? CATALOGO_FONDOS : CATALOGO_AVATARES;
+  const desbloqueados = tabTiendaActual === 'fondos' ? usuario.fondosDesbloqueados : usuario.avataresDesbloqueados;
+  const equipado = tabTiendaActual === 'fondos' ? usuario.fondoEquipado : usuario.avatarEquipado;
+  const tipoMoneda = tabTiendaActual === 'fondos' ? 'dinero' : 'dinero';
+
+  grid.innerHTML = lista.map(item => {
+    const tiene = desbloqueados.includes(item.id);
+    const estaEquipado = equipado === item.id;
+    const puedeComprar = usuario.dinero >= item.precio;
+    
+    let previewHTML = '';
+    if (tabTiendaActual === 'fondos') {
+      previewHTML = `<div class="item-preview" style="background: ${item.css};"></div>`;
+    } else {
+      const fondo = obtenerFondo(usuario.fondoEquipado);
+      previewHTML = `<div class="item-preview" style="background: ${fondo.css};">
+        <span class="avatar-preview-icon">${item.icono}</span>
+      </div>`;
+    }
+
+    const estrellas = Array(item.rareza).fill('<span>★</span>').join('');
+
+    return `
+      <div class="item-card ${estaEquipado ? 'equipado' : ''}">
+        ${previewHTML}
+        <div class="item-estrellas">${estrellas}</div>
+        ${!tiene ? `<div class="item-precio">$${item.precio}</div>` : ''}
+        <div class="item-nombre">${item.nombre}</div>
+        ${!tiene ? `
+          <button class="item-accion-btn comprar" 
+                  onclick="comprarItem('${tabTiendaActual}','${item.id}',${item.precio})"
+                  ${!puedeComprar ? 'disabled' : ''}>
+            ${puedeComprar ? 'COMPRAR' : 'SIN $'}
+          </button>
+        ` : (!estaEquipado ? `
+          <button class="item-accion-btn equipar" onclick="equiparItem('${tabTiendaActual}','${item.id}')">
+            EQUIPAR
+          </button>
+        ` : '')}
+      </div>
+    `;
+  }).join('');
+}
+
+function comprarItem(tipo, id, precio) {
+  if (usuario.dinero < precio) { alert('No tienes suficiente dinero'); return; }
+  usuario.dinero -= precio;
+  if (tipo === 'fondos') {
+    usuario.fondosDesbloqueados.push(id);
+    usuario.fondoEquipado = id;
+  } else {
+    usuario.avataresDesbloqueados.push(id);
+    usuario.avatarEquipado = id;
+  }
+  actualizarRangoUsuario();
+  guardarProgreso();
+  abrirTienda();
+  renderTienda();
+}
+
+// ==================== INVENTARIO ====================
+function abrirInventario() {
+  renderInventario();
+  document.getElementById('modal-inventario').classList.add('show');
+}
+
+function cambiarTabInv(tab, btn) {
+  tabInvActual = tab;
+  document.querySelectorAll('#modal-inventario .tab-btn').forEach(b => b.classList.remove('activa'));
+  btn.classList.add('activa');
+  renderInventario();
+}
+
+function renderInventario() {
+  const grid = document.getElementById('gridInventario');
+  const desbloqueados = tabInvActual === 'fondos' ? usuario.fondosDesbloqueados : usuario.avataresDesbloqueados;
+  const equipado = tabInvActual === 'fondos' ? usuario.fondoEquipado : usuario.avatarEquipado;
+  const lista = (tabInvActual === 'fondos' ? CATALOGO_FONDOS : CATALOGO_AVATARES)
+    .filter(i => desbloqueados.includes(i.id));
+
+  if (lista.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#666;padding:40px;">No tienes items aún. ¡Visita la tienda!</div>';
+    return;
+  }
+
+  grid.innerHTML = lista.map(item => {
+    const estaEquipado = equipado === item.id;
+    let previewHTML = '';
+    if (tabInvActual === 'fondos') {
+      previewHTML = `<div class="item-preview" style="background: ${item.css};"></div>`;
+    } else {
+      const fondo = obtenerFondo(usuario.fondoEquipado);
+      previewHTML = `<div class="item-preview" style="background: ${fondo.css};">
+        <span class="avatar-preview-icon">${item.icono}</span>
+      </div>`;
+    }
+    const estrellas = Array(item.rareza).fill('<span>★</span>').join('');
+
+    return `
+      <div class="item-card ${estaEquipado ? 'equipado' : ''}">
+        ${previewHTML}
+        <div class="item-estrellas">${estrellas}</div>
+        <div class="item-nombre">${item.nombre}</div>
+        <button class="item-accion-btn ${estaEquipado ? 'desequipar' : 'equipar'}" 
+                onclick="equiparItem('${tabInvActual}','${item.id}')">
+          ${estaEquipado ? 'EQUIPADO' : 'EQUIPAR'}
+        </button>
+      </div>
+    `;
+  }).join('');
+}
+
+function equiparItem(tipo, id) {
+  if (tipo === 'fondos') {
+    usuario.fondoEquipado = id;
+  } else {
+    usuario.avatarEquipado = id;
+  }
+  actualizarRangoUsuario();
+  guardarProgreso();
+  renderInventario();
+  if (document.getElementById('modal-tienda').classList.contains('show')) renderTienda();
+}
+
+// ==================== RANKING ====================
 function abrirRanking() {
-  renderizarRanking();
+  renderRanking();
   document.getElementById('modal-ranking').classList.add('show');
 }
-function cerrarRanking() {
-  document.getElementById('modal-ranking').classList.remove('show');
-}
 
-function renderizarRanking() {
-  // Grid de rangos
+function renderRanking() {
   const grid = document.getElementById('rangosGrid');
   const rangoActualIdx = obtenerRangoIdx(usuario.puntos);
   grid.innerHTML = RANGOS.map((r, i) => {
     const desbloqueado = i <= rangoActualIdx;
     return `
-      <div class="rango-card ${r.clase} ${desbloqueado ? 'desbloqueado' : ''}" style="color: ${r.color}; opacity: ${desbloqueado ? 1 : 0.5}">
-        <div class="rango-icono">${r.icono}</div>
-        <div class="nombre-r">${r.nombre}</div>
-        <div class="pts-r">${r.minPts}${r.maxPts !== Infinity ? '+' : ' pts'}</div>
+      <div style="background:linear-gradient(180deg,#1a1a1a,#000);border:2px solid ${r.color};border-radius:10px;padding:10px 6px;text-align:center;color:${r.color};opacity:${desbloqueado?1:0.5};box-shadow:${desbloqueado?'0 0 15px '+r.color:'none'}">
+        <div style="font-size:1.8rem;margin-bottom:4px;filter:drop-shadow(0 0 5px ${r.color})">${r.icono}</div>
+        <div style="font-family:Cinzel,serif;font-size:0.68rem;font-weight:900;letter-spacing:0.5px;margin-bottom:3px">${r.nombre}</div>
+        <div style="font-size:0.6rem;color:#888">${r.minPts}${r.maxPts !== Infinity ? '+' : ' pts'}</div>
       </div>
     `;
   }).join('');
 
-  // Tabla ordenada por puntos
   const ordenado = [...ranking].sort((a, b) => b.puntos - a.puntos);
   const tbody = document.getElementById('tablaRanking');
   tbody.innerHTML = ordenado.map((j, i) => {
     const r = obtenerRango(j.puntos);
-    const posCls = i === 0 ? 'oro' : i === 1 ? 'plata' : i === 2 ? 'bronce' : '';
+    const posColor = i === 0 ? '#ffd700' : i === 1 ? '#c0c0c0' : i === 2 ? '#cd7f32' : '#666';
     const esYo = j.nombre === usuario.nombre;
     return `
-      <tr class="${esYo ? 'yo' : ''}">
-        <td class="pos ${posCls}">${i + 1}</td>
-        <td>
-          <div class="mini-perfil">
-            <div class="mini-av">
-              <div class="marco-t" style="background: linear-gradient(135deg, ${r.color}, #333)">
-                <div class="interior-t">${j.avatar || '👤'}</div>
-              </div>
-            </div>
-            <span>${j.nombre}${esYo ? ' (TÚ)' : ''}</span>
-          </div>
-        </td>
-        <td><span class="txt-rango" style="color: ${r.color}">${r.icono} ${r.nombre}</span></td>
-        <td style="color: #4ade80; font-weight: bold;">${j.puntos}</td>
-        <td style="color: #d4af37;">$${j.dinero}</td>
+      <tr style="${esYo ? 'background:rgba(212,175,55,0.15)' : ''};border-bottom:1px solid rgba(255,255,255,0.08)">
+        <td style="padding:8px 6px;font-family:Cinzel,serif;font-weight:900;color:${posColor};font-size:0.9rem">${i + 1}</td>
+        <td style="padding:8px 6px;${esYo ? 'color:#d4af37;font-weight:bold' : ''}">${j.nombre}${esYo ? ' (TÚ)' : ''}</td>
+        <td style="padding:8px 6px;color:${r.color};font-weight:bold;font-size:0.75rem">${r.icono} ${r.nombre}</td>
+        <td style="padding:8px 6px;color:#4ade80;font-weight:bold">${j.puntos}</td>
+        <td style="padding:8px 6px;color:#d4af37">$${j.dinero}</td>
       </tr>
     `;
   }).join('');
+}
+
+function cerrarModal(id) {
+  document.getElementById(id).classList.remove('show');
 }
 
 // ==================== DATOS JUEGO ====================
 const PALOS = ['♠', '♥', '♦', '♣'];
 const VALORES = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
 const NOMBRES = ['TÚ', 'Carlos', 'Ana', 'Luis'];
-const AVATARES_IA = ['👤', '🤵', '👩‍💼', '🧔'];
 
 let mazo = [];
 let jugadores = [];
@@ -1405,23 +1697,19 @@ let historial = [];
 let timerInterval = null;
 let tiempoRestante = 0;
 let apuestaInicialMano = 0;
-let puntosGanadosMano = 0;
 
 // Audio
 let audioCtx = null;
-function initAudio() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-}
-function sonido(freq, duracion = 0.1, tipo = 'sine', volumen = 0.08) {
+function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+function sonido(f, d = 0.1, t = 'sine', v = 0.08) {
   try {
     initAudio();
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = tipo; osc.frequency.value = freq;
-    osc.connect(gain); gain.connect(audioCtx.destination);
-    gain.gain.setValueAtTime(volumen, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duracion);
-    osc.start(); osc.stop(audioCtx.currentTime + duracion);
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = t; o.frequency.value = f;
+    o.connect(g); g.connect(audioCtx.destination);
+    g.gain.setValueAtTime(v, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + d);
+    o.start(); o.stop(audioCtx.currentTime + d);
   } catch(e) {}
 }
 function sonidoCarta() { sonido(500 + Math.random() * 200, 0.08, 'triangle', 0.05); }
@@ -1430,7 +1718,7 @@ function sonidoFold() { sonido(200, 0.2, 'sawtooth', 0.08); }
 function sonidoWin() { [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => sonido(f, 0.2, 'triangle', 0.1), i * 100)); }
 function sonidoCheck() { sonido(600, 0.08, 'sine', 0.06); }
 
-// ==================== MAZO Y CARTAS ====================
+// ==================== MAZO ====================
 function crearMazo() {
   const m = [];
   for (const p of PALOS) for (const v of VALORES) m.push({ valor: v, palo: p });
@@ -1445,25 +1733,25 @@ function barajar(m) {
 }
 function valorNumerico(v) { return VALORES.indexOf(v) + 2; }
 
-// ==================== EVALUAR MANO ====================
+// ==================== EVALUAR ====================
 function evaluarMano(cartas) {
   const combos = combinations(cartas, 5);
   let mejor = null;
-  for (const combo of combos) {
-    const score = puntuar5(combo);
-    if (!mejor || compararScore(score, mejor) > 0) mejor = score;
+  for (const c of combos) {
+    const s = puntuar5(c);
+    if (!mejor || compararScore(s, mejor) > 0) mejor = s;
   }
   return mejor;
 }
 function* combinations(arr, k) {
-  const indices = [...Array(k).keys()];
+  const idx = [...Array(k).keys()];
   while (true) {
-    yield indices.map(i => arr[i]);
+    yield idx.map(i => arr[i]);
     let i = k - 1;
-    while (i >= 0 && indices[i] === i + arr.length - k) i--;
+    while (i >= 0 && idx[i] === i + arr.length - k) i--;
     if (i < 0) return;
-    indices[i]++;
-    for (let j = i + 1; j < k; j++) indices[j] = indices[j-1] + 1;
+    idx[i]++;
+    for (let j = i + 1; j < k; j++) idx[j] = idx[j-1] + 1;
   }
 }
 function puntuar5(cartas) {
@@ -1581,11 +1869,10 @@ function nuevaMano() {
   for (let i = 0; i < 4; i++) {
     if (jugadores[i] && jugadores[i].fichas <= 0) {
       jugadores[i].fichas = 1000;
-      mensaje(`${NOMBRES[i]} se queda sin fichas. ¡Recomprado!`);
+      mensaje(`${NOMBRES[i]} recomprado`);
       agregarHistorial(`💰 ${NOMBRES[i]} recomprado $1000`);
     }
   }
-
   if (jugadores.length === 0) {
     jugadores = NOMBRES.map(() => ({ mano: [], fichas: 1000, apuesta: 0, fold: false, allin: false }));
   }
@@ -1598,7 +1885,6 @@ function nuevaMano() {
   fase = 'preflop';
   ultimoEnSubir = -1;
   apuestaInicialMano = jugadores[0].fichas;
-  puntosGanadosMano = 0;
 
   jugadores.forEach(j => { j.mano = []; j.apuesta = 0; j.fold = false; j.allin = false; });
 
@@ -1612,7 +1898,6 @@ function nuevaMano() {
   dealerIdx = (dealerIdx + 1) % 4;
   const sb = (dealerIdx + 1) % 4;
   const bb = (dealerIdx + 2) % 4;
-
   apostar(sb, ciegas.pequeña);
   apostar(bb, ciegas.grande);
   apuestaActual = ciegas.grande;
@@ -1642,25 +1927,18 @@ function contarActivos() { return jugadores.filter(j => !j.fold).length; }
 function siguienteTurno() {
   detenerTimer();
   if (contarActivos() === 1) return finMano();
-
   const activos = jugadores.filter(j => !j.fold && !j.allin);
   const todosIgualaron = activos.length === 0 || activos.every(j => j.apuesta >= apuestaActual);
-
   if (todosIgualaron && turno === ultimoEnSubir) return siguienteFase();
 
-  let siguiente = (turno + 1) % 4;
-  let iter = 0;
+  let s = (turno + 1) % 4, iter = 0;
   while (iter < 4) {
-    const j = jugadores[siguiente];
-    if (!j.fold && !j.allin) break;
-    siguiente = (siguiente + 1) % 4;
-    iter++;
+    if (!jugadores[s].fold && !jugadores[s].allin) break;
+    s = (s + 1) % 4; iter++;
   }
-
   if (iter >= 4) return siguienteFase();
-  turno = siguiente;
+  turno = s;
   render();
-
   if (turno === 0) setTimeout(() => esperarHumano(), 500);
   else setTimeout(() => turnoIA(), 800);
 }
@@ -1678,34 +1956,20 @@ function siguienteFase() {
     mensaje('✦ FLOP ✦');
     [100,250,400].forEach(t => setTimeout(sonidoCarta, t));
   } else if (fase === 'flop') {
-    fase = 'turn';
-    comunitarias.push(mazo.pop());
-    mensaje('✦ TURN ✦');
-    sonidoCarta();
+    fase = 'turn'; comunitarias.push(mazo.pop()); mensaje('✦ TURN ✦'); sonidoCarta();
   } else if (fase === 'turn') {
-    fase = 'river';
-    comunitarias.push(mazo.pop());
-    mensaje('✦ RIVER ✦');
-    sonidoCarta();
-  } else if (fase === 'river') {
-    return showdown();
-  }
+    fase = 'river'; comunitarias.push(mazo.pop()); mensaje('✦ RIVER ✦'); sonidoCarta();
+  } else if (fase === 'river') return showdown();
 
   if (contarActivos() === 1) return finMano();
   if (jugadores.filter(j => !j.fold && !j.allin).length <= 1) {
-    render(true);
-    return setTimeout(() => siguienteFase(), 1200);
+    render(true); return setTimeout(() => siguienteFase(), 1200);
   }
 
-  let primero = (dealerIdx + 1) % 4;
-  let iter = 0;
-  while ((jugadores[primero].fold || jugadores[primero].allin) && iter < 4) {
-    primero = (primero + 1) % 4;
-    iter++;
-  }
-  turno = primero;
+  let p = (dealerIdx + 1) % 4, iter = 0;
+  while ((jugadores[p].fold || jugadores[p].allin) && iter < 4) { p = (p + 1) % 4; iter++; }
+  turno = p;
   render(true);
-
   if (turno === 0) setTimeout(() => esperarHumano(), 600);
   else setTimeout(() => turnoIA(), 900);
 }
@@ -1719,15 +1983,12 @@ function esperarHumano() {
 function iniciarTimer(segundos) {
   detenerTimer();
   tiempoRestante = segundos;
-  document.getElementById('temporizador')?.classList.add('show');
   timerInterval = setInterval(() => {
     tiempoRestante--;
     if (tiempoRestante <= 0) { detenerTimer(); if (esperandoHumano) accion('fold'); }
   }, 1000);
 }
-function detenerTimer() {
-  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-}
+function detenerTimer() { if (timerInterval) { clearInterval(timerInterval); timerInterval = null; } }
 
 function quickBet(tipo) {
   const j = jugadores[0];
@@ -1747,20 +2008,17 @@ function accion(tipo) {
   const j = jugadores[0];
   const aPagar = apuestaActual - j.apuesta;
 
-  if (tipo === 'fold') {
-    j.fold = true; sonidoFold();
-    mensaje('Te retiras.'); agregarHistorial('🚫 Tú te retiras');
-  } else if (tipo === 'call') {
+  if (tipo === 'fold') { j.fold = true; sonidoFold(); mensaje('Te retiras.'); agregarHistorial('🚫 Tú te retiras'); }
+  else if (tipo === 'call') {
     if (aPagar > 0) { apostar(0, aPagar); sonidoFicha(); mensaje(`Igualas $${aPagar}`); agregarHistorial(`✅ Tú igualas $${aPagar}`); }
     else { sonidoCheck(); mensaje('Pasas.'); agregarHistorial('✋ Tú pasas'); }
   } else if (tipo === 'raise') {
     const monto = parseInt(document.getElementById('inputRaise').value);
     const minRaise = apuestaActual + ciegas.grande;
-    if (isNaN(monto) || monto < minRaise) { mensaje(`⚠ Subida mínima: $${minRaise}`); esperandoHumano = true; iniciarTimer(tiempoRestante); return; }
+    if (isNaN(monto) || monto < minRaise) { mensaje(`⚠ Mínimo: $${minRaise}`); esperandoHumano = true; iniciarTimer(tiempoRestante); return; }
     if (monto > j.fichas + j.apuesta) { mensaje(`⚠ Máximo: $${j.fichas + j.apuesta}`); esperandoHumano = true; iniciarTimer(tiempoRestante); return; }
     apostar(0, monto - j.apuesta);
-    apuestaActual = j.apuesta;
-    ultimoEnSubir = 0;
+    apuestaActual = j.apuesta; ultimoEnSubir = 0;
     sonidoFicha(); mensaje(`Subes a $${monto}`); agregarHistorial(`📈 Tú subes a $${monto}`);
   } else if (tipo === 'allin') {
     const total = j.fichas + j.apuesta;
@@ -1778,14 +2036,13 @@ function turnoIA() {
   const idx = turno;
   const j = jugadores[idx];
   if (j.fold || j.allin) return siguienteTurno();
-
   const fuerza = evaluarFuerzaIA(j.mano, comunitarias, fase);
   const aPagar = apuestaActual - j.apuesta;
   const potOdds = aPagar / (bote + aPagar);
-  const agresividad = Math.random();
+  const agr = Math.random();
 
   if (aPagar === 0) {
-    if (fuerza > 0.75 || (fuerza > 0.5 && agresividad > 0.6)) {
+    if (fuerza > 0.75 || (fuerza > 0.5 && agr > 0.6)) {
       const minRaise = apuestaActual + ciegas.grande;
       const raiseSize = Math.min(minRaise + Math.floor(Math.random() * 40), j.fichas + j.apuesta);
       if (raiseSize >= j.fichas + j.apuesta) {
@@ -1799,24 +2056,24 @@ function turnoIA() {
       }
       sonidoFicha();
     } else { sonidoCheck(); mensaje(`${NOMBRES[idx]} pasa.`); agregarHistorial(`✋ ${NOMBRES[idx]} pasa`); }
-  } else {
-    if (fuerza > 0.85 && agresividad > 0.4) {
-      const raiseSize = Math.min(apuestaActual * 2 + Math.floor(Math.random() * 50), j.fichas + j.apuesta);
-      if (raiseSize >= j.fichas + j.apuesta) {
+  }.min else {
+    if (fuer(aza > 0.85 && agr >P 0.4) {
+     agar const rs = Math.min(ap, j.fuestaActual *ich 2 + Math.floor(Mathas.random() * 50), j));.fichas + j.apuesta);
+ son      if (rs >= j.fichidoas + j.apuesta) {
         apostar(idx, j.fichas);
         if (j.apuesta > apuestaActual) { apuestaActual = j.apuesta; ultimoEnSubir = idx; }
         mensaje(`${NOMBRES[idx]}: 💥 ALL-IN!`); agregarHistorial(`💥 ${NOMBRES[idx]} ALL-IN`);
       } else {
-        apostar(idx, raiseSize - j.apuesta);
+        apostar(idx, rs - j.apuesta);
         apuestaActual = j.apuesta; ultimoEnSubir = idx;
         mensaje(`${NOMBRES[idx]} sube a $${j.apuesta}`); agregarHistorial(`📈 ${NOMBRES[idx]} sube $${j.apuesta}`);
       }
       sonidoFicha();
     } else if (fuerza > potOdds + 0.1 || fuerza > 0.65 || aPagar === 0) {
-      apostar(idx, Math.min(aPagar, j.fichas)); sonidoFicha();
+      apostar(idx, MathFicha();
       mensaje(`${NOMBRES[idx]} iguala $${Math.min(aPagar, j.fichas)}`);
       agregarHistorial(`✅ ${NOMBRES[idx]} iguala $${Math.min(aPagar, j.fichas)}`);
-    } else if (fuerza > potOdds && agresividad > 0.7) {
+    } else if (fuerza > potOdds && agr > 0.7) {
       apostar(idx, Math.min(aPagar, j.fichas)); sonidoFicha();
       mensaje(`${NOMBRES[idx]} iguala $${Math.min(aPagar, j.fichas)}`);
       agregarHistorial(`✅ ${NOMBRES[idx]} iguala $${Math.min(aPagar, j.fichas)}`);
@@ -1833,8 +2090,7 @@ function evaluarFuerzaIA(mano, comunitarias, fase) {
   if (fase === 'preflop') {
     const v1 = valorNumerico(mano[0].valor), v2 = valorNumerico(mano[1].valor);
     const alta = Math.max(v1, v2), baja = Math.min(v1, v2);
-    const pareja = v1 === v2;
-    const suited = mano[0].palo === mano[1].palo;
+    const pareja = v1 === v2, suited = mano[0].palo === mano[1].palo;
     let f = 0;
     if (pareja) f = 0.5 + (alta / 14) * 0.5;
     else { f = (alta / 14) * 0.4 + (baja / 14) * 0.2; if (suited) f += 0.1; if (alta - baja === 1) f += 0.05; }
@@ -1852,37 +2108,29 @@ function evaluarFuerzaIA(mano, comunitarias, fase) {
   }
 }
 
-// ==================== FIN MANO + PUNTOS ====================
+// ==================== FIN ====================
 function finMano() {
   fase = 'showdown';
   detenerTimer();
   const activos = jugadores.filter(j => !j.fold);
   if (activos.length === 1) {
     const ganador = jugadores.indexOf(activos[0]);
-    const gananciaNeta = bote - (apuestaInicialMano - jugadores[ganador].fichas - bote);
     jugadores[ganador].fichas += bote;
-    
-    // Puntos para el ganador
-    const ptsGanados = Math.round(bote / 10) + 20;
+    const pts = Math.round(bote / 10) + 20;
+    let ptsDelta = 0;
     if (ganador === 0) {
-      usuario.puntos += ptsGanados;
+      usuario.puntos += pts; usuario.victorias++; ptsDelta = pts;
       usuario.dinero = jugadores[0].fichas;
-      usuario.victorias++;
-      usuario.manosJugadas++;
-      actualizarRangoUsuario();
-      puntosGanadosMano = ptsGanados;
-      agregarHistorial(`🏆 Tú ganas $${bote} (+${ptsGanados} pts)`, true);
-      mostrarResultado(`🏆 ¡GANASTE!`, `+$${bote}`, 'Todos se retiraron', ptsGanados);
+      agregarHistorial(`🏆 Tú ganas $${bote} (+${pts} pts)`, true);
+      mostrarResultado(`🏆 ¡GANASTE!`, `+$${bote}`, 'Todos se retiraron', pts);
     } else {
-      usuario.manosJugadas++;
-      usuario.puntos = Math.max(0, usuario.puntos - 10);
+      usuario.puntos = Math.max(0, usuario.puntos - 10); ptsDelta = -10;
       usuario.dinero = jugadores[0].fichas;
-      actualizarRangoUsuario();
       agregarHistorial(`🏆 ${NOMBRES[ganador]} gana $${bote}`, true);
       mostrarResultado(`🏆 ${NOMBRES[ganador]} GANA`, `+$${bote}`, 'Todos se retiraron', -10);
     }
-    
-    // Actualizar ranking
+    usuario.manosJugadas++;
+    actualizarRangoUsuario();
     actualizarRankingGlobal();
     animarFichasGanador(ganador);
     sonidoWin();
@@ -1896,49 +2144,36 @@ function showdown() {
   fase = 'showdown';
   detenerTimer();
   render();
-
   const activos = jugadores.filter(j => !j.fold);
-  const resultados = activos.map(j => {
+  const res = activos.map(j => {
     const idx = jugadores.indexOf(j);
-    const score = evaluarMano([...j.mano, ...comunitarias]);
-    return { idx, score };
+    return { idx, score: evaluarMano([...j.mano, ...comunitarias]) };
   });
-  resultados.sort((a, b) => compararScore(b.score, a.score));
-  const ganador = resultados[0];
-  jugadores[ganador.idx].fichas += bote;
+  res.sort((a, b) => compararScore(b.score, a.score));
+  const g = res[0];
+  jugadores[g.idx].fichas += bote;
 
-  // Puntos
-  const ptsGanados = Math.round(bote / 10) + 30;
+  const pts = Math.round(bote / 10) + 30;
   let ptsDelta = 0;
-  if (ganador.idx === 0) {
-    usuario.puntos += ptsGanados;
-    usuario.victorias++;
-    ptsDelta = ptsGanados;
-    agregarHistorial(`🏆 Tú: ${ganador.score.nombre} (+${ptsGanados} pts)`, true);
+  if (g.idx === 0) {
+    usuario.puntos += pts; usuario.victorias++; ptsDelta = pts;
+    agregarHistorial(`🏆 Tú: ${g.score.nombre} (+${pts} pts)`, true);
   } else {
-    usuario.puntos = Math.max(0, usuario.puntos - 15);
-    ptsDelta = -15;
-    agregarHistorial(`🏆 ${NOMBRES[ganador.idx]}: ${ganador.score.nombre} (+$${bote})`, true);
+    usuario.puntos = Math.max(0, usuario.puntos - 15); ptsDelta = -15;
+    agregarHistorial(`🏆 ${NOMBRES[g.idx]}: ${g.score.nombre} (+$${bote})`, true);
   }
   usuario.dinero = jugadores[0].fichas;
   usuario.manosJugadas++;
   actualizarRangoUsuario();
+  mensaje(`🏆 ¡${NOMBRES[g.idx]} gana $${bote} con ${g.score.nombre}!`);
 
-  mensaje(`🏆 ¡${NOMBRES[ganador.idx]} gana $${bote} con ${ganador.score.nombre}!`);
+  document.getElementById(`j${g.idx}`).classList.add('ganador');
+  setTimeout(() => document.getElementById(`j${g.idx}`).classList.remove('ganador'), 5000);
 
-  document.getElementById(`j${ganador.idx}`).classList.add('ganador');
-  setTimeout(() => document.getElementById(`j${ganador.idx}`).classList.remove('ganador'), 5000);
-
-  const detalle = resultados.map(r => `${NOMBRES[r.idx]}: ${r.score.nombre}`).join('<br>');
-  mostrarResultado(
-    ganador.idx === 0 ? `🏆 ¡GANASTE!` : `🏆 ${NOMBRES[ganador.idx]} GANA`,
-    `+$${bote}`,
-    detalle,
-    ptsDelta
-  );
-  
+  const detalle = res.map(r => `${NOMBRES[r.idx]}: ${r.score.nombre}`).join('<br>');
+  mostrarResultado(g.idx === 0 ? `🏆 ¡GANASTE!` : `🏆 ${NOMBRES[g.idx]} GANA`, `+$${bote}`, detalle, ptsDelta);
   actualizarRankingGlobal();
-  animarFichasGanador(ganador.idx);
+  animarFichasGanador(g.idx);
   sonidoWin();
   bote = 0;
   render();
@@ -1946,14 +2181,8 @@ function showdown() {
 }
 
 function actualizarRankingGlobal() {
-  // Actualizar entrada del jugador
   const yo = ranking.find(r => r.esYo);
-  if (yo) {
-    yo.puntos = usuario.puntos;
-    yo.dinero = usuario.dinero;
-    yo.nombre = usuario.nombre;
-  }
-  // Simular progreso de IAs
+  if (yo) { yo.puntos = usuario.puntos; yo.dinero = usuario.dinero; yo.nombre = usuario.nombre; }
   ranking.forEach(r => {
     if (!r.esYo && Math.random() > 0.5) {
       r.puntos += Math.floor(Math.random() * 80) - 20;
@@ -1966,18 +2195,15 @@ function actualizarRankingGlobal() {
 }
 
 function animarFichasGanador(idx) {
-  const target = document.getElementById(`j${idx}`);
-  const rect = target.getBoundingClientRect();
+  const t = document.getElementById(`j${idx}`);
+  const rect = t.getBoundingClientRect();
   const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+  const startX = window.innerWidth / 2, startY = window.innerHeight / 2;
   for (let i = 0; i < 8; i++) {
     setTimeout(() => {
       const f = document.createElement('div');
       f.className = 'ficha-anim';
-      const startX = window.innerWidth / 2, startY = window.innerHeight / 2;
       f.style.left = startX + 'px'; f.style.top = startY + 'px';
-      f.style.setProperty('--tx', (cx - startX) + 'px');
-      f.style.setProperty('--ty', (cy - startY) + 'px');
-      f.style.cssText += `width:22px;height:22px;border-radius:50%;background:radial-gradient(circle,#ffd700,#8b6914);border:2px solid #fff;position:fixed;z-index:50;pointer-events:none;box-shadow:0 0 10px rgba(212,175,55,0.8);transition:all 0.8s;`;
       document.body.appendChild(f);
       requestAnimationFrame(() => {
         f.style.transform = `translate(${cx - startX}px, ${cy - startY}px) scale(0.3) rotate(720deg)`;
@@ -1988,13 +2214,13 @@ function animarFichasGanador(idx) {
   }
 }
 
-function mostrarResultado(titulo, subtitulo, detalle, ptsDelta) {
-  document.getElementById('resTitulo').textContent = titulo;
-  document.getElementById('resDetalle').textContent = subtitulo;
-  document.getElementById('resManos').innerHTML = detalle;
-  const elPts = document.getElementById('resPuntos');
-  elPts.className = 'puntos-ganados ' + (ptsDelta >= 0 ? 'positivo' : 'negativo');
-  elPts.textContent = ptsDelta >= 0 ? `💎 +${ptsDelta} puntos de liga` : `💎 ${ptsDelta} puntos de liga`;
+function mostrarResultado(t, s, d, pts) {
+  document.getElementById('resTitulo').textContent = t;
+  document.getElementById('resDetalle').textContent = s;
+  document.getElementById('resManos').innerHTML = d;
+  const el = document.getElementById('resPuntos');
+  el.className = 'puntos-ganados ' + (pts >= 0 ? 'positivo' : 'negativo');
+  el.textContent = pts >= 0 ? `💎 +${pts} puntos de liga` : `💎 ${pts} puntos de liga`;
   document.getElementById('resultado').classList.add('show');
   setTimeout(() => document.getElementById('resultado').classList.remove('show'), 3500);
 }
@@ -2006,27 +2232,25 @@ window.onload = () => {
   cargarProgreso();
   jugadores = NOMBRES.map(() => ({ mano: [], fichas: 1000, apuesta: 0, fold: false, allin: false }));
   
-  // Asignar rangos visuales a IAs según su puntuación
-  const iasPts = [0, ranking[1].puntos, ranking[2].puntos, ranking[3].puntos];
-  for (let i = 1; i <= 3; i++) {
+  // Asignar rangos a IAs
+  const iasIdx = [1, 2, 3];
+  iasIdx.forEach(i => {
     const r = obtenerRango(ranking[i].puntos);
     document.getElementById(`marco${i}`).className = 'marco ' + r.clase;
     document.getElementById(`rangoIA${i}`).textContent = `${r.icono} ${r.nombre}`;
     document.getElementById(`rangoIA${i}`).style.color = r.color;
-  }
+  });
   
   actualizarRangoUsuario();
   render();
   agregarHistorial('✦ Bienvenido a Royal Flush Ranked');
   document.addEventListener('click', () => initAudio(), { once: true });
-  
-  // Guardar cada cierto tiempo
   setInterval(guardarProgreso, 10000);
 };
 
-// Cerrar modal al hacer click fuera
-document.getElementById('modal-ranking').addEventListener('click', (e) => {
-  if (e.target.id === 'modal-ranking') cerrarRanking();
+// Cerrar modales al hacer click fuera
+document.querySelectorAll('.modal').forEach(m => {
+  m.addEventListener('click', (e) => { if (e.target === m) m.classList.remove('show'); });
 });
 </script>
 
