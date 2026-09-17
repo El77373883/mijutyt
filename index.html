@@ -3,279 +3,1162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>♠ Póker Texas Hold'em ♥</title>
+<title>♠ Royal Flush Casino — RANKED ♥</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Rajdhani:wght@600;700&family=Roboto:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
   
+  :root {
+    --oro: #d4af37;
+    --oro-claro: #f5e6a8;
+    --fieltro-1: #0d5c3a;
+    --fieltro-2: #063d24;
+    --madera-1: #4a2c14;
+    --madera-2: #2a1608;
+    /* Rangos */
+    --bronce: #b87333;
+    --plata: #c0c0c0;
+    --oro-r: #ffd700;
+    --diamante: #00bfff;
+    --global: #ff2d55;
+  }
+
   body {
-    background: radial-gradient(ellipse at center, #0a4d2e 0%, #052a19 60%, #000 100%);
+    font-family: 'Rajdhani', 'Roboto', sans-serif;
+    background: 
+      radial-gradient(ellipse at top, #1a1a1a 0%, #000 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 5 L55 30 L30 55 L5 30 Z' fill='none' stroke='%23111' stroke-width='1'/%3E%3C/svg%3E");
     min-height: 100vh;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-    user-select: none;
+    padding: 6px;
+    overflow-x: hidden;
   }
 
-  h1 {
-    font-size: 1.6rem;
-    margin-bottom: 8px;
-    text-shadow: 0 0 15px #ffd700;
-    color: #ffd700;
-    letter-spacing: 2px;
+  /* ============ HEADER CON PERFIL ============ */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1300px;
+    padding: 6px 14px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(20,20,20,0.8));
+    border: 2px solid var(--oro);
+    border-radius: 12px;
+    margin-bottom: 6px;
+    box-shadow: 0 4px 20px rgba(212,175,55,0.3);
+    gap: 12px;
   }
+
+  /* ===== PERFIL IZQUIERDO (estilo Free Fire) ===== */
+  .perfil-usuario {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, rgba(30,30,30,0.95) 0%, rgba(10,10,10,0.6) 100%);
+    padding: 4px 18px 4px 4px;
+    border-radius: 8px;
+    border: 1px solid rgba(212,175,55,0.5);
+    position: relative;
+    min-width: 280px;
+    height: 62px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* Avatar con marco hexagonal estilo Free Fire */
+  .avatar-container {
+    position: relative;
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+  }
+
+  .avatar-marco {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #d4af37, #8b6914, #f5e6a8, #8b6914, #d4af37);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    filter: drop-shadow(0 0 6px rgba(212,175,55,0.7));
+  }
+
+  .avatar-marco.bronce { background: linear-gradient(135deg, #cd7f32, #8b4513, #e8a76a, #8b4513, #cd7f32); }
+  .avatar-marco.plata { background: linear-gradient(135deg, #e8e8e8, #808080, #ffffff, #808080, #e8e8e8); }
+  .avatar-marco.oro-r { background: linear-gradient(135deg, #ffd700, #b8860b, #fff8dc, #b8860b, #ffd700); }
+  .avatar-marco.diamante { background: linear-gradient(135deg, #00ffff, #0080ff, #a0e0ff, #0080ff, #00ffff); }
+  .avatar-marco.global { 
+    background: linear-gradient(135deg, #ff2d55, #8b0000, #ff6b6b, #8b0000, #ff2d55);
+    animation: pulsoGlobal 2s infinite;
+  }
+  @keyframes pulsoGlobal {
+    0%, 100% { filter: drop-shadow(0 0 6px rgba(255,45,85,0.9)); }
+    50% { filter: drop-shadow(0 0 15px rgba(255,45,85,1)) drop-shadow(0 0 25px rgba(255,100,100,0.8)); }
+  }
+
+  .avatar-interior {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #2a2a2a, #0a0a0a);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .avatar-interior::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15), transparent 60%);
+  }
+
+  /* Nivel encima del avatar */
+  .nivel-badge {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, #fff5c2, #d4af37, #8b6914);
+    color: #000;
+    font-weight: 900;
+    font-size: 0.65rem;
+    padding: 1px 8px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    font-family: 'Cinzel', serif;
+    z-index: 3;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  /* Estrellas de rango debajo del avatar */
+  .estrellas-rango {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1px;
+    z-index: 3;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.9));
+  }
+
+  .estrella {
+    font-size: 0.7rem;
+    color: #ffd700;
+    text-shadow: 0 0 3px #ff8c00;
+    line-height: 1;
+  }
+  .estrella.vacia { color: #444; text-shadow: none; }
+
+  /* Icono de rango a la derecha (como el lobo de la imagen) */
+  .icono-rango {
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    z-index: 5;
+    filter: drop-shadow(0 0 6px rgba(212,175,55,0.8));
+  }
+  .icono-rango.global { filter: drop-shadow(0 0 10px rgba(255,45,85,1)); animation: flotar 3s ease-in-out infinite; }
+  @keyframes flotar {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.1); }
+  }
+
+  /* Info del usuario */
+  .info-usuario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .nombre-usuario {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 1rem;
+    background: linear-gradient(180deg, #f5e6a8, #d4af37, #8b6914);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 10px rgba(212,175,55,0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .rango-nombre {
+    font-size: 0.7rem;
+    color: #ccc;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .puntos-usuario {
+    font-size: 0.75rem;
+    color: #4ade80;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+  }
+
+  /* Barra de progreso al siguiente rango */
+  .barra-progreso {
+    height: 3px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 2px;
+    margin-top: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .barra-progreso-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #d4af37, #f5e6a8);
+    border-radius: 2px;
+    transition: width 0.5s;
+    box-shadow: 0 0 6px rgba(212,175,55,0.8);
+  }
+
+  /* Header derecho */
+  header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    background: linear-gradient(180deg, var(--oro-claro), var(--oro), #8b6914);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+    text-align: center;
+    flex: 1;
+  }
+
+  .info-header {
+    display: flex;
+    gap: 12px;
+    font-size: 0.75rem;
+    align-items: center;
+  }
+
+  .info-header .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px 10px;
+    border-left: 1px solid rgba(212,175,55,0.3);
+  }
+  .info-header .stat .label { color: #888; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; }
+  .info-header .stat .valor { color: var(--oro); font-weight: bold; font-family: 'Cinzel', serif; font-size: 0.8rem; }
+
+  /* Botón de ranking */
+  .btn-ranking {
+    background: linear-gradient(180deg, #8e24aa, #4a148c);
+    color: #fff;
+    border: 1px solid var(--oro);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.25s;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.5), 0 0 10px rgba(142,36,170,0.4);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .btn-ranking:hover { transform: translateY(-2px); box-shadow: 0 5px 0 rgba(0,0,0,0.5), 0 0 20px rgba(142,36,170,0.8); }
+
+  /* ============ MESA ============ */
+  #mesa-wrapper { position: relative; width: 100%; max-width: 1300px; perspective: 1200px; }
 
   #mesa {
-    width: 100%;
-    max-width: 1100px;
-    height: 620px;
-    background: radial-gradient(ellipse at center, #1a7a4a 0%, #0d3d24 70%, #062012 100%);
-    border: 12px solid #3a1f0b;
-    border-radius: 50% / 30%;
-    box-shadow: inset 0 0 60px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.8);
     position: relative;
-    margin-bottom: 10px;
+    width: 100%;
+    height: 660px;
+    background: radial-gradient(ellipse at center, var(--fieltro-1) 0%, var(--fieltro-2) 65%, #021a0e 100%);
+    border-radius: 50% / 32%;
+    border: 20px solid var(--madera-2);
+    box-shadow: 
+      inset 0 0 120px rgba(0,0,0,0.85),
+      0 0 60px rgba(0,0,0,0.9),
+      0 10px 0 #0d0805,
+      0 15px 30px rgba(0,0,0,0.8);
+    overflow: hidden;
   }
 
-  /* Jugadores */
-  .jugador {
+  #mesa::before {
+    content: '';
     position: absolute;
-    width: 150px;
-    background: rgba(0,0,0,0.75);
-    border: 2px solid #ffd700;
-    border-radius: 10px;
-    padding: 6px;
-    text-align: center;
-    font-size: 0.75rem;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    top: 6%; left: 8%; right: 8%; bottom: 6%;
+    border-radius: 50% / 32%;
+    border: 2px dashed rgba(212,175,55,0.25);
+    pointer-events: none;
   }
-  .jugador.activo { border-color: #00ff88; box-shadow: 0 0 20px #00ff88; transform: scale(1.05); }
-  .jugador.fold { opacity: 0.35; filter: grayscale(1); }
-  .jugador.ganador { border-color: #ffd700; animation: brillo 0.6s infinite alternate; }
-  @keyframes brillo { from { box-shadow: 0 0 10px #ffd700; } to { box-shadow: 0 0 30px #ffd700, 0 0 50px #ffa500; } }
 
-  .nombre { font-weight: bold; color: #ffd700; margin-bottom: 3px; }
-  .fichas { color: #4ade80; font-size: 0.8rem; }
-  .apuesta { color: #ff6b6b; font-size: 0.75rem; margin-top: 2px; min-height: 14px; }
-  .estado { font-size: 0.7rem; color: #ccc; font-style: italic; }
-
-  /* Posiciones */
-  #j0 { bottom: 10px; left: 50%; transform: translateX(-50%); } /* Tú */
-  #j1 { left: 10px; top: 50%; transform: translateY(-50%); }
-  #j2 { top: 10px; left: 50%; transform: translateX(-50%); }
-  #j3 { right: 10px; top: 50%; transform: translateY(-50%); }
-
-  /* Cartas comunitarias */
-  #comunitarias {
+  #logo-mesa {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    gap: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    color: rgba(212,175,55,0.08);
+    letter-spacing: 6px;
+    pointer-events: none;
+    text-align: center;
+    line-height: 1.2;
+    z-index: 0;
   }
+  #logo-mesa small { font-size: 0.6rem; letter-spacing: 3px; display: block; }
 
-  /* Bote */
-  #bote {
+  /* ============ JUGADORES EN MESA ============ */
+  .jugador {
     position: absolute;
-    top: 32%; left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.8);
-    padding: 6px 18px;
-    border-radius: 20px;
-    border: 2px solid #ffd700;
-    font-weight: bold;
-    color: #ffd700;
-    font-size: 1rem;
-    text-shadow: 0 0 8px #ffd700;
+    width: 165px;
+    background: linear-gradient(180deg, rgba(15,15,15,0.95), rgba(0,0,0,0.95));
+    border: 2px solid #444;
+    border-radius: 12px;
+    padding: 6px 8px;
+    text-align: center;
+    font-size: 0.72rem;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.8);
+    z-index: 10;
   }
 
-  /* Cartas */
+  .jugador.activo {
+    border-color: #00ff88;
+    box-shadow: 0 0 25px #00ff88, 0 0 50px rgba(0,255,136,0.4);
+    transform: scale(1.08);
+    z-index: 20;
+  }
+
+  .jugador.fold { opacity: 0.35; filter: grayscale(1); }
+
+  .jugador.ganador {
+    border-color: var(--oro);
+    animation: brilloOro 0.7s infinite alternate;
+  }
+  @keyframes brilloOro {
+    from { box-shadow: 0 0 15px var(--oro); }
+    to { box-shadow: 0 0 40px var(--oro), 0 0 80px rgba(255,180,0,0.8); }
+  }
+
+  .jugador .cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+    gap: 4px;
+  }
+
+  /* Mini avatar hexagonal para jugadores IA */
+  .mini-avatar {
+    width: 26px;
+    height: 26px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .mini-avatar .marco {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #d4af37, #8b6914);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5px;
+  }
+  .mini-avatar .marco.bronce { background: linear-gradient(135deg, #cd7f32, #8b4513); }
+  .mini-avatar .marco.plata { background: linear-gradient(135deg, #e8e8e8, #808080); }
+  .mini-avatar .marco.oro-r { background: linear-gradient(135deg, #ffd700, #b8860b); }
+  .mini-avatar .marco.diamante { background: linear-gradient(135deg, #00ffff, #0080ff); }
+  .mini-avatar .marco.global { background: linear-gradient(135deg, #ff2d55, #8b0000); animation: pulsoGlobal 2s infinite; }
+
+  .mini-avatar .interior {
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, #2a2a2a, #0a0a0a);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .jugador .nombre {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: var(--oro);
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
+    flex: 1;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .jugador .dealer-btn {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fff, #ccc);
+    color: #000;
+    font-weight: bold;
+    font-size: 0.6rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+    box-shadow: 0 0 8px rgba(255,255,255,0.6);
+    flex-shrink: 0;
+  }
+  .jugador .dealer-btn.show { display: flex; }
+
+  .jugador .fichas {
+    color: #4ade80;
+    font-size: 0.78rem;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+  .jugador .fichas::before { content: '💰'; font-size: 0.68rem; }
+
+  .jugador .apuesta {
+    color: #ff5252;
+    font-size: 0.72rem;
+    font-weight: bold;
+    margin-top: 2px;
+    min-height: 14px;
+    text-shadow: 0 0 6px rgba(255,82,82,0.5);
+  }
+
+  .jugador .estado {
+    font-size: 0.62rem;
+    color: #ffa726;
+    font-style: italic;
+    margin-top: 2px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+  }
+
+  /* Rango del jugador IA (pequeño) */
+  .jugador .rango-ia {
+    font-size: 0.55rem;
+    color: #aaa;
+    text-align: center;
+    margin-top: 1px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Posiciones */
+  #j0 { bottom: 12px; left: 50%; transform: translateX(-50%); }
+  #j1 { left: 15px; top: 50%; transform: translateY(-50%); }
+  #j2 { top: 12px; left: 50%; transform: translateX(-50%); }
+  #j3 { right: 15px; top: 50%; transform: translateY(-50%); }
+
+  /* ============ CARTAS ============ */
   .carta {
-    width: 58px;
-    height: 82px;
-    background: #fff;
-    border-radius: 6px;
+    width: 60px;
+    height: 84px;
+    background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+    border-radius: 7px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 4px;
     font-weight: bold;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.6);
-    color: #000;
-    transition: transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(0,0,0,0.1);
+    color: #111;
+    position: relative;
+    font-family: 'Cinzel', serif;
   }
-  .carta.roja { color: #d00; }
+  .carta.roja { color: #c62828; }
   .carta.oculta {
-    background: repeating-linear-gradient(45deg, #1a3d8f, #1a3d8f 6px, #0f2a63 6px, #0f2a63 12px);
-    color: transparent;
+    background: repeating-linear-gradient(45deg, #1a3d8f 0px, #1a3d8f 6px, #0f2a63 6px, #0f2a63 12px);
     border: 2px solid #fff;
   }
-  .carta .arriba, .carta .abajo { font-size: 0.9rem; line-height: 1; }
-  .carta .abajo { align-self: flex-end; transform: rotate(180deg); }
-  .carta .centro { font-size: 1.6rem; text-align: center; align-self: center; }
-  .carta:hover { transform: translateY(-5px); }
-
-  /* Mano del jugador */
-  #manoJugador {
+  .carta.oculta::after {
+    content: '♠';
     position: absolute;
-    bottom: 90px; left: 50%;
-    transform: translateX(-50%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255,255,255,0.15);
+    font-size: 2.4rem;
+  }
+  .carta .arriba { font-size: 0.9rem; line-height: 1; display: flex; flex-direction: column; align-items: center; }
+  .carta .arriba .palo { font-size: 0.7rem; }
+  .carta .abajo { align-self: flex-end; transform: rotate(180deg); font-size: 0.9rem; line-height: 1; display: flex; flex-direction: column; align-items: center; }
+  .carta .abajo .palo { font-size: 0.7rem; }
+  .carta .centro { font-size: 1.8rem; text-align: center; align-self: center; }
+
+  @keyframes repartir {
+    from { transform: translateY(-400px) rotate(-180deg) scale(0.3); opacity: 0; }
+    to { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
+  }
+  .carta.nueva { animation: repartir 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+  #comunitarias-wrap {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 5;
+  }
+
+  #comunitarias {
     display: flex;
     gap: 8px;
+    padding: 10px 16px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 12px;
+    border: 1px solid rgba(212,175,55,0.3);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    min-height: 104px;
+    align-items: center;
+  }
+  #comunitarias:empty::after {
+    content: 'CARTAS COMUNITARIAS';
+    color: rgba(212,175,55,0.2);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+    padding: 30px 20px;
   }
 
-  /* Cartas pequeñas de la IA */
+  #bote {
+    position: absolute;
+    top: 26%; left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(20,15,5,0.95), rgba(0,0,0,0.95));
+    padding: 6px 22px;
+    border-radius: 30px;
+    border: 2px solid var(--oro);
+    font-weight: bold;
+    color: var(--oro);
+    font-size: 1.05rem;
+    font-family: 'Cinzel', serif;
+    text-shadow: 0 0 10px rgba(212,175,55,0.7);
+    box-shadow: 0 0 20px rgba(212,175,55,0.4);
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #bote::before { content: '🏆'; font-size: 0.9rem; }
+
+  #manoJugador {
+    position: absolute;
+    bottom: 105px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 15;
+    filter: drop-shadow(0 8px 15px rgba(0,0,0,0.8));
+  }
+
   .manoIA {
     display: flex;
-    gap: 2px;
+    gap: 3px;
     justify-content: center;
     margin: 3px 0;
+    min-height: 34px;
   }
-  .manoIA .carta-mini {
+  .carta-mini {
     width: 22px;
     height: 32px;
-    background: repeating-linear-gradient(45deg, #1a3d8f, #1a3d8f 3px, #0f2a63 3px, #0f2a63 6px);
-    border-radius: 3px;
-    border: 1px solid #fff;
+    background: repeating-linear-gradient(45deg, #1a3d8f 0, #1a3d8f 4px, #0f2a63 4px, #0f2a63 8px);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.7);
     font-size: 0.55rem;
     color: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
   }
-  .manoIA .carta-mini.revelada {
-    background: #fff;
-    color: #000;
-  }
-  .manoIA .carta-mini.revelada.roja { color: #d00; }
+  .carta-mini.revelada { background: linear-gradient(135deg, #fff, #f0f0f0); color: #111; }
+  .carta-mini.revelada.roja { color: #c62828; }
 
-  /* Controles */
+  #fase-indicator {
+    position: absolute;
+    top: 42%; left: 50%;
+    transform: translate(-50%, -50%) translateY(-90px);
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--oro);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 6;
+    display: flex;
+    gap: 6px;
+  }
+  #fase-indicator span {
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(212,175,55,0.3);
+    background: rgba(0,0,0,0.5);
+  }
+  #fase-indicator span.activa {
+    background: var(--oro);
+    color: #000;
+    box-shadow: 0 0 15px var(--oro);
+  }
+
+  /* ============ CONTROLES ============ */
   #controles {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 10px;
-    background: rgba(0,0,0,0.6);
-    border-radius: 12px;
-    border: 1px solid #ffd700;
-    max-width: 1100px;
+    align-items: center;
+    padding: 12px 18px;
+    background: linear-gradient(180deg, rgba(30,30,30,0.95), rgba(0,0,0,0.98));
+    border-radius: 14px;
+    border: 2px solid var(--oro);
+    box-shadow: 0 -4px 25px rgba(212,175,55,0.35);
+    max-width: 1300px;
     width: 100%;
+    position: relative;
+  }
+  #controles::before {
+    content: '◆ ACCIONES ◆';
+    position: absolute;
+    top: -11px; left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    padding: 2px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    color: var(--oro);
+    letter-spacing: 3px;
+    border: 1px solid var(--oro);
+    border-radius: 10px;
   }
 
   button {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    padding: 10px 18px;
+    font-size: 0.78rem;
     font-weight: bold;
     border: none;
-    border-radius: 8px;
+    border-radius: 9px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
+    font-family: 'Cinzel', serif;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.5), 0 6px 15px rgba(0,0,0,0.4);
   }
-  button:disabled { opacity: 0.35; cursor: not-allowed; }
-  button:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+  button:not(:disabled):hover { transform: translateY(-2px); }
+  button:not(:disabled):active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.5); }
+  button:disabled { opacity: 0.3; cursor: not-allowed; filter: grayscale(0.7); }
 
-  #btnFold { background: #d32f2f; color: #fff; }
-  #btnCall { background: #1976d2; color: #fff; }
-  #btnRaise { background: #f57c00; color: #fff; }
-  #btnAllin { background: #7b1fa2; color: #fff; }
-  #btnNueva { background: #388e3c; color: #fff; }
+  #btnFold { background: linear-gradient(180deg, #e53935, #b71c1c); border-bottom: 3px solid #7f0a0a; }
+  #btnCall { background: linear-gradient(180deg, #1e88e5, #0d47a1); border-bottom: 3px solid #062f6b; }
+  #btnRaise { background: linear-gradient(180deg, #fb8c00, #e65100); border-bottom: 3px solid #8b3100; }
+  #btnAllin { background: linear-gradient(180deg, #8e24aa, #4a148c); border-bottom: 3px solid #2a0050; animation: pulsoAllin 2s infinite; }
+  @keyframes pulsoAllin {
+    0%, 100% { box-shadow: 0 4px 0 rgba(0,0,0,0.5), 0 0 0 0 rgba(142,36,170,0.7); }
+    50% { box-shadow: 0 4px 0 rgba(0,0,0,0.5), 0 0 20px 5px rgba(142,36,170,0.5); }
+  }
+  #btnNueva { background: linear-gradient(180deg, #43a047, #1b5e20); border-bottom: 3px solid #0a3a10; }
 
   #inputRaise {
-    width: 90px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ffd700;
-    background: #111;
-    color: #ffd700;
+    width: 100px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    border: 2px solid var(--oro);
+    background: linear-gradient(180deg, #1a1a1a, #000);
+    color: var(--oro);
     font-weight: bold;
     text-align: center;
+    font-size: 0.95rem;
+    font-family: 'Cinzel', serif;
   }
+  #inputRaise:focus { outline: none; border-color: var(--oro-claro); box-shadow: 0 0 20px rgba(212,175,55,0.6); }
+  #inputRaise:disabled { opacity: 0.3; }
+
+  .quick-bets { display: flex; gap: 5px; }
+  .quick-bet {
+    padding: 7px 10px;
+    font-size: 0.65rem;
+    background: linear-gradient(180deg, #333, #111);
+    border: 1px solid var(--oro);
+    color: var(--oro);
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+  }
+  .quick-bet:hover:not(:disabled) { background: var(--oro); color: #000; box-shadow: 0 0 15px var(--oro); }
+  .quick-bet:disabled { opacity: 0.3; cursor: not-allowed; }
 
   #mensajes {
     margin-top: 8px;
-    min-height: 24px;
-    font-size: 1rem;
-    color: #ffd700;
+    min-height: 26px;
+    font-size: 0.9rem;
+    color: var(--oro);
     text-align: center;
     font-weight: bold;
-    text-shadow: 0 0 8px rgba(255,215,0,0.5);
-    max-width: 1100px;
+    text-shadow: 0 0 12px rgba(212,175,55,0.6);
+    max-width: 1300px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+    padding: 5px 18px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 18px;
+    border: 1px solid rgba(212,175,55,0.3);
   }
 
-  /* Resultado final */
+  #historial {
+    position: absolute;
+    top: 15px; right: 15px;
+    width: 180px;
+    max-height: 180px;
+    background: rgba(0,0,0,0.85);
+    border: 1px solid var(--oro);
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 0.65rem;
+    color: #ccc;
+    overflow-y: auto;
+    z-index: 15;
+  }
+  #historial .titulo-hist {
+    font-family: 'Cinzel', serif;
+    color: var(--oro);
+    text-align: center;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(212,175,55,0.3);
+    letter-spacing: 2px;
+    font-size: 0.65rem;
+  }
+  #historial .item { padding: 2px 0; border-bottom: 1px dashed rgba(255,255,255,0.1); line-height: 1.3; }
+  #historial .item.gana { color: #4ade80; font-weight: bold; }
+
   #resultado {
     position: fixed;
     top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    background: rgba(0,0,0,0.95);
-    border: 3px solid #ffd700;
-    border-radius: 20px;
+    transform: translate(-50%, -50%) scale(0) rotate(-10deg);
+    background: linear-gradient(135deg, rgba(20,15,5,0.98), rgba(0,0,0,0.98));
+    border: 3px solid var(--oro);
+    border-radius: 18px;
     padding: 30px 50px;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     text-align: center;
     z-index: 100;
-    transition: transform 0.4s;
-    box-shadow: 0 0 60px #ffd700;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+    box-shadow: 0 0 60px var(--oro), 0 0 120px rgba(212,175,55,0.4);
+    opacity: 0;
+    pointer-events: none;
+    max-width: 90vw;
   }
-  #resultado.show { transform: translate(-50%, -50%) scale(1); }
-  #resultado .titulo { font-size: 2rem; color: #ffd700; margin-bottom: 15px; }
-  #resultado .detalle { font-size: 1rem; color: #ccc; margin-top: 10px; }
+  #resultado.show { transform: translate(-50%, -50%) scale(1) rotate(0); opacity: 1; pointer-events: auto; }
+  #resultado .titulo {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    background: linear-gradient(180deg, var(--oro-claro), var(--oro), #8b6914);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    letter-spacing: 3px;
+  }
+  #resultado .detalle { font-size: 1.3rem; color: #4ade80; margin: 8px 0; font-weight: bold; font-family: 'Cinzel', serif; }
+  #resultado .manos { font-size: 0.85rem; color: #aaa; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(212,175,55,0.3); line-height: 1.6; }
+  #resultado .puntos-ganados {
+    margin-top: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+  }
+  #resultado .puntos-ganados.positivo { color: #4ade80; }
+  #resultado .puntos-ganados.negativo { color: #ef4444; }
 
-  @media (max-width: 700px) {
-    #mesa { height: 500px; }
-    .jugador { width: 110px; font-size: 0.65rem; }
-    .carta { width: 42px; height: 62px; }
-    .carta .centro { font-size: 1.2rem; }
-    .carta .arriba, .carta .abajo { font-size: 0.7rem; }
-    h1 { font-size: 1.2rem; }
+  /* ============ MODAL RANKING ============ */
+  #modal-ranking {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  #modal-ranking.show { display: flex; }
+
+  .ranking-panel {
+    background: linear-gradient(180deg, #1a1a1a, #0a0a0a);
+    border: 3px solid var(--oro);
+    border-radius: 16px;
+    padding: 22px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 0 50px rgba(212,175,55,0.5);
+    position: relative;
+  }
+
+  .ranking-titulo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    text-align: center;
+    background: linear-gradient(180deg, var(--oro-claro), var(--oro), #8b6914);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+
+  .ranking-sub {
+    text-align: center;
+    color: #888;
+    font-size: 0.8rem;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .cerrar-modal {
+    position: absolute;
+    top: 10px; right: 15px;
+    background: transparent;
+    border: 1px solid var(--oro);
+    color: var(--oro);
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .cerrar-modal:hover { background: var(--oro); color: #000; }
+
+  /* Tabla de rangos */
+  .rangos-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .rango-card {
+    background: linear-gradient(180deg, #1a1a1a, #000);
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 10px 6px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .rango-card.bronce { border-color: #cd7f32; }
+  .rango-card.plata { border-color: #c0c0c0; }
+  .rango-card.oro-r { border-color: #ffd700; }
+  .rango-card.diamante { border-color: #00bfff; }
+  .rango-card.global { border-color: #ff2d55; box-shadow: 0 0 20px rgba(255,45,85,0.4); }
+
+  .rango-card.desbloqueado { box-shadow: 0 0 15px currentColor; }
+
+  .rango-icono {
+    font-size: 1.8rem;
+    margin-bottom: 4px;
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+  .rango-card .nombre-r {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .rango-card.bronce .nombre-r { color: #cd7f32; }
+  .rango-card.plata .nombre-r { color: #c0c0c0; }
+  .rango-card.oro-r .nombre-r { color: #ffd700; }
+  .rango-card.diamante .nombre-r { color: #00bfff; }
+  .rango-card.global .nombre-r { color: #ff2d55; }
+
+  .rango-card .pts-r {
+    font-size: 0.6rem;
+    color: #888;
+    letter-spacing: 0.5px;
+  }
+
+  /* Tabla de jugadores */
+  .tabla-ranking {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+  .tabla-ranking th {
+    background: rgba(212,175,55,0.15);
+    color: var(--oro);
+    padding: 8px 6px;
+    text-align: left;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--oro);
+  }
+  .tabla-ranking td {
+    padding: 8px 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .tabla-ranking tr.yo { background: rgba(212,175,55,0.15); }
+  .tabla-ranking tr.yo td { color: var(--oro-claro); font-weight: bold; }
+  .tabla-ranking .pos {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 0.9rem;
+    width: 30px;
+  }
+  .tabla-ranking .pos.oro { color: #ffd700; }
+  .tabla-ranking .pos.plata { color: #c0c0c0; }
+  .tabla-ranking .pos.bronce { color: #cd7f32; }
+
+  .tabla-ranking .mini-perfil {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tabla-ranking .mini-perfil .mini-av {
+    width: 26px; height: 26px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .tabla-ranking .mini-perfil .mini-av .marco-t {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5px;
+  }
+  .tabla-ranking .mini-perfil .mini-av .interior-t {
+    width: 100%; height: 100%;
+    background: #0a0a0a;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .txt-rango { font-size: 0.7rem; font-weight: bold; letter-spacing: 0.5px; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1000px) {
+    header { flex-wrap: wrap; }
+    .perfil-usuario { min-width: 240px; }
+    header h1 { font-size: 0.9rem; order: -1; width: 100%; }
+  }
+  @media (max-width: 900px) {
+    #mesa { height: 540px; }
+    .jugador { width: 130px; font-size: 0.65rem; padding: 5px 6px; }
+    .carta { width: 46px; height: 64px; }
+    .carta .centro { font-size: 1.3rem; }
+    .carta .arriba, .carta .abajo { font-size: 0.65rem; }
+    #historial { display: none; }
+    .rangos-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    #mesa { height: 460px; }
+    .jugador { width: 105px; font-size: 0.58rem; padding: 4px; }
+    .mini-avatar { width: 20px; height: 20px; }
+    .mini-avatar .interior { font-size: 0.7rem; }
+    .jugador .nombre { font-size: 0.6rem; }
+    .carta { width: 36px; height: 52px; }
+    .carta .centro { font-size: 1rem; }
+    .carta .arriba, .carta .abajo { font-size: 0.55rem; }
+    .carta-mini { width: 17px; height: 24px; font-size: 0.45rem; }
+    button { padding: 8px 10px; font-size: 0.62rem; letter-spacing: 0.5px; }
+    #inputRaise { width: 70px; padding: 8px; font-size: 0.75rem; }
+    .quick-bet { padding: 5px 7px; font-size: 0.55rem; }
+    #controles { padding: 8px; gap: 5px; }
+    .perfil-usuario { min-width: auto; padding: 4px 10px 4px 4px; height: 54px; }
+    .avatar-container { width: 48px; height: 48px; }
+    .avatar-interior { font-size: 1.4rem; }
+    .nombre-usuario { font-size: 0.8rem; }
+    .rangos-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
 <body>
 
-<h1>♠ ♥ PÓKER TEXAS HOLD'EM ♦ ♣</h1>
-
-<div id="mesa">
-  <div id="bote">Bote: $0</div>
-  
-  <div class="jugador" id="j1">
-    <div class="nombre">🤖 Carlos</div>
-    <div class="manoIA" id="mano1"></div>
-    <div class="fichas">$<span id="fichas1">1000</span></div>
-    <div class="apuesta" id="apuesta1"></div>
-    <div class="estado" id="estado1"></div>
+<!-- ============ HEADER CON PERFIL ============ -->
+<header>
+  <!-- PERFIL USUARIO (estilo Free Fire) -->
+  <div class="perfil-usuario">
+    <div class="avatar-container">
+      <div class="nivel-badge">
+        <span>⭐</span><span id="nivelUsuario">1</span>
+      </div>
+      <div class="avatar-marco bronce" id="avatarMarco">
+        <div class="avatar-interior">👤</div>
+      </div>
+      <div class="estrellas-rango" id="estrellasRango">
+        <span class="estrella">★</span>
+        <span class="estrella vacia">★</span>
+        <span class="estrella vacia">★</span>
+      </div>
+      <div class="icono-rango" id="iconoRango" title="Rango actual">🥉</div>
+    </div>
+    <div class="info-usuario">
+      <div class="nombre-usuario" id="nombreUsuario">CanelitaRica</div>
+      <div class="rango-nombre" id="rangoNombre">BRONCE I</div>
+      <div class="puntos-usuario">💎 <span id="puntosUsuario">0</span> pts · 💰 $<span id="dineroUsuario">1000</span></div>
+      <div class="barra-progreso">
+        <div class="barra-progreso-fill" id="barraProgreso" style="width: 0%"></div>
+      </div>
+    </div>
   </div>
 
-  <div class="jugador" id="j2">
-    <div class="nombre">🤖 Ana</div>
-    <div class="manoIA" id="mano2"></div>
-    <div class="fichas">$<span id="fichas2">1000</span></div>
-    <div class="apuesta" id="apuesta2"></div>
-    <div class="estado" id="estado2"></div>
+  <h1>♠ ROYAL FLUSH RANKED ♥</h1>
+
+  <div class="info-header">
+    <div class="stat">
+      <span class="label">Mano</span>
+      <span class="valor" id="manoNum">0</span>
+    </div>
+    <div class="stat">
+      <span class="label">Ciegas</span>
+      <span class="valor" id="infoCiegas">$10/$20</span>
+    </div>
+    <button class="btn-ranking" onclick="abrirRanking()">🏆 RANKING</button>
   </div>
+</header>
 
-  <div class="jugador" id="j3">
-    <div class="nombre">🤖 Luis</div>
-    <div class="manoIA" id="mano3"></div>
-    <div class="fichas">$<span id="fichas3">1000</span></div>
-    <div class="apuesta" id="apuesta3"></div>
-    <div class="estado" id="estado3"></div>
-  </div>
+<div id="mesa-wrapper">
+  <div id="mesa">
+    <div id="logo-mesa">ROYAL FLUSH<br><small>TEXAS HOLD'EM RANKED</small></div>
 
-  <div id="comunitarias"></div>
+    <div id="fase-indicator">
+      <span id="f-preflop">PRE-FLOP</span>
+      <span id="f-flop">FLOP</span>
+      <span id="f-turn">TURN</span>
+      <span id="f-river">RIVER</span>
+    </div>
 
-  <div id="manoJugador"></div>
+    <div id="bote">Bote: $0</div>
 
-  <div class="jugador" id="j0">
-    <div class="nombre">👤 TÚ</div>
-    <div class="fichas">$<span id="fichas0">1000</span></div>
-    <div class="apuesta" id="apuesta0"></div>
-    <div class="estado" id="estado0"></div>
+    <!-- IA 1 -->
+    <div class="jugador" id="j1">
+      <div class="cabecera">
+        <div class="mini-avatar">
+          <div class="marco plata" id="marco1"><div class="interior">🤵</div></div>
+        </div>
+        <div class="nombre">CARLOS</div>
+        <div class="dealer-btn" id="dealer1">D</div>
+      </div>
+      <div class="manoIA" id="mano1"></div>
+      <div class="fichas">$<span id="fichas1">1000</span></div>
+      <div class="apuesta" id="apuesta1"></div>
+      <div class="estado" id="estado1"></div>
+      <div class="rango-ia" id="rangoIA1">🥈 PLATA</div>
+    </div>
+
+    <!-- IA 2 -->
+    <div class="jugador" id="j2">
+      <div class="cabecera">
+        <div class="mini-avatar">
+          <div class="marco bronce" id="marco2"><div class="interior">👩‍💼</div></div>
+        </div>
+        <div class="nombre">ANA</div>
+        <div class="dealer-btn" id="dealer2">D</div>
+      </div>
+      <div class="manoIA" id="mano2"></div>
+      <div class="fichas">$<span id="fichas2">1000</span></div>
+      <div class="apuesta" id="apuesta2"></div>
+      <div class="estado" id="estado2"></div>
+      <div class="rango-ia" id="rangoIA2">🥉 BRONCE</div>
+    </div>
+
+    <!-- IA 3 -->
+    <div class="jugador" id="j3">
+      <div class="cabecera">
+        <div class="mini-avatar">
+          <div class="marco oro-r" id="marco3"><div class="interior">🧔</div></div>
+        </div>
+        <div class="nombre">LUIS</div>
+        <div class="dealer-btn" id="dealer3">D</div>
+      </div>
+      <div class="manoIA" id="mano3"></div>
+      <div class="fichas">$<span id="fichas3">1000</span></div>
+      <div class="apuesta" id="apuesta3"></div>
+      <div class="estado" id="estado3"></div>
+      <div class="rango-ia" id="rangoIA3">🥇 ORO</div>
+    </div>
+
+    <!-- Comunitarias -->
+    <div id="comunitarias-wrap">
+      <div id="comunitarias"></div>
+    </div>
+
+    <!-- Mano jugador -->
+    <div id="manoJugador"></div>
+
+    <!-- Jugador humano -->
+    <div class="jugador" id="j0">
+      <div class="cabecera">
+        <div class="mini-avatar">
+          <div class="marco bronce" id="marco0"><div class="interior">👤</div></div>
+        </div>
+        <div class="nombre">TÚ</div>
+        <div class="dealer-btn" id="dealer0">D</div>
+      </div>
+      <div class="fichas">$<span id="fichas0">1000</span></div>
+      <div class="apuesta" id="apuesta0"></div>
+      <div class="estado" id="estado0"></div>
+    </div>
+
+    <!-- Historial -->
+    <div id="historial">
+      <div class="titulo-hist">◆ HISTORIAL ◆</div>
+      <div id="historial-lista"></div>
+    </div>
   </div>
 </div>
 
@@ -283,45 +1166,276 @@
   <button id="btnFold" onclick="accion('fold')">🚫 Retirarse</button>
   <button id="btnCall" onclick="accion('call')">✅ Igualar</button>
   <input type="number" id="inputRaise" min="0" step="10" placeholder="Monto">
+  <div class="quick-bets">
+    <button class="quick-bet" onclick="quickBet('min')" id="qbMin">MIN</button>
+    <button class="quick-bet" onclick="quickBet('half')" id="qbHalf">½ BOTE</button>
+    <button class="quick-bet" onclick="quickBet('pot')" id="qbPot">BOTE</button>
+  </div>
   <button id="btnRaise" onclick="accion('raise')">📈 Subir</button>
   <button id="btnAllin" onclick="accion('allin')">💥 All-In</button>
-  <button id="btnNueva" onclick="nuevaMano()">🔄 Nueva Mano</button>
+  <button id="btnNueva" onclick="nuevaMano()">🎲 Nueva Mano</button>
 </div>
 
-<div id="mensajes">Presiona "Nueva Mano" para comenzar</div>
+<div id="mensajes">✦ Presiona "Nueva Mano" para comenzar ✦</div>
 
 <div id="resultado">
   <div class="titulo" id="resTitulo"></div>
-  <div id="resDetalle"></div>
-  <div class="detalle" id="resManos"></div>
+  <div class="detalle" id="resDetalle"></div>
+  <div class="manos" id="resManos"></div>
+  <div class="puntos-ganados" id="resPuntos"></div>
+</div>
+
+<!-- ============ MODAL RANKING ============ -->
+<div id="modal-ranking">
+  <div class="ranking-panel">
+    <button class="cerrar-modal" onclick="cerrarRanking()">✕</button>
+    <div class="ranking-titulo">🏆 CLASIFICACIÓN GLOBAL</div>
+    <div class="ranking-sub">Temporada 1 · Actualizado en tiempo real</div>
+
+    <!-- Grid de rangos -->
+    <div class="rangos-grid" id="rangosGrid"></div>
+
+    <!-- Tabla -->
+    <table class="tabla-ranking">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>JUGADOR</th>
+          <th>RANGO</th>
+          <th>PTS</th>
+          <th>$</th>
+        </tr>
+      </thead>
+      <tbody id="tablaRanking"></tbody>
+    </table>
+  </div>
 </div>
 
 <script>
-// ==================== DATOS ====================
+// ==================== SISTEMA DE RANGOS ====================
+const RANGOS = [
+  { id: 'bronce',   nombre: 'BRONCE',   icono: '🥉', minPts: 0,    maxPts: 500,   estrellas: 1, clase: 'bronce',   color: '#cd7f32' },
+  { id: 'plata',    nombre: 'PLATA',    icono: '🥈', minPts: 500,  maxPts: 1500,  estrellas: 2, clase: 'plata',    color: '#c0c0c0' },
+  { id: 'oro',      nombre: 'ORO',      icono: '🥇', minPts: 1500, maxPts: 3500,  estrellas: 3, clase: 'oro-r',    color: '#ffd700' },
+  { id: 'diamante', nombre: 'DIAMANTE', icono: '💎', minPts: 3500, maxPts: 7000,  estrellas: 4, clase: 'diamante', color: '#00bfff' },
+  { id: 'global',   nombre: 'GLOBAL TOP', icono: '👑', minPts: 7000, maxPts: Infinity, estrellas: 5, clase: 'global',  color: '#ff2d55' }
+];
+
+// ==================== ESTADO USUARIO ====================
+let usuario = {
+  nombre: 'CanelitaRica',
+  puntos: 0,
+  dinero: 1000,
+  nivel: 1,
+  victorias: 0,
+  manosJugadas: 0
+};
+
+// Ranking global (con IAs + jugador)
+let ranking = [
+  { nombre: 'CanelitaRica', puntos: 0, dinero: 1000, avatar: '👤', esYo: true },
+  { nombre: 'Carlos',       puntos: 1250, dinero: 850,  avatar: '🤵', esYo: false },
+  { nombre: 'Ana',          puntos: 320,  dinero: 620,  avatar: '👩‍💼', esYo: false },
+  { nombre: 'Luis',         puntos: 2100, dinero: 1400, avatar: '🧔', esYo: false }
+];
+
+// ==================== PERSISTENCIA ====================
+function guardarProgreso() {
+  try {
+    const datos = {
+      usuario,
+      ranking: ranking.map(r => ({...r, esYo: r.nombre === usuario.nombre}))
+    };
+    localStorage.setItem('poker_ranked_save', JSON.stringify(datos));
+  } catch(e) {}
+}
+
+function cargarProgreso() {
+  try {
+    const raw = localStorage.getItem('poker_ranked_save');
+    if (!raw) return;
+    const datos = JSON.parse(raw);
+    if (datos.usuario) usuario = { ...usuario, ...datos.usuario };
+    if (datos.ranking) ranking = datos.ranking;
+    // Asegurar que el jugador existe en ranking
+    const yo = ranking.find(r => r.esYo);
+    if (yo) {
+      yo.nombre = usuario.nombre;
+      yo.puntos = usuario.puntos;
+      yo.dinero = usuario.dinero;
+    }
+  } catch(e) {}
+}
+
+function actualizarRangoUsuario() {
+  const r = obtenerRango(usuario.puntos);
+  const idx = RANGOS.indexOf(r);
+  const siguiente = RANGOS[idx + 1];
+  
+  // Actualizar header
+  document.getElementById('puntosUsuario').textContent = usuario.puntos;
+  document.getElementById('dineroUsuario').textContent = usuario.dinero;
+  document.getElementById('nivelUsuario').textContent = usuario.nivel;
+  document.getElementById('nombreUsuario').textContent = usuario.nombre;
+  document.getElementById('rangoNombre').textContent = r.nombre;
+  document.getElementById('iconoRango').textContent = r.icono;
+  
+  // Actualizar marco del avatar
+  const marco = document.getElementById('avatarMarco');
+  marco.className = 'avatar-marco ' + r.clase;
+  
+  // Estrellas
+  const estrellasCont = document.getElementById('estrellasRango');
+  estrellasCont.innerHTML = '';
+  for (let i = 0; i < 5; i++) {
+    const s = document.createElement('span');
+    s.className = 'estrella' + (i < r.estrellas ? '' : ' vacia');
+    s.textContent = '★';
+    estrellasCont.appendChild(s);
+  }
+  
+  // Icono rango
+  const icono = document.getElementById('iconoRango');
+  icono.textContent = r.icono;
+  icono.className = 'icono-rango ' + r.clase;
+  
+  // Barra de progreso
+  let progreso = 0;
+  if (siguiente) {
+    progreso = ((usuario.puntos - r.minPts) / (siguiente.minPts - r.minPts)) * 100;
+  } else {
+    progreso = 100;
+  }
+  document.getElementById('barraProgreso').style.width = Math.min(100, progreso) + '%';
+  
+  // Marco del jugador en mesa
+  const marco0 = document.getElementById('marco0');
+  if (marco0) marco0.className = 'marco ' + r.clase;
+  
+  // Nivel basado en puntos
+  usuario.nivel = Math.floor(usuario.puntos / 200) + 1;
+  document.getElementById('nivelUsuario').textContent = usuario.nivel;
+}
+
+function obtenerRango(puntos) {
+  for (let i = RANGOS.length - 1; i >= 0; i--) {
+    if (puntos >= RANGOS[i].minPts) return RANGOS[i];
+  }
+  return RANGOS[0];
+}
+
+function obtenerRangoIdx(puntos) {
+  for (let i = RANGOS.length - 1; i >= 0; i--) {
+    if (puntos >= RANGOS[i].minPts) return i;
+  }
+  return 0;
+}
+
+// ==================== RANKING UI ====================
+function abrirRanking() {
+  renderizarRanking();
+  document.getElementById('modal-ranking').classList.add('show');
+}
+function cerrarRanking() {
+  document.getElementById('modal-ranking').classList.remove('show');
+}
+
+function renderizarRanking() {
+  // Grid de rangos
+  const grid = document.getElementById('rangosGrid');
+  const rangoActualIdx = obtenerRangoIdx(usuario.puntos);
+  grid.innerHTML = RANGOS.map((r, i) => {
+    const desbloqueado = i <= rangoActualIdx;
+    return `
+      <div class="rango-card ${r.clase} ${desbloqueado ? 'desbloqueado' : ''}" style="color: ${r.color}; opacity: ${desbloqueado ? 1 : 0.5}">
+        <div class="rango-icono">${r.icono}</div>
+        <div class="nombre-r">${r.nombre}</div>
+        <div class="pts-r">${r.minPts}${r.maxPts !== Infinity ? '+' : ' pts'}</div>
+      </div>
+    `;
+  }).join('');
+
+  // Tabla ordenada por puntos
+  const ordenado = [...ranking].sort((a, b) => b.puntos - a.puntos);
+  const tbody = document.getElementById('tablaRanking');
+  tbody.innerHTML = ordenado.map((j, i) => {
+    const r = obtenerRango(j.puntos);
+    const posCls = i === 0 ? 'oro' : i === 1 ? 'plata' : i === 2 ? 'bronce' : '';
+    const esYo = j.nombre === usuario.nombre;
+    return `
+      <tr class="${esYo ? 'yo' : ''}">
+        <td class="pos ${posCls}">${i + 1}</td>
+        <td>
+          <div class="mini-perfil">
+            <div class="mini-av">
+              <div class="marco-t" style="background: linear-gradient(135deg, ${r.color}, #333)">
+                <div class="interior-t">${j.avatar || '👤'}</div>
+              </div>
+            </div>
+            <span>${j.nombre}${esYo ? ' (TÚ)' : ''}</span>
+          </div>
+        </td>
+        <td><span class="txt-rango" style="color: ${r.color}">${r.icono} ${r.nombre}</span></td>
+        <td style="color: #4ade80; font-weight: bold;">${j.puntos}</td>
+        <td style="color: #d4af37;">$${j.dinero}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// ==================== DATOS JUEGO ====================
 const PALOS = ['♠', '♥', '♦', '♣'];
 const VALORES = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
 const NOMBRES = ['TÚ', 'Carlos', 'Ana', 'Luis'];
+const AVATARES_IA = ['👤', '🤵', '👩‍💼', '🧔'];
 
 let mazo = [];
-let jugadores = [];   // {mano:[], fichas, apuesta, fold, allin, activo}
+let jugadores = [];
 let comunitarias = [];
 let bote = 0;
-let apuestaActual = 0;    // apuesta a igualar en la ronda
+let apuestaActual = 0;
 let ciegas = { pequeña: 10, grande: 20 };
 let dealerIdx = 0;
 let turno = 0;
-let fase = 'espera';       // espera, preflop, flop, turn, river, showdown
+let fase = 'espera';
 let ultimoEnSubir = -1;
-let jugadoresActivos = 0;
 let esperandoHumano = false;
+let manoNumero = 0;
+let historial = [];
+let timerInterval = null;
+let tiempoRestante = 0;
+let apuestaInicialMano = 0;
+let puntosGanadosMano = 0;
 
-// ==================== UTILIDADES ====================
+// Audio
+let audioCtx = null;
+function initAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+function sonido(freq, duracion = 0.1, tipo = 'sine', volumen = 0.08) {
+  try {
+    initAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = tipo; osc.frequency.value = freq;
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    gain.gain.setValueAtTime(volumen, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duracion);
+    osc.start(); osc.stop(audioCtx.currentTime + duracion);
+  } catch(e) {}
+}
+function sonidoCarta() { sonido(500 + Math.random() * 200, 0.08, 'triangle', 0.05); }
+function sonidoFicha() { sonido(800, 0.15, 'sine', 0.08); setTimeout(() => sonido(1000, 0.1, 'sine', 0.05), 60); }
+function sonidoFold() { sonido(200, 0.2, 'sawtooth', 0.08); }
+function sonidoWin() { [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => sonido(f, 0.2, 'triangle', 0.1), i * 100)); }
+function sonidoCheck() { sonido(600, 0.08, 'sine', 0.06); }
+
+// ==================== MAZO Y CARTAS ====================
 function crearMazo() {
   const m = [];
   for (const p of PALOS) for (const v of VALORES) m.push({ valor: v, palo: p });
   return m;
 }
-
 function barajar(m) {
   for (let i = m.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -329,14 +1443,10 @@ function barajar(m) {
   }
   return m;
 }
+function valorNumerico(v) { return VALORES.indexOf(v) + 2; }
 
-function valorNumerico(v) {
-  return VALORES.indexOf(v) + 2;
-}
-
-// ==================== EVALUAR MANO (7 cartas) ====================
+// ==================== EVALUAR MANO ====================
 function evaluarMano(cartas) {
-  // cartas: array de {valor, palo}
   const combos = combinations(cartas, 5);
   let mejor = null;
   for (const combo of combos) {
@@ -345,7 +1455,6 @@ function evaluarMano(cartas) {
   }
   return mejor;
 }
-
 function* combinations(arr, k) {
   const indices = [...Array(k).keys()];
   while (true) {
@@ -357,41 +1466,29 @@ function* combinations(arr, k) {
     for (let j = i + 1; j < k; j++) indices[j] = indices[j-1] + 1;
   }
 }
-
 function puntuar5(cartas) {
   const vals = cartas.map(c => valorNumerico(c.valor)).sort((a,b) => b-a);
   const palos = cartas.map(c => c.palo);
   const esColor = palos.every(p => p === palos[0]);
-  
-  // Contar valores
   const cuenta = {};
   vals.forEach(v => cuenta[v] = (cuenta[v] || 0) + 1);
-  const grupos = Object.entries(cuenta)
-    .map(([v, n]) => ({ v: +v, n }))
-    .sort((a, b) => b.n - a.n || b.v - a.v);
-
-  // Escalera
+  const grupos = Object.entries(cuenta).map(([v, n]) => ({ v: +v, n })).sort((a, b) => b.n - a.n || b.v - a.v);
   const unicos = [...new Set(vals)];
   let esEscalera = false, escaleraAlta = 0;
   if (unicos.length === 5) {
     if (unicos[0] - unicos[4] === 4) { esEscalera = true; escaleraAlta = unicos[0]; }
-    // Escalera rueda A-2-3-4-5
     if (unicos[0] === 14 && unicos[1] === 5) { esEscalera = true; escaleraAlta = 5; }
   }
-
   if (esEscalera && esColor) return { tipo: 8, nombre: 'Escalera de Color', kickers: [escaleraAlta] };
   if (grupos[0].n === 4) return { tipo: 7, nombre: 'Póker', kickers: [grupos[0].v, grupos[1].v] };
-  if (grupos[0].n === 3 && grupos[1] && grupos[1].n === 2) 
-    return { tipo: 6, nombre: 'Full House', kickers: [grupos[0].v, grupos[1].v] };
+  if (grupos[0].n === 3 && grupos[1] && grupos[1].n === 2) return { tipo: 6, nombre: 'Full House', kickers: [grupos[0].v, grupos[1].v] };
   if (esColor) return { tipo: 5, nombre: 'Color', kickers: vals };
   if (esEscalera) return { tipo: 4, nombre: 'Escalera', kickers: [escaleraAlta] };
   if (grupos[0].n === 3) return { tipo: 3, nombre: 'Trío', kickers: [grupos[0].v, ...grupos.slice(1).map(g=>g.v)] };
-  if (grupos[0].n === 2 && grupos[1] && grupos[1].n === 2) 
-    return { tipo: 2, nombre: 'Doble Pareja', kickers: [grupos[0].v, grupos[1].v, grupos[2].v] };
+  if (grupos[0].n === 2 && grupos[1] && grupos[1].n === 2) return { tipo: 2, nombre: 'Doble Pareja', kickers: [grupos[0].v, grupos[1].v, grupos[2].v] };
   if (grupos[0].n === 2) return { tipo: 1, nombre: 'Pareja', kickers: [grupos[0].v, ...grupos.slice(1).map(g=>g.v)] };
   return { tipo: 0, nombre: 'Carta Alta', kickers: vals };
 }
-
 function compararScore(a, b) {
   if (a.tipo !== b.tipo) return a.tipo - b.tipo;
   for (let i = 0; i < Math.max(a.kickers.length, b.kickers.length); i++) {
@@ -402,65 +1499,64 @@ function compararScore(a, b) {
 }
 
 // ==================== RENDER ====================
-function cartaHTML(c, oculta = false) {
-  if (oculta) return `<div class="carta oculta"><div class="arriba">?</div><div class="centro">?</div><div class="abajo">?</div></div>`;
+function cartaHTML(c, oculta = false, animar = false) {
+  const clsAnim = animar ? 'nueva' : '';
+  if (oculta) return `<div class="carta oculta ${clsAnim}"></div>`;
   const roja = (c.palo === '♥' || c.palo === '♦') ? 'roja' : '';
-  return `<div class="carta ${roja}">
-    <div class="arriba">${c.valor}${c.palo}</div>
+  return `<div class="carta ${roja} ${clsAnim}">
+    <div class="arriba">${c.valor}<span class="palo">${c.palo}</span></div>
     <div class="centro">${c.palo}</div>
-    <div class="abajo">${c.valor}${c.palo}</div>
+    <div class="abajo">${c.valor}<span class="palo">${c.palo}</span></div>
   </div>`;
 }
 
-function render() {
-  // Bote
-  document.getElementById('bote').textContent = `Bote: $${bote}`;
+function render(animarCartas = false) {
+  document.getElementById('bote').innerHTML = `Bote: $${bote}`;
+  document.getElementById('manoNum').textContent = manoNumero;
+  document.getElementById('infoCiegas').textContent = `$${ciegas.pequeña}/$${ciegas.grande}`;
 
-  // Fichas y apuestas
   for (let i = 0; i < 4; i++) {
     document.getElementById(`fichas${i}`).textContent = jugadores[i].fichas;
-    document.getElementById(`apuesta${i}`).textContent = 
-      jugadores[i].apuesta > 0 ? `Apuesta: $${jugadores[i].apuesta}` : '';
-    
+    document.getElementById(`apuesta${i}`).textContent = jugadores[i].apuesta > 0 ? `▶ $${jugadores[i].apuesta}` : '';
     const el = document.getElementById(`j${i}`);
     el.classList.toggle('fold', jugadores[i].fold);
-    el.classList.toggle('activo', turno === i && fase !== 'espera' && fase !== 'showdown');
+    el.classList.toggle('activo', turno === i && fase !== 'espera' && fase !== 'showdown' && !jugadores[i].fold && !jugadores[i].allin);
+    document.getElementById(`dealer${i}`).classList.toggle('show', dealerIdx === i);
   }
 
-  // Cartas comunitarias
-  document.getElementById('comunitarias').innerHTML = comunitarias.map(c => cartaHTML(c)).join('');
+  document.getElementById('comunitarias').innerHTML = comunitarias.map(c => cartaHTML(c, false, animarCartas)).join('');
+  document.getElementById('manoJugador').innerHTML = jugadores[0].mano.map(c => cartaHTML(c, jugadores[0].fold)).join('');
 
-  // Mano del jugador
-  document.getElementById('manoJugador').innerHTML = 
-    jugadores[0].mano.map(c => cartaHTML(c, jugadores[0].fold)).join('');
-
-  // Manos IA
   for (let i = 1; i <= 3; i++) {
     const cont = document.getElementById(`mano${i}`);
     const mostrar = fase === 'showdown' && !jugadores[i].fold;
     cont.innerHTML = jugadores[i].mano.map(c => 
       mostrar 
-        ? `<div class="carta-mini revelada ${(c.palo==='♥'||c.palo==='♦')?'roja':''}">${c.valor}${c.palo}</div>`
+        ? `<div class="carta-mini revelada ${(c.palo==='♥'||c.palo==='♦')?'roja':''}">${c.valor}<br>${c.palo}</div>`
         : `<div class="carta-mini">?</div>`
     ).join('');
   }
 
-  // Estados
   for (let i = 0; i < 4; i++) {
     const est = document.getElementById(`estado${i}`);
-    if (jugadores[i].fold) est.textContent = 'Retirado';
-    else if (jugadores[i].allin) est.textContent = 'ALL-IN';
+    if (jugadores[i].fold) est.textContent = '✦ RETIRADO ✦';
+    else if (jugadores[i].allin) est.textContent = '★ ALL-IN ★';
     else est.textContent = '';
   }
 
-  // Botones
-  const activo = (turno === 0 && !jugadores[0].fold && !jugadores[0].allin && fase !== 'espera' && fase !== 'showdown');
+  ['preflop','flop','turn','river'].forEach(f => {
+    const el = document.getElementById(`f-${f}`);
+    if (el) el.classList.toggle('activa', fase === f);
+  });
+
+  const activo = (turno === 0 && !jugadores[0].fold && !jugadores[0].allin && fase !== 'espera' && fase !== 'showdown' && esperandoHumano);
   document.getElementById('btnFold').disabled = !activo;
   document.getElementById('btnCall').disabled = !activo;
   document.getElementById('btnRaise').disabled = !activo;
   document.getElementById('btnAllin').disabled = !activo;
+  document.getElementById('inputRaise').disabled = !activo;
+  ['qbMin','qbHalf','qbPot'].forEach(id => document.getElementById(id).disabled = !activo);
 
-  // Texto de call
   if (activo) {
     const aPagar = Math.min(apuestaActual - jugadores[0].apuesta, jugadores[0].fichas);
     document.getElementById('btnCall').textContent = aPagar > 0 ? `✅ Igualar $${aPagar}` : '✅ Pasar';
@@ -470,65 +1566,65 @@ function render() {
   }
 }
 
-// ==================== FLUJO DEL JUEGO ====================
+function agregarHistorial(txt, gana = false) {
+  historial.unshift({ txt, gana });
+  if (historial.length > 15) historial.pop();
+  document.getElementById('historial-lista').innerHTML = 
+    historial.map(h => `<div class="item ${h.gana?'gana':''}">${h.txt}</div>`).join('');
+}
+
+// ==================== FLUJO ====================
 function nuevaMano() {
   document.getElementById('resultado').classList.remove('show');
+  detenerTimer();
   
-  // Resetear si alguien quedó sin fichas
   for (let i = 0; i < 4; i++) {
     if (jugadores[i] && jugadores[i].fichas <= 0) {
       jugadores[i].fichas = 1000;
-      mensaje(`${NOMBRES[i]} se queda sin fichas. ¡Recomprado con $1000!`);
+      mensaje(`${NOMBRES[i]} se queda sin fichas. ¡Recomprado!`);
+      agregarHistorial(`💰 ${NOMBRES[i]} recomprado $1000`);
     }
   }
 
-  // Inicializar jugadores si es la primera vez
   if (jugadores.length === 0) {
-    jugadores = NOMBRES.map(() => ({
-      mano: [], fichas: 1000, apuesta: 0, fold: false, allin: false
-    }));
+    jugadores = NOMBRES.map(() => ({ mano: [], fichas: 1000, apuesta: 0, fold: false, allin: false }));
   }
 
+  manoNumero++;
   mazo = barajar(crearMazo());
   comunitarias = [];
   bote = 0;
   apuestaActual = 0;
   fase = 'preflop';
   ultimoEnSubir = -1;
+  apuestaInicialMano = jugadores[0].fichas;
+  puntosGanadosMano = 0;
 
-  // Reset jugadores
-  jugadores.forEach(j => {
-    j.mano = [];
-    j.apuesta = 0;
-    j.fold = false;
-    j.allin = false;
-  });
+  jugadores.forEach(j => { j.mano = []; j.apuesta = 0; j.fold = false; j.allin = false; });
 
-  // Repartir 2 cartas a cada uno
   for (let r = 0; r < 2; r++) {
     for (let i = 0; i < 4; i++) {
       jugadores[i].mano.push(mazo.pop());
+      setTimeout(() => sonidoCarta(), (r * 4 + i) * 80);
     }
   }
 
-  // Rotar dealer
   dealerIdx = (dealerIdx + 1) % 4;
   const sb = (dealerIdx + 1) % 4;
   const bb = (dealerIdx + 2) % 4;
 
-  // Ciegas
   apostar(sb, ciegas.pequeña);
   apostar(bb, ciegas.grande);
   apuestaActual = ciegas.grande;
-
   turno = (bb + 1) % 4;
   ultimoEnSubir = bb;
 
-  mensaje(`--- NUEVA MANO --- Ciegas: $${ciegas.pequeña}/$${ciegas.grande} | Dealer: ${NOMBRES[dealerIdx]}`);
-  render();
+  mensaje(`✦ MANO #${manoNumero} ✦ Ciegas $${ciegas.pequeña}/$${ciegas.grande}`);
+  agregarHistorial(`🎲 Mano #${manoNumero} iniciada`);
+  render(true);
 
-  if (turno === 0) setTimeout(() => esperarHumano(), 500);
-  else setTimeout(() => turnoIA(), 800);
+  if (turno === 0) setTimeout(() => esperarHumano(), 600);
+  else setTimeout(() => turnoIA(), 900);
 }
 
 function apostar(idx, cantidad) {
@@ -541,284 +1637,211 @@ function apostar(idx, cantidad) {
   return real;
 }
 
-function contarActivos() {
-  return jugadores.filter(j => !j.fold).length;
-}
-
-function contarNoAllin() {
-  return jugadores.filter(j => !j.fold && !j.allin).length;
-}
-
-function rondaTerminada() {
-  const activos = jugadores.filter(j => !j.fold);
-  if (activos.length <= 1) return true;
-  // Todos los no-allin deben haber igualado apuestaActual
-  const pendientes = activos.filter(j => !j.allin && j.apuesta < apuestaActual);
-  if (pendientes.length > 0) return true === false ? false : false; // placeholder
-  return pendientes.length === 0;
-}
+function contarActivos() { return jugadores.filter(j => !j.fold).length; }
 
 function siguienteTurno() {
-  // Verificar si solo queda uno
+  detenerTimer();
   if (contarActivos() === 1) return finMano();
 
-  // Verificar si la ronda terminó
-  const activos = jugadores.filter(j => !j.fold);
-  const noAllinPendientes = activos.filter(j => !j.allin && j.apuesta < apuestaActual);
-  const noAllinCount = activos.filter(j => !j.allin).length;
+  const activos = jugadores.filter(j => !j.fold && !j.allin);
+  const todosIgualaron = activos.length === 0 || activos.every(j => j.apuesta >= apuestaActual);
 
-  let rondaCompleta = noAllinPendientes.length === 0;
-  
-  // Si ya todos igualaron o están all-in
-  if (rondaCompleta && noAllinCount <= 1 && activos.length > 1) {
-    // Solo queda uno o ningún jugador que pueda actuar -> siguiente fase
-    return siguienteFase();
-  }
-  
-  if (rondaCompleta) {
-    // Buscar siguiente jugador que pueda actuar
-    let siguiente = (turno + 1) % 4;
-    let vueltas = 0;
-    while (vueltas < 8) {
-      if (!jugadores[siguiente].fold && !jugadores[siguiente].allin) {
-        // Si ya igualó y ya no hay más subidas pendientes, pasamos de fase
-        if (jugadores[siguiente].apuesta >= apuestaActual) {
-          // Verificar si todos igualaron y este jugador ya actuó esta ronda
-          // Simplificación: si todos igualaron, pasamos de fase
-        }
-        break;
-      }
-      siguiente = (siguiente + 1) % 4;
-      vueltas++;
-    }
-  }
+  if (todosIgualaron && turno === ultimoEnSubir) return siguienteFase();
 
-  // Buscar siguiente jugador activo que pueda actuar
   let siguiente = (turno + 1) % 4;
   let iter = 0;
   while (iter < 4) {
     const j = jugadores[siguiente];
-    if (!j.fold && !j.allin) {
-      // Si ya igualó la apuesta y ya cerró la ronda (nadie subió)
-      break;
-    }
+    if (!j.fold && !j.allin) break;
     siguiente = (siguiente + 1) % 4;
     iter++;
   }
 
   if (iter >= 4) return siguienteFase();
-
-  // Si el siguiente es el que subió por última vez y todos igualaron -> siguiente fase
-  if (siguiente === ultimoEnSubir && jugadores[siguiente].apuesta >= apuestaActual) {
-    // Verificar que todos los activos igualaron
-    const todosIguales = jugadores.filter(j => !j.fold && !j.allin).every(j => j.apuesta >= apuestaActual);
-    if (todosIguales) return siguienteFase();
-  }
-
-  // Verificar si todos los no-fold igualaron
-  const activosNoFold = jugadores.filter(j => !j.fold && !j.allin);
-  if (activosNoFold.length > 0 && activosNoFold.every(j => j.apuesta >= apuestaActual)) {
-    // Si el último en subir ya actuó de nuevo
-    // Necesitamos ver si ya pasó por todos
-    // Simplificación: si todos igualaron y volvemos al que empezó la ronda
-  }
-
   turno = siguiente;
-  render();
-
-  if (turno === 0) setTimeout(() => esperarHumano(), 400);
-  else setTimeout(() => turnoIA(), 700);
-}
-
-function siguienteFase() {
-  // Resetear apuestas de la ronda
-  jugadores.forEach(j => j.apuesta = 0);
-  apuestaActual = 0;
-  ultimoEnSubir = -1;
-
-  // Quemar carta
-  mazo.pop();
-
-  if (fase === 'preflop') {
-    fase = 'flop';
-    comunitarias.push(mazo.pop(), mazo.pop(), mazo.pop());
-    mensaje('--- FLOP ---');
-  } else if (fase === 'flop') {
-    fase = 'turn';
-    comunitarias.push(mazo.pop());
-    mensaje('--- TURN ---');
-  } else if (fase === 'turn') {
-    fase = 'river';
-    comunitarias.push(mazo.pop());
-    mensaje('--- RIVER ---');
-  } else if (fase === 'river') {
-    return showdown();
-  }
-
-  // Si solo queda uno sin fold
-  if (contarActivos() === 1) return finMano();
-
-  // Turno empieza desde el primero activo después del dealer
-  let primero = (dealerIdx + 1) % 4;
-  let iter = 0;
-  while (jugadores[primero].fold || jugadores[primero].allin) {
-    primero = (primero + 1) % 4;
-    iter++;
-    if (iter > 4) break;
-  }
-  
-  // Si todos están all-in, revelar todo
-  if (jugadores.filter(j => !j.fold && !j.allin).length <= 1) {
-    return siguienteFase();
-  }
-
-  turno = primero;
   render();
 
   if (turno === 0) setTimeout(() => esperarHumano(), 500);
   else setTimeout(() => turnoIA(), 800);
 }
 
+function siguienteFase() {
+  detenerTimer();
+  jugadores.forEach(j => j.apuesta = 0);
+  apuestaActual = 0;
+  ultimoEnSubir = -1;
+  mazo.pop();
+
+  if (fase === 'preflop') {
+    fase = 'flop';
+    comunitarias.push(mazo.pop(), mazo.pop(), mazo.pop());
+    mensaje('✦ FLOP ✦');
+    [100,250,400].forEach(t => setTimeout(sonidoCarta, t));
+  } else if (fase === 'flop') {
+    fase = 'turn';
+    comunitarias.push(mazo.pop());
+    mensaje('✦ TURN ✦');
+    sonidoCarta();
+  } else if (fase === 'turn') {
+    fase = 'river';
+    comunitarias.push(mazo.pop());
+    mensaje('✦ RIVER ✦');
+    sonidoCarta();
+  } else if (fase === 'river') {
+    return showdown();
+  }
+
+  if (contarActivos() === 1) return finMano();
+  if (jugadores.filter(j => !j.fold && !j.allin).length <= 1) {
+    render(true);
+    return setTimeout(() => siguienteFase(), 1200);
+  }
+
+  let primero = (dealerIdx + 1) % 4;
+  let iter = 0;
+  while ((jugadores[primero].fold || jugadores[primero].allin) && iter < 4) {
+    primero = (primero + 1) % 4;
+    iter++;
+  }
+  turno = primero;
+  render(true);
+
+  if (turno === 0) setTimeout(() => esperarHumano(), 600);
+  else setTimeout(() => turnoIA(), 900);
+}
+
 function esperarHumano() {
   esperandoHumano = true;
   render();
+  iniciarTimer(25);
+}
+
+function iniciarTimer(segundos) {
+  detenerTimer();
+  tiempoRestante = segundos;
+  document.getElementById('temporizador')?.classList.add('show');
+  timerInterval = setInterval(() => {
+    tiempoRestante--;
+    if (tiempoRestante <= 0) { detenerTimer(); if (esperandoHumano) accion('fold'); }
+  }, 1000);
+}
+function detenerTimer() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+}
+
+function quickBet(tipo) {
+  const j = jugadores[0];
+  const minRaise = apuestaActual + ciegas.grande;
+  let monto;
+  if (tipo === 'min') monto = minRaise;
+  else if (tipo === 'half') monto = Math.floor((bote + (apuestaActual - j.apuesta)) / 2 / 10) * 10 + apuestaActual;
+  else if (tipo === 'pot') monto = bote + apuestaActual;
+  monto = Math.min(monto, j.fichas + j.apuesta);
+  document.getElementById('inputRaise').value = monto;
 }
 
 function accion(tipo) {
   if (!esperandoHumano) return;
   esperandoHumano = false;
-
+  detenerTimer();
   const j = jugadores[0];
   const aPagar = apuestaActual - j.apuesta;
 
   if (tipo === 'fold') {
-    j.fold = true;
-    mensaje('Te retiras.');
+    j.fold = true; sonidoFold();
+    mensaje('Te retiras.'); agregarHistorial('🚫 Tú te retiras');
   } else if (tipo === 'call') {
-    if (aPagar > 0) {
-      apostar(0, aPagar);
-      mensaje(`Igualas $${aPagar}`);
-    } else {
-      mensaje('Pasas.');
-    }
+    if (aPagar > 0) { apostar(0, aPagar); sonidoFicha(); mensaje(`Igualas $${aPagar}`); agregarHistorial(`✅ Tú igualas $${aPagar}`); }
+    else { sonidoCheck(); mensaje('Pasas.'); agregarHistorial('✋ Tú pasas'); }
   } else if (tipo === 'raise') {
     const monto = parseInt(document.getElementById('inputRaise').value);
     const minRaise = apuestaActual + ciegas.grande;
-    if (isNaN(monto) || monto < minRaise) {
-      mensaje(`Subida mínima: $${minRaise}`);
-      esperandoHumano = true;
-      return;
-    }
-    if (monto > j.fichas + j.apuesta) {
-      mensaje(`No tienes suficientes fichas. Máximo: $${j.fichas + j.apuesta}`);
-      esperandoHumano = true;
-      return;
-    }
-    const total = monto;
-    const añadir = total - j.apuesta;
-    apostar(0, añadir);
+    if (isNaN(monto) || monto < minRaise) { mensaje(`⚠ Subida mínima: $${minRaise}`); esperandoHumano = true; iniciarTimer(tiempoRestante); return; }
+    if (monto > j.fichas + j.apuesta) { mensaje(`⚠ Máximo: $${j.fichas + j.apuesta}`); esperandoHumano = true; iniciarTimer(tiempoRestante); return; }
+    apostar(0, monto - j.apuesta);
     apuestaActual = j.apuesta;
     ultimoEnSubir = 0;
-    mensaje(`Subes a $${total}`);
+    sonidoFicha(); mensaje(`Subes a $${monto}`); agregarHistorial(`📈 Tú subes a $${monto}`);
   } else if (tipo === 'allin') {
     const total = j.fichas + j.apuesta;
     apostar(0, j.fichas);
-    if (j.apuesta > apuestaActual) {
-      apuestaActual = j.apuesta;
-      ultimoEnSubir = 0;
-    }
-    mensaje(`¡ALL-IN por $${total}!`);
+    if (j.apuesta > apuestaActual) { apuestaActual = j.apuesta; ultimoEnSubir = 0; }
+    sonidoFicha(); mensaje(`💥 ¡ALL-IN por $${total}!`); agregarHistorial(`💥 Tú ALL-IN $${total}`);
   }
-
   render();
   setTimeout(() => siguienteTurno(), 500);
 }
 
 // ==================== IA ====================
 function turnoIA() {
+  detenerTimer();
   const idx = turno;
   const j = jugadores[idx];
   if (j.fold || j.allin) return siguienteTurno();
 
-  // Evaluar fuerza de la mano
   const fuerza = evaluarFuerzaIA(j.mano, comunitarias, fase);
   const aPagar = apuestaActual - j.apuesta;
   const potOdds = aPagar / (bote + aPagar);
   const agresividad = Math.random();
 
-  // Decisión
   if (aPagar === 0) {
-    // Puede pasar o subir
     if (fuerza > 0.75 || (fuerza > 0.5 && agresividad > 0.6)) {
-      // Subir
       const minRaise = apuestaActual + ciegas.grande;
-      const raiseSize = Math.min(minRaise + Math.floor(Math.random() * 40), j.fichas);
-      if (raiseSize >= j.fichas) {
+      const raiseSize = Math.min(minRaise + Math.floor(Math.random() * 40), j.fichas + j.apuesta);
+      if (raiseSize >= j.fichas + j.apuesta) {
         apostar(idx, j.fichas);
         if (j.apuesta > apuestaActual) { apuestaActual = j.apuesta; ultimoEnSubir = idx; }
-        mensaje(`${NOMBRES[idx]}: ¡ALL-IN!`);
+        mensaje(`${NOMBRES[idx]}: 💥 ALL-IN!`); agregarHistorial(`💥 ${NOMBRES[idx]} ALL-IN`);
       } else {
         apostar(idx, raiseSize - j.apuesta);
-        apuestaActual = j.apuesta;
-        ultimoEnSubir = idx;
-        mensaje(`${NOMBRES[idx]} sube a $${j.apuesta}`);
+        apuestaActual = j.apuesta; ultimoEnSubir = idx;
+        mensaje(`${NOMBRES[idx]} sube a $${j.apuesta}`); agregarHistorial(`📈 ${NOMBRES[idx]} sube $${j.apuesta}`);
       }
-    } else {
-      mensaje(`${NOMBRES[idx]} pasa.`);
-    }
+      sonidoFicha();
+    } else { sonidoCheck(); mensaje(`${NOMBRES[idx]} pasa.`); agregarHistorial(`✋ ${NOMBRES[idx]} pasa`); }
   } else {
-    // Hay que pagar
     if (fuerza > 0.85 && agresividad > 0.4) {
-      // Raise fuerte
       const raiseSize = Math.min(apuestaActual * 2 + Math.floor(Math.random() * 50), j.fichas + j.apuesta);
       if (raiseSize >= j.fichas + j.apuesta) {
         apostar(idx, j.fichas);
         if (j.apuesta > apuestaActual) { apuestaActual = j.apuesta; ultimoEnSubir = idx; }
-        mensaje(`${NOMBRES[idx]}: ¡ALL-IN!`);
+        mensaje(`${NOMBRES[idx]}: 💥 ALL-IN!`); agregarHistorial(`💥 ${NOMBRES[idx]} ALL-IN`);
       } else {
         apostar(idx, raiseSize - j.apuesta);
-        apuestaActual = j.apuesta;
-        ultimoEnSubir = idx;
-        mensaje(`${NOMBRES[idx]} sube a $${j.apuesta}`);
+        apuestaActual = j.apuesta; ultimoEnSubir = idx;
+        mensaje(`${NOMBRES[idx]} sube a $${j.apuesta}`); agregarHistorial(`📈 ${NOMBRES[idx]} sube $${j.apuesta}`);
       }
+      sonidoFicha();
     } else if (fuerza > potOdds + 0.1 || fuerza > 0.65 || aPagar === 0) {
-      // Igualar
-      apostar(idx, Math.min(aPagar, j.fichas));
+      apostar(idx, Math.min(aPagar, j.fichas)); sonidoFicha();
       mensaje(`${NOMBRES[idx]} iguala $${Math.min(aPagar, j.fichas)}`);
+      agregarHistorial(`✅ ${NOMBRES[idx]} iguala $${Math.min(aPagar, j.fichas)}`);
     } else if (fuerza > potOdds && agresividad > 0.7) {
-      apostar(idx, Math.min(aPagar, j.fichas));
+      apostar(idx, Math.min(aPagar, j.fichas)); sonidoFicha();
       mensaje(`${NOMBRES[idx]} iguala $${Math.min(aPagar, j.fichas)}`);
+      agregarHistorial(`✅ ${NOMBRES[idx]} iguala $${Math.min(aPagar, j.fichas)}`);
     } else {
-      j.fold = true;
-      mensaje(`${NOMBRES[idx]} se retira.`);
+      j.fold = true; sonidoFold();
+      mensaje(`${NOMBRES[idx]} se retira.`); agregarHistorial(`🚫 ${NOMBRES[idx]} se retira`);
     }
   }
-
   render();
-  setTimeout(() => siguienteTurno(), 600);
+  setTimeout(() => siguienteTurno(), 700);
 }
 
 function evaluarFuerzaIA(mano, comunitarias, fase) {
   if (fase === 'preflop') {
-    const v1 = valorNumerico(mano[0].valor);
-    const v2 = valorNumerico(mano[1].valor);
+    const v1 = valorNumerico(mano[0].valor), v2 = valorNumerico(mano[1].valor);
     const alta = Math.max(v1, v2), baja = Math.min(v1, v2);
     const pareja = v1 === v2;
     const suited = mano[0].palo === mano[1].palo;
-    
     let f = 0;
     if (pareja) f = 0.5 + (alta / 14) * 0.5;
-    else {
-      f = (alta / 14) * 0.4 + (baja / 14) * 0.2;
-      if (suited) f += 0.1;
-      if (alta - baja === 1) f += 0.05;
-    }
+    else { f = (alta / 14) * 0.4 + (baja / 14) * 0.2; if (suited) f += 0.1; if (alta - baja === 1) f += 0.05; }
     return Math.min(f, 1);
   } else {
-    // Post-flop: evaluar mano real
     const todas = [...mano, ...comunitarias];
     const score = evaluarMano(todas);
-    // Normalizar tipo (0-8)
     let f = score.tipo / 8;
     if (score.tipo === 0) f = 0.15 + (score.kickers[0] / 14) * 0.1;
     if (score.tipo === 1) f = 0.35 + (score.kickers[0] / 14) * 0.15;
@@ -829,23 +1852,49 @@ function evaluarFuerzaIA(mano, comunitarias, fase) {
   }
 }
 
-// ==================== FIN DE MANO ====================
+// ==================== FIN MANO + PUNTOS ====================
 function finMano() {
   fase = 'showdown';
+  detenerTimer();
   const activos = jugadores.filter(j => !j.fold);
   if (activos.length === 1) {
     const ganador = jugadores.indexOf(activos[0]);
+    const gananciaNeta = bote - (apuestaInicialMano - jugadores[ganador].fichas - bote);
     jugadores[ganador].fichas += bote;
-    mensaje(`¡${NOMBRES[ganador]} gana $${bote} (todos se retiraron)!`);
-    mostrarResultado(`🏆 ${NOMBRES[ganador]} GANA`, `+$${bote}`, 'Todos los demás se retiraron');
+    
+    // Puntos para el ganador
+    const ptsGanados = Math.round(bote / 10) + 20;
+    if (ganador === 0) {
+      usuario.puntos += ptsGanados;
+      usuario.dinero = jugadores[0].fichas;
+      usuario.victorias++;
+      usuario.manosJugadas++;
+      actualizarRangoUsuario();
+      puntosGanadosMano = ptsGanados;
+      agregarHistorial(`🏆 Tú ganas $${bote} (+${ptsGanados} pts)`, true);
+      mostrarResultado(`🏆 ¡GANASTE!`, `+$${bote}`, 'Todos se retiraron', ptsGanados);
+    } else {
+      usuario.manosJugadas++;
+      usuario.puntos = Math.max(0, usuario.puntos - 10);
+      usuario.dinero = jugadores[0].fichas;
+      actualizarRangoUsuario();
+      agregarHistorial(`🏆 ${NOMBRES[ganador]} gana $${bote}`, true);
+      mostrarResultado(`🏆 ${NOMBRES[ganador]} GANA`, `+$${bote}`, 'Todos se retiraron', -10);
+    }
+    
+    // Actualizar ranking
+    actualizarRankingGlobal();
+    animarFichasGanador(ganador);
+    sonidoWin();
     bote = 0;
   }
   render();
-  document.getElementById('btnNueva').disabled = false;
+  guardarProgreso();
 }
 
 function showdown() {
   fase = 'showdown';
+  detenerTimer();
   render();
 
   const activos = jugadores.filter(j => !j.fold);
@@ -854,47 +1903,131 @@ function showdown() {
     const score = evaluarMano([...j.mano, ...comunitarias]);
     return { idx, score };
   });
-
-  // Ordenar por fuerza
   resultados.sort((a, b) => compararScore(b.score, a.score));
-
   const ganador = resultados[0];
   jugadores[ganador.idx].fichas += bote;
-  mensaje(`¡${NOMBRES[ganador.idx]} gana $${bote} con ${ganador.score.nombre}!`);
 
-  // Marcar ganador
+  // Puntos
+  const ptsGanados = Math.round(bote / 10) + 30;
+  let ptsDelta = 0;
+  if (ganador.idx === 0) {
+    usuario.puntos += ptsGanados;
+    usuario.victorias++;
+    ptsDelta = ptsGanados;
+    agregarHistorial(`🏆 Tú: ${ganador.score.nombre} (+${ptsGanados} pts)`, true);
+  } else {
+    usuario.puntos = Math.max(0, usuario.puntos - 15);
+    ptsDelta = -15;
+    agregarHistorial(`🏆 ${NOMBRES[ganador.idx]}: ${ganador.score.nombre} (+$${bote})`, true);
+  }
+  usuario.dinero = jugadores[0].fichas;
+  usuario.manosJugadas++;
+  actualizarRangoUsuario();
+
+  mensaje(`🏆 ¡${NOMBRES[ganador.idx]} gana $${bote} con ${ganador.score.nombre}!`);
+
   document.getElementById(`j${ganador.idx}`).classList.add('ganador');
-  setTimeout(() => document.getElementById(`j${ganador.idx}`).classList.remove('ganador'), 4000);
+  setTimeout(() => document.getElementById(`j${ganador.idx}`).classList.remove('ganador'), 5000);
 
-  const detalle = resultados.map(r => 
-    `${NOMBRES[r.idx]}: ${r.score.nombre}`
-  ).join(' | ');
-
-  mostrarResultado(`🏆 ${NOMBRES[ganador.idx]} GANA`, `+$${bote}`, detalle);
+  const detalle = resultados.map(r => `${NOMBRES[r.idx]}: ${r.score.nombre}`).join('<br>');
+  mostrarResultado(
+    ganador.idx === 0 ? `🏆 ¡GANASTE!` : `🏆 ${NOMBRES[ganador.idx]} GANA`,
+    `+$${bote}`,
+    detalle,
+    ptsDelta
+  );
+  
+  actualizarRankingGlobal();
+  animarFichasGanador(ganador.idx);
+  sonidoWin();
   bote = 0;
   render();
-  document.getElementById('btnNueva').disabled = false;
+  guardarProgreso();
 }
 
-function mostrarResultado(titulo, subtitulo, detalle) {
+function actualizarRankingGlobal() {
+  // Actualizar entrada del jugador
+  const yo = ranking.find(r => r.esYo);
+  if (yo) {
+    yo.puntos = usuario.puntos;
+    yo.dinero = usuario.dinero;
+    yo.nombre = usuario.nombre;
+  }
+  // Simular progreso de IAs
+  ranking.forEach(r => {
+    if (!r.esYo && Math.random() > 0.5) {
+      r.puntos += Math.floor(Math.random() * 80) - 20;
+      if (r.puntos < 0) r.puntos = 0;
+      r.dinero += Math.floor(Math.random() * 100) - 40;
+      if (r.dinero < 0) r.dinero = 0;
+    }
+  });
+  guardarProgreso();
+}
+
+function animarFichasGanador(idx) {
+  const target = document.getElementById(`j${idx}`);
+  const rect = target.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+  for (let i = 0; i < 8; i++) {
+    setTimeout(() => {
+      const f = document.createElement('div');
+      f.className = 'ficha-anim';
+      const startX = window.innerWidth / 2, startY = window.innerHeight / 2;
+      f.style.left = startX + 'px'; f.style.top = startY + 'px';
+      f.style.setProperty('--tx', (cx - startX) + 'px');
+      f.style.setProperty('--ty', (cy - startY) + 'px');
+      f.style.cssText += `width:22px;height:22px;border-radius:50%;background:radial-gradient(circle,#ffd700,#8b6914);border:2px solid #fff;position:fixed;z-index:50;pointer-events:none;box-shadow:0 0 10px rgba(212,175,55,0.8);transition:all 0.8s;`;
+      document.body.appendChild(f);
+      requestAnimationFrame(() => {
+        f.style.transform = `translate(${cx - startX}px, ${cy - startY}px) scale(0.3) rotate(720deg)`;
+        f.style.opacity = '0';
+      });
+      setTimeout(() => f.remove(), 900);
+    }, i * 60);
+  }
+}
+
+function mostrarResultado(titulo, subtitulo, detalle, ptsDelta) {
   document.getElementById('resTitulo').textContent = titulo;
   document.getElementById('resDetalle').textContent = subtitulo;
-  document.getElementById('resManos').textContent = detalle;
+  document.getElementById('resManos').innerHTML = detalle;
+  const elPts = document.getElementById('resPuntos');
+  elPts.className = 'puntos-ganados ' + (ptsDelta >= 0 ? 'positivo' : 'negativo');
+  elPts.textContent = ptsDelta >= 0 ? `💎 +${ptsDelta} puntos de liga` : `💎 ${ptsDelta} puntos de liga`;
   document.getElementById('resultado').classList.add('show');
+  setTimeout(() => document.getElementById('resultado').classList.remove('show'), 3500);
 }
 
-function mensaje(txt) {
-  document.getElementById('mensajes').textContent = txt;
-}
+function mensaje(txt) { document.getElementById('mensajes').innerHTML = txt; }
 
 // ==================== INICIO ====================
 window.onload = () => {
-  jugadores = NOMBRES.map(() => ({
-    mano: [], fichas: 1000, apuesta: 0, fold: false, allin: false
-  }));
+  cargarProgreso();
+  jugadores = NOMBRES.map(() => ({ mano: [], fichas: 1000, apuesta: 0, fold: false, allin: false }));
+  
+  // Asignar rangos visuales a IAs según su puntuación
+  const iasPts = [0, ranking[1].puntos, ranking[2].puntos, ranking[3].puntos];
+  for (let i = 1; i <= 3; i++) {
+    const r = obtenerRango(ranking[i].puntos);
+    document.getElementById(`marco${i}`).className = 'marco ' + r.clase;
+    document.getElementById(`rangoIA${i}`).textContent = `${r.icono} ${r.nombre}`;
+    document.getElementById(`rangoIA${i}`).style.color = r.color;
+  }
+  
+  actualizarRangoUsuario();
   render();
-  document.getElementById('btnNueva').disabled = false;
+  agregarHistorial('✦ Bienvenido a Royal Flush Ranked');
+  document.addEventListener('click', () => initAudio(), { once: true });
+  
+  // Guardar cada cierto tiempo
+  setInterval(guardarProgreso, 10000);
 };
+
+// Cerrar modal al hacer click fuera
+document.getElementById('modal-ranking').addEventListener('click', (e) => {
+  if (e.target.id === 'modal-ranking') cerrarRanking();
+});
 </script>
 
 </body>
