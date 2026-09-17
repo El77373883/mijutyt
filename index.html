@@ -6,7 +6,6 @@
     <title>Assient Leo - Tu Asistente IA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- VARIABLES DE DISEÑO --- */
         :root {
             --text-main: #1f2937;
             --text-muted: #6b7280;
@@ -43,7 +42,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
         .chat-container {
             width: 100%;
             max-width: 450px;
@@ -55,7 +53,7 @@
             position: relative;
         }
 
-        /* --- BARRA SUPERIOR (HEADER) --- */
+        /* --- BARRA SUPERIOR --- */
         .header {
             display: flex;
             justify-content: space-between;
@@ -131,6 +129,8 @@
             font-size: 1rem;
             line-height: 1.5;
             animation: fadeIn 0.3s ease;
+            position: relative;
+            word-wrap: break-word;
         }
 
         @keyframes fadeIn {
@@ -150,10 +150,29 @@
             background-color: var(--ai-bubble-bg);
             border-bottom-left-radius: 4px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            border-left: 4px solid #3b82f6; /* Detalle de color */
+            border-left: 4px solid #3b82f6;
         }
 
-        /* --- INDICADOR DE ESCRITURA ANIMADO --- */
+        /* Estilo para los archivos subidos en el chat */
+        .file-attachment {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(0,0,0,0.05);
+            padding: 6px 10px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #374151;
+        }
+        .file-attachment img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* --- INDICADOR DE ESCRITURA --- */
         .typing-indicator {
             align-self: flex-start;
             display: flex;
@@ -195,7 +214,6 @@
             padding: 20px;
         }
         
-        /* ICONO ANIMADO ARCOIRIS */
         .welcome-icon {
             font-size: 3.5rem;
             background: linear-gradient(135deg, #f59e0b, #ef4444, #3b82f6, #10b981, #f59e0b);
@@ -219,7 +237,7 @@
             margin-bottom: 8px;
         }
 
-        /* --- BARRA DE ENTRADA CON BORDE ANIMADO --- */
+        /* --- BARRA DE ENTRADA --- */
         .input-area {
             padding: 16px 20px;
             padding-bottom: 30px;
@@ -240,7 +258,6 @@
             position: relative;
         }
 
-        /* Borde animado cuando el input tiene foco */
         .input-box:focus-within {
             border-color: #3b82f6;
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.3), 0 4px 20px rgba(0,0,0,0.08);
@@ -294,7 +311,6 @@
             transform: scale(1.1);
         }
 
-        /* BOTÓN DE ENVIAR CON GRADIENTE */
         .send-btn {
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             color: white;
@@ -315,6 +331,29 @@
             box-shadow: 0 6px 15px rgba(139, 92, 246, 0.6);
         }
 
+        /* Previsualización de archivos antes de enviar */
+        .file-preview-area {
+            display: none;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: rgba(255,255,255,0.5);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .file-preview-item {
+            background: white;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .file-preview-item i {
+            color: #ef4444;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -324,13 +363,14 @@
         <!-- BARRA SUPERIOR -->
         <header class="header">
             <div class="header-left">
-                <button class="icon-btn"><i class="fa-solid fa-bars"></i></button>
+                <button class="icon-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
                 <div class="header-title">
                     Assient Leo <i class="fa-solid fa-chevron-down"></i>
                 </div>
             </div>
             <div class="header-right">
-                <button class="icon-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                <!-- Botón de Nuevo Chat -->
+                <button class="icon-btn" id="newChatBtn" title="Nuevo Chat"><i class="fa-regular fa-pen-to-square"></i></button>
                 <button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                 <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #ef4444, #f59e0b); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 0.9rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">J</div>
             </div>
@@ -338,29 +378,21 @@
 
         <!-- ÁREA DE MENSAJES -->
         <main class="chat-messages" id="chatMessages">
-            
-            <!-- Pantalla de bienvenida -->
-            <div class="welcome-screen" id="welcomeScreen">
-                <div class="welcome-icon"><i class="fa-solid fa-sparkles"></i></div>
-                <h1>Hola, Jorge,</h1>
-                <h1>soy Assient Leo</h1>
-            </div>
-
-            <!-- Ejemplo de mensaje del usuario -->
-            <div class="message user">Hola</div>
-
-            <!-- Indicador de escritura -->
-            <div class="typing-indicator" id="typingIndicator" style="display: none;">
-                <span></span><span></span><span></span>
-            </div>
-
+            <!-- Los mensajes se cargarán aquí dinámicamente -->
         </main>
+
+        <!-- PREVISUALIZACIÓN DE ARCHIVOS -->
+        <div class="file-preview-area" id="filePreviewArea"></div>
 
         <!-- BARRA DE ENTRADA -->
         <footer class="input-area">
             <div class="input-box">
-                <button class="action-btn"><i class="fa-solid fa-plus"></i></button>
+                <!-- Botón de subir archivo/imagen -->
+                <button class="action-btn" id="uploadBtn"><i class="fa-solid fa-plus"></i></button>
+                <input type="file" id="fileInput" multiple accept="image/*,.pdf,.doc,.docx,.txt" style="display: none;">
+                
                 <input type="text" id="userInput" placeholder="Pedir a Assient Leo" autocomplete="off">
+                
                 <div class="action-buttons">
                     <button class="action-btn"><i class="fa-solid fa-microphone"></i></button>
                     <button class="send-btn" id="sendBtn"><i class="fa-solid fa-wave-square"></i></button>
@@ -370,48 +402,228 @@
 
     </div>
 
-    <!-- SCRIPT BÁSICO PARA SIMULAR EL CHAT -->
     <script>
+        // --- REFERENCIAS AL DOM ---
         const sendBtn = document.getElementById('sendBtn');
         const userInput = document.getElementById('userInput');
         const chatMessages = document.getElementById('chatMessages');
-        const typingIndicator = document.getElementById('typingIndicator');
         const welcomeScreen = document.getElementById('welcomeScreen');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const fileInput = document.getElementById('fileInput');
+        const filePreviewArea = document.getElementById('filePreviewArea');
+        const newChatBtn = document.getElementById('newChatBtn');
 
+        // --- SISTEMA DE MEMORIA (LocalStorage) ---
+        let chatHistory = JSON.parse(localStorage.getItem('assientLeoHistory')) || [];
+        let userMemory = JSON.parse(localStorage.getItem('assientLeoMemory')) || {
+            userName: "Jorge",
+            preferences: {},
+            context: []
+        };
+
+        // Archivos pendientes por enviar
+        let pendingFiles = [];
+
+        // --- INICIALIZACIÓN ---
+        function initChat() {
+            chatMessages.innerHTML = ''; // Limpiar pantalla
+            
+            if (chatHistory.length === 0) {
+                // Si no hay historial, mostrar bienvenida
+                chatMessages.innerHTML = `
+                    <div class="welcome-screen" id="welcomeScreen">
+                        <div class="welcome-icon"><i class="fa-solid fa-sparkles"></i></div>
+                        <h1>Hola, ${userMemory.userName},</h1>
+                        <h1>soy Assient Leo</h1>
+                    </div>
+                `;
+            } else {
+                // Si hay historial, renderizar mensajes anteriores
+                chatHistory.forEach(msg => {
+                    renderMessage(msg.text, msg.sender, msg.files, false);
+                });
+                scrollToBottom();
+            }
+        }
+
+        // --- RENDERIZAR MENSAJE ---
+        function renderMessage(text, sender, files = [], animate = true) {
+            // Ocultar pantalla de bienvenida si existe
+            const welcome = document.getElementById('welcomeScreen');
+            if (welcome) welcome.style.display = 'none';
+
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender);
+            
+            if (!animate) messageDiv.style.animation = 'none';
+
+            // Si hay archivos, renderizarlos
+            if (files && files.length > 0) {
+                files.forEach(file => {
+                    const fileDiv = document.createElement('div');
+                    fileDiv.classList.add('file-attachment');
+                    
+                    if (file.type.startsWith('image/')) {
+                        fileDiv.innerHTML = `<img src="${file.data}" alt="img"> <span>${file.name}</span>`;
+                    } else {
+                        fileDiv.innerHTML = `<i class="fa-solid fa-file"></i> <span>${file.name}</span>`;
+                    }
+                    messageDiv.appendChild(fileDiv);
+                });
+            }
+
+            // Agregar el texto
+            if (text) {
+                const textNode = document.createElement('div');
+                textNode.textContent = text;
+                messageDiv.appendChild(textNode);
+            }
+
+            chatMessages.appendChild(messageDiv);
+            if (animate) scrollToBottom();
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // --- MANEJO DE ARCHIVOS ---
+        uploadBtn.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    pendingFiles.push({
+                        name: file.name,
+                        type: file.type,
+                        data: event.target.result // Base64
+                    });
+                    updateFilePreview();
+                };
+                reader.readAsDataURL(file);
+            });
+            fileInput.value = ''; // Resetear input
+        });
+
+        function updateFilePreview() {
+            if (pendingFiles.length === 0) {
+                filePreviewArea.style.display = 'none';
+                return;
+            }
+            filePreviewArea.style.display = 'flex';
+            filePreviewArea.innerHTML = '';
+            pendingFiles.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.classList.add('file-preview-item');
+                item.innerHTML = `<i class="fa-solid fa-file"></i> ${file.name} <i class="fa-solid fa-xmark" onclick="removePendingFile(${index})"></i>`;
+                filePreviewArea.appendChild(item);
+            });
+        }
+
+        window.removePendingFile = (index) => {
+            pendingFiles.splice(index, 1);
+            updateFilePreview();
+        };
+
+        // --- ENVIAR MENSAJE ---
         function sendMessage() {
             const text = userInput.value.trim();
-            if (text === '') return;
+            if (text === '' && pendingFiles.length === 0) return;
 
-            if (welcomeScreen) welcomeScreen.style.display = 'none';
+            // 1. Agregar mensaje del usuario
+            const currentFiles = [...pendingFiles];
+            renderMessage(text || "Archivo adjunto", 'user', currentFiles, true);
 
-            const userMessage = document.createElement('div');
-            userMessage.classList.add('message', 'user');
-            userMessage.textContent = text;
-            chatMessages.insertBefore(userMessage, typingIndicator);
-            
+            // Guardar en memoria local
+            chatHistory.push({ text: text, sender: 'user', files: currentFiles });
+            saveHistory();
+
+            // Limpiar input y archivos
             userInput.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            pendingFiles = [];
+            updateFilePreview();
 
-            typingIndicator.style.display = 'flex';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            // 2. Mostrar indicador de escritura
+            const typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('typing-indicator');
+            typingIndicator.id = 'typingIndicator';
+            typingIndicator.innerHTML = '<span></span><span></span><span></span>';
+            chatMessages.appendChild(typingIndicator);
+            scrollToBottom();
 
+            // 3. Simular respuesta de la IA con memoria
             setTimeout(() => {
-                typingIndicator.style.display = 'none';
+                typingIndicator.remove();
+
+                // --- LÓGICA DE MEMORIA AVANZADA ---
+                let aiResponse = "";
+                const lowerText = text.toLowerCase();
+
+                // Guardar en el contexto de memoria
+                userMemory.context.push(text);
+
+                // Simulación de memoria: reconoce saludos y nombres
+                if (lowerText.includes("hola") || lowerText.includes("buenos días") || lowerText.includes("buenas tardes")) {
+                    aiResponse = `¡Hola de nuevo, ${userMemory.userName}! ¿En qué te puedo ayudar hoy?`;
+                } 
+                else if (lowerText.includes("me llamo") || lowerText.includes("mi nombre es")) {
+                    // Extraer el nombre (simple simulación)
+                    const match = text.match(/(?:me llamo|mi nombre es)\s+([A-Za-z]+)/i);
+                    if (match && match[1]) {
+                        userMemory.userName = match[1];
+                        localStorage.setItem('assientLeoMemory', JSON.stringify(userMemory));
+                        aiResponse = `¡Un placer conocerte, ${userMemory.userName}! He guardado tu nombre en mi memoria.`;
+                    } else {
+                        aiResponse = "Entendido, he actualizado tu nombre en mi memoria.";
+                    }
+                }
+                else if (lowerText.includes("recuerdas") || lowerText.includes("memoria")) {
+                    aiResponse = `Claro que sí, ${userMemory.userName}. Tengo guardado nuestro historial de conversación y recuerdo que hemos hablado de ${userMemory.context.length} cosas.`;
+                }
+                else if (currentFiles.length > 0) {
+                    aiResponse = `He recibido tus ${currentFiles.length} archivo(s). ¿Qué te gustaría que haga con ellos?`;
+                }
+                else {
+                    // Respuesta genérica
+                    aiResponse = `Entendido, ${userMemory.userName}. Estoy procesando tu mensaje: "${text}". ¿Hay algo más en lo que pueda ayudarte?`;
+                }
+
+                // Renderizar respuesta
+                renderMessage(aiResponse, 'ai', [], true);
                 
-                const aiMessage = document.createElement('div');
-                aiMessage.classList.add('message', 'ai');
-                aiMessage.textContent = "¡Hola! Soy Assient Leo. Esta es una respuesta simulada. ¿En qué te puedo ayudar hoy?";
-                chatMessages.insertBefore(aiMessage, typingIndicator);
-                
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                // Guardar en historial
+                chatHistory.push({ text: aiResponse, sender: 'ai', files: [] });
+                saveHistory();
+
             }, 1500);
         }
 
-        sendBtn.addEventListener('click', sendMessage);
+        function saveHistory() {
+            // Limitar el historial a los últimos 50 mensajes para no saturar la memoria
+            if (chatHistory.length > 50) chatHistory = chatHistory.slice(-50);
+            localStorage.setItem('assientLeoHistory', JSON.stringify(chatHistory));
+        }
 
+        // --- NUEVO CHAT ---
+        newChatBtn.addEventListener('click', () => {
+            if (confirm("¿Estás seguro de que quieres iniciar un nuevo chat? Se borrará el historial actual.")) {
+                chatHistory = [];
+                saveHistory();
+                initChat();
+            }
+        });
+
+        // --- EVENTOS ---
+        sendBtn.addEventListener('click', sendMessage);
         userInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
         });
+
+        // Iniciar la app
+        initChat();
+
     </script>
 </body>
 </html>
