@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat IA Profesional</title>
-    <!-- Importamos FontAwesome para los iconos profesionales -->
+    <title>Assient Leo - Tu Asistente IA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* --- VARIABLES DE DISEÑO --- */
         :root {
-            --bg-gradient-start: #dbeafe; /* Azul muy claro */
-            --bg-gradient-end: #f3f4f6;   /* Gris muy claro */
             --text-main: #1f2937;
             --text-muted: #6b7280;
             --user-bubble-bg: #e5e7eb;
@@ -27,8 +24,11 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
+        /* --- FONDO ANIMADO (AURORA) --- */
         body {
-            background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            background: linear-gradient(135deg, #dbeafe, #e0e7ff, #f3e8ff, #cffafe, #dbeafe);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -37,7 +37,13 @@
             overflow: hidden;
         }
 
-        /* --- CONTENEDOR PRINCIPAL (Simula pantalla de móvil) --- */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
         .chat-container {
             width: 100%;
             max-width: 450px;
@@ -55,7 +61,10 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px 20px;
-            background-color: transparent;
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            z-index: 10;
         }
 
         .header-left, .header-right {
@@ -76,16 +85,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
         }
 
         .icon-btn:hover {
-            background-color: rgba(0,0,0,0.05);
+            background-color: rgba(255, 255, 255, 0.6);
+            transform: scale(1.1);
+            color: #3b82f6;
         }
 
         .header-title {
             font-size: 1.1rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-main);
             display: flex;
             align-items: center;
@@ -106,13 +117,13 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            scrollbar-width: none; /* Ocultar scroll en Firefox */
+            scrollbar-width: none; 
+            z-index: 5;
         }
         .chat-messages::-webkit-scrollbar {
-            display: none; /* Ocultar scroll en Chrome/Safari */
+            display: none; 
         }
 
-        /* Burbujas de chat */
         .message {
             max-width: 80%;
             padding: 14px 20px;
@@ -131,6 +142,7 @@
             align-self: flex-end;
             background-color: var(--user-bubble-bg);
             border-bottom-right-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .message.ai {
@@ -138,9 +150,10 @@
             background-color: var(--ai-bubble-bg);
             border-bottom-left-radius: 4px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border-left: 4px solid #3b82f6; /* Detalle de color */
         }
 
-        /* Indicador de "Escribiendo..." (los tres puntos) */
+        /* --- INDICADOR DE ESCRITURA ANIMADO --- */
         .typing-indicator {
             align-self: flex-start;
             display: flex;
@@ -151,12 +164,13 @@
             border-bottom-left-radius: 4px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.03);
             width: fit-content;
+            border-left: 4px solid #8b5cf6;
         }
 
         .typing-indicator span {
             width: 6px;
             height: 6px;
-            background-color: var(--text-muted);
+            background-color: #8b5cf6;
             border-radius: 50%;
             animation: bounce 1.4s infinite ease-in-out both;
         }
@@ -169,7 +183,7 @@
             40% { transform: scale(1); }
         }
 
-        /* --- PANTALLA DE BIENVENIDA (Opcional) --- */
+        /* --- PANTALLA DE BIENVENIDA --- */
         .welcome-screen {
             display: flex;
             flex-direction: column;
@@ -180,24 +194,37 @@
             color: var(--text-main);
             padding: 20px;
         }
+        
+        /* ICONO ANIMADO ARCOIRIS */
         .welcome-icon {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #f59e0b, #3b82f6, #10b981);
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #f59e0b, #ef4444, #3b82f6, #10b981, #f59e0b);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
+            animation: rainbowText 4s ease infinite;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
+
+        @keyframes rainbowText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .welcome-screen h1 {
             font-size: 1.8rem;
             font-weight: 400;
             margin-bottom: 8px;
         }
 
-        /* --- BARRA DE ENTRADA (FOOTER) --- */
+        /* --- BARRA DE ENTRADA CON BORDE ANIMADO --- */
         .input-area {
             padding: 16px 20px;
-            padding-bottom: 30px; /* Espacio extra para móviles */
+            padding-bottom: 30px;
             background-color: transparent;
+            z-index: 10;
         }
 
         .input-box {
@@ -208,6 +235,22 @@
             padding: 8px 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             gap: 8px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+            position: relative;
+        }
+
+        /* Borde animado cuando el input tiene foco */
+        .input-box:focus-within {
+            border-color: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3), 0 4px 20px rgba(0,0,0,0.08);
+            animation: pulseBorder 2s infinite;
+        }
+
+        @keyframes pulseBorder {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
         }
 
         .input-box input {
@@ -247,12 +290,14 @@
 
         .action-btn:hover {
             background-color: #f3f4f6;
-            color: var(--text-main);
+            color: #3b82f6;
+            transform: scale(1.1);
         }
 
+        /* BOTÓN DE ENVIAR CON GRADIENTE */
         .send-btn {
-            background-color: #e5e7eb;
-            color: var(--text-main);
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -261,10 +306,13 @@
             align-items: center;
             border: none;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);
         }
+        
         .send-btn:hover {
-            background-color: #d1d5db;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(139, 92, 246, 0.6);
         }
 
     </style>
@@ -278,34 +326,30 @@
             <div class="header-left">
                 <button class="icon-btn"><i class="fa-solid fa-bars"></i></button>
                 <div class="header-title">
-                    Gemini <span style="color: #9ca3af;">Flash</span> <i class="fa-solid fa-chevron-down"></i>
+                    Assient Leo <i class="fa-solid fa-chevron-down"></i>
                 </div>
             </div>
             <div class="header-right">
                 <button class="icon-btn"><i class="fa-regular fa-pen-to-square"></i></button>
                 <button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                <!-- Avatar de usuario (puedes cambiar la J por una foto) -->
-                <div style="width: 36px; height: 36px; background-color: #ef4444; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 0.9rem; cursor: pointer;">J</div>
+                <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #ef4444, #f59e0b); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 0.9rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">J</div>
             </div>
         </header>
 
         <!-- ÁREA DE MENSAJES -->
         <main class="chat-messages" id="chatMessages">
             
-            <!-- Pantalla de bienvenida (puedes borrarla si quieres empezar directo con el chat) -->
+            <!-- Pantalla de bienvenida -->
             <div class="welcome-screen" id="welcomeScreen">
                 <div class="welcome-icon"><i class="fa-solid fa-sparkles"></i></div>
                 <h1>Hola, Jorge,</h1>
-                <h1>comencemos</h1>
+                <h1>soy Assient Leo</h1>
             </div>
 
             <!-- Ejemplo de mensaje del usuario -->
             <div class="message user">Hola</div>
 
-            <!-- Ejemplo de respuesta de la IA -->
-            <!-- <div class="message ai">¡Hola! ¿En qué puedo ayudarte hoy?</div> -->
-
-            <!-- Indicador de escritura (oculto por defecto) -->
+            <!-- Indicador de escritura -->
             <div class="typing-indicator" id="typingIndicator" style="display: none;">
                 <span></span><span></span><span></span>
             </div>
@@ -316,7 +360,7 @@
         <footer class="input-area">
             <div class="input-box">
                 <button class="action-btn"><i class="fa-solid fa-plus"></i></button>
-                <input type="text" id="userInput" placeholder="Pedir a Gemini" autocomplete="off">
+                <input type="text" id="userInput" placeholder="Pedir a Assient Leo" autocomplete="off">
                 <div class="action-buttons">
                     <button class="action-btn"><i class="fa-solid fa-microphone"></i></button>
                     <button class="send-btn" id="sendBtn"><i class="fa-solid fa-wave-square"></i></button>
@@ -338,10 +382,8 @@
             const text = userInput.value.trim();
             if (text === '') return;
 
-            // Ocultar pantalla de bienvenida si existe
             if (welcomeScreen) welcomeScreen.style.display = 'none';
 
-            // Agregar mensaje del usuario
             const userMessage = document.createElement('div');
             userMessage.classList.add('message', 'user');
             userMessage.textContent = text;
@@ -350,27 +392,23 @@
             userInput.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Mostrar indicador de escritura
             typingIndicator.style.display = 'flex';
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Simular respuesta de la IA después de 1.5 segundos
             setTimeout(() => {
                 typingIndicator.style.display = 'none';
                 
                 const aiMessage = document.createElement('div');
                 aiMessage.classList.add('message', 'ai');
-                aiMessage.textContent = "Esta es una respuesta simulada de la IA. ¡Tu plantilla está funcionando perfectamente!";
+                aiMessage.textContent = "¡Hola! Soy Assient Leo. Esta es una respuesta simulada. ¿En qué te puedo ayudar hoy?";
                 chatMessages.insertBefore(aiMessage, typingIndicator);
                 
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }, 1500);
         }
 
-        // Escuchar el clic en el botón de enviar
         sendBtn.addEventListener('click', sendMessage);
 
-        // Escuchar la tecla "Enter"
         userInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
         });
